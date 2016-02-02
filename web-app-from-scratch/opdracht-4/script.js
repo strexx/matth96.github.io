@@ -9,21 +9,37 @@
  *   Copyleft 2012, all wrongs reversed.
  */
 
+var myApp = myApp || {};
+
 (function () {
     "use strict";
     // Variable declaration
-    var updateMap, intervalCounter, interval, map, debugId, customDebugging, currentPositionMarker;
-    var myApp = {
-        positionUpdated: 'POSITION_UPDATED',
-        currentPosition: currentPositionMarker = customDebugging = debugId = map = interval = intervalCounter = updateMap = false,
-        ET: new EventTarget()
+    var updateMap, intervalCounter, interval, map, debugId, customDebugging, currentPositionMarker, geo_position_js;
+    var positionUpdated = 'POSITION_UPDATED',
+        currentPosition = currentPositionMarker = customDebugging = debugId = map = interval = intervalCounter = updateMap = false,
+        ET = new EventTarget();
+
+    // Test of GPS beschikbaar is (via geo.js) en vuur een event af
+    myApp.gps = {
+        init: function init() {
+            var gpsAvailable = 'gpsAvailable',
+                gpsUnavailable = 'gpsUnavailable',
+                ET = new EventTarget();
+
+            debugMessage("Controleer of GPS beschikbaar is...");
+            ET.addListener(gpsAvailable, startInterval);
+            ET.addListener(gpsUnavailable, function () {
+                debugMessage('GPS is niet beschikbaar.')
+            });
+            (geo_position_js.init()) ? ET.fire(gpsAvailable): ET.fire(gpsUnavailable);
+        }
     }
 
-    // Event functies - bron: http://www.nczonline.net/blog/2010/03/09/custom-events-in-javascript/ Copyright (c) 2010 Nicholas C. Zakas. All rights reserved. MIT License
-    // Gebruik: ET.addListener('foo', handleEvent); ET.fire('event_name'); ET.removeListener('foo', handleEvent);
     function EventTarget() {
         this._listeners = {}
     }
+    // Event functies - bron: http://www.nczonline.net/blog/2010/03/09/custom-events-in-javascript/ Copyright (c) 2010 Nicholas C. Zakas. All rights reserved. MIT License
+    // Gebruik: ET.addListener('foo', handleEvent); ET.fire('event_name'); ET.removeListener('foo', handleEvent);
     EventTarget.prototype = {
         constructor: EventTarget,
         addListener: function (a, c) {
@@ -50,28 +66,13 @@
         }
     };
 
-    // Test of GPS beschikbaar is (via geo.js) en vuur een event af
-    function init() {
-        var gpsAvailable = 'gpsAvailable';
-        var gpsUnavailable = 'gpsUnavailable';
-
-        debugMessage("Controleer of GPS beschikbaar is...");
-
-        myApp.ET.addListener(gpsAvailable, startInterval);
-        myApp.ET.addListener(gpsUnavailable, function () {
-            debugMessage('GPS is niet beschikbaar.')
-        });
-
-        (geo_position_js.init()) ? myApp.ET.fire(gpsAvailable): myApp.ET.fire(gpsUnavailable);
-    }
-
     // Start een interval welke op basis van refreshRate de positie updated
     function startInterval(event) {
         var refreshRate = 1000;
         debugMessage("GPS is beschikbaar, vraag positie.");
         updatePosition();
         interval = self.setInterval(updatePosition, refreshRate);
-        myApp.ET.addListener(myApp.positionUpdated, checkLocations);
+        ET.addListener(myApp.positionUpdated, checkLocations);
     }
 
     // Vraag de huidige positie aan geo.js, stel een callback in voor het resultaat
@@ -85,7 +86,7 @@
     // Callback functie voor het instellen van de huidige positie, vuurt een event af
     function setPosition(position) {
         myApp.currentPosition = position;
-        myApp.ET.fire("POSITION_UPDATED");
+        ET.fire("POSITION_UPDATED");
         debugMessage(intervalCounter + " positie lat:" + position.coords.latitude + " long:" + position.coords.longitude);
     }
 
@@ -195,7 +196,7 @@
         });
 
         // Zorg dat de kaart geupdated wordt als het POSITION_UPDATED event afgevuurd wordt
-        myApp.ET.addListener(myApp.positionUpdated, updatePositie);
+        ET.addListener(myApp.positionUpdated, updatePositie);
     }
 
     function isNumber(n) {
@@ -218,4 +219,6 @@
     function debugMessage(message) {
         (customDebugging && debugId) ? document.getElementById(debugId).innerHTML: console.log(message);
     }
+
+    myApp.gps.init()
 })();

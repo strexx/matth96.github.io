@@ -1,0 +1,43 @@
+footer {
+    background: #a2a5b2;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+
+footer ul {
+    list-style-type: none;
+}
+
+footer a {
+    text-decoration: none;
+    color: #fff;
+    margin: 1em;
+}
+
+footer > nav {
+    box-sizing: border-box;
+    width: 50%;
+    order: 2;
+    margin: 1em 0;
+    font-size: 0.8em;
+}
+
+footer > address {
+    order: 1;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    color: #fff;
+    background: #5c73ef;
+}
+
+footer > ul {
+    box-sizing: border-box;
+    width: 50%;
+    order: 3;
+        font-size: 0.8em;
+    margin: 1em 0;
+}
