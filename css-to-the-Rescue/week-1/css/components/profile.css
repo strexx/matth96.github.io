@@ -1,8 +1,22 @@
 .filter-effects {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
     flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
     justify-content: space-between;
+    -webkit-align-content: space-between;
+    -ms-flex-line-pack: justify;
     align-content: space-between;
 }
 .filter-effects > header{
@@ -12,6 +26,7 @@
     border-radius: 50% 50%;
     width: 80px;
     text-align: center;
+
 }
 
 /*
