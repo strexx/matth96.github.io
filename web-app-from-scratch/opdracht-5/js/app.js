@@ -5,35 +5,55 @@ var app = app || {};
 (function () {
     "use strict"
 
+    //start all funtions
     app.start = {
         init: function () {
             app.router.init();
-            app.sections.toggle();
-            console.log('app.init uitgevoerd')
+            console.log('app started')
         }
     };
+
+    app.html = {
+        selector: function (selector) {
+            return document.querySelector(selector);
+        },
+        selectors: function (selector) {
+            return document.querySelectorAll(selector);
+        }
+    }
+
+    //router funtion
     app.router = {
         init: function () {
-            console.log('app.router.init uitgevoerd')
-            this.OnHashChange()
-        },
-        OnHashChange: function (event) {
-            onhashchane(function () {
-                alert("verandert");
-            })
-
-
-        },
-        ChangeHash: function () {
-            document.location.hash = "myBookmark";
+            window.addEventListener("hashchange", function () {
+                app.sections.toggle(location.hash)
+            }, false);
         }
-
     }
+
+    //toggle between the sections
     app.sections = {
-            toggle: function () {
-                console.log('app.sections.toggle uitgevoerd')
+        toggle: function (route) {
+            var sections = app.html.selectors("main section"),
+                s = 0;
+            for (s; s < sections.length; s++) {
+                sections[s].classList.add("none")
+            }
+
+            app.html.selector(route).classList.remove("none")
+        }
+    }
+    app.support = {
+        init: function () {
+            this.onhashchange()
+        },
+        onhashchange: function () {
+            if ("onhashchange" in window) {
+                alert("The browser supports the hashchange event!");
             }
         }
-        //voer de app uit
+    }
+
+    //voer de app uit
     app.start.init()
 }())

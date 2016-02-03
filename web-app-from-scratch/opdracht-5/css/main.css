@@ -72,6 +72,17 @@ video {
     border: 0;
 }
 
+.none {
+    display: none;
+}
+
+.show-error {
+    background: #E25454;
+    color: #fff;
+    padding: 0.5em;
+    text-align: center;
+}
+
 body {
     font-size: 100%;
     font-family: Ampersand, "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -85,17 +96,26 @@ header > nav {
 }
 
 header > nav > ul > li {
-    padding: 1em;
     list-style-type: none;
     display: inline-block;
 }
+
 header > nav > ul > li:hover {
     background: #639E63;
 }
 
 body > header > nav> ul > li > a {
+    padding: 1em;
     color: #fff;
     display: block;
     width: 100%;
     text-decoration: none;
+}
+
+main > section {
+    padding: 1em;
+}
+
+main > section ul {
+    margin: 0 0 0 2em;
 }
