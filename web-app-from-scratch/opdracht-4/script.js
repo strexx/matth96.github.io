@@ -28,17 +28,17 @@ var myApp = myApp || {};
             myApp.debug.debugMessage("Controleer of GPS beschikbaar is...");
             ET.addListener(gpsAvailable, this.startInterval);
             ET.addListener(gpsUnavailable, function () {
-                debugMessage('GPS is niet beschikbaar.')
+                myApp.debug.debugMessage('GPS is niet beschikbaar.')
             });
             (geo_position_js.init()) ? ET.fire(gpsAvailable): ET.fire(gpsUnavailable);
         },
         startInterval: function (event) {
             // Start een interval welke op basis van refreshRate de positie updated
             var refreshRate = 1000;
-            this.debugMessage("GPS is beschikbaar, vraag positie.");
+            myApp.debug.debugMessage("GPS is beschikbaar, vraag positie.");
             this.updatePosition();
             interval = self.setInterval(this.updatePosition, refreshRate);
-            ET.addListener(myApp.positionUpdated, this.checkLocations);
+            ET.addListener(positionUpdated, this.checkLocations);
         },
         updatePosition: function () {
             // Vraag de huidige positie aan geo.js, stel een callback in voor het resultaat
@@ -49,9 +49,9 @@ var myApp = myApp || {};
         },
         setPosition: function (position) {
             // Callback functie voor het instellen van de huidige positie, vuurt een event af
-            myApp.currentPosition = position;
+            currentPosition = position;
             ET.fire("POSITION_UPDATED");
-            this.debugMessage(intervalCounter + " positie lat:" + position.coords.latitude + " long:" + position.coords.longitude);
+            myApp.debug.debugMessage(intervalCounter + " positie lat:" + position.coords.latitude + " long:" + position.coords.longitude);
         },
         checkLocations: function (event) {
             // Controleer de locations en verwijs naar een andere pagina als we op een location zijn
@@ -63,19 +63,19 @@ var myApp = myApp || {};
                         longitude: locations[i][4]
                     }
                 };
-                if (this.calculateDistance(location, myApp.currentPosition) < locations[i][2]) {
+                if (this.calculateDistance(location, currentPosition) < locations[i][2]) {
                     // Controle of we NU op die location zijn, zo niet gaan we naar de betreffende page
                     if (window.location != locations[i][1] && localStorage[locations[i][0]] == "false") {
                         // Probeer local storage, als die bestaat incrementeer de location
                         try {
                             (localStorage[locations[i][0]] == "false") ? localStorage[locations[i][0]] = 1: localStorage[locations[i][0]]++;
                         } catch (error) {
-                            this.debugMessage("Localstorage kan niet aangesproken worden: " + error);
+                            myApp.debug.debugMessage("Localstorage kan niet aangesproken worden: " + error);
                         }
 
                         // TODO: Animeer de betreffende marker
                         window.location = locations[i][1];
-                        this.debugMessage("Speler is binnen een straal van " + locations[i][2] + " meter van " + locations[i][0]);
+                        myApp.debug.debugMessage("Speler is binnen een straal van " + locations[i][2] + " meter van " + locations[i][0]);
                     }
                 }
             }
@@ -91,7 +91,7 @@ var myApp = myApp || {};
     myApp.map = {
         updatePositie: function (event) {
             // use currentPosition to center the map
-            var newPos = new google.maps.LatLng(myApp.currentPosition.coords.latitude, myApp.currentPosition.coords.longitude);
+            var newPos = new google.maps.LatLng(currentPosition.coords.latitude, currentPosition.coords.longitude);
             map.setCenter(newPos);
             myApp.gps.setPosition(newPos);
         },
@@ -133,7 +133,7 @@ var myApp = myApp || {};
 
                 // Met kudos aan Tomas Harkema, probeer local storage, als het bestaat, voeg de locations toe
                 try {
-                    (localStorage.visited == undefined || myApp.map.isNumber(localStorage.visited)) ? localStorage[locations[i][0]] = false: null;
+                    (localStorage.visited == undefined || map.isNumber(localStorage.visited)) ? localStorage[locations[i][0]] = false: null;
                 } catch (error) {
                     myApp.debug.debugMessage("Localstorage kan niet aangesproken worden: " + error);
                 }
@@ -159,7 +159,7 @@ var myApp = myApp || {};
             }
 
             // Voeg de location van de persoon door
-            myApp.currentPositionMarker = new google.maps.Marker({
+            currentPositionMarker = new google.maps.Marker({
                 position: kaartOpties.center,
                 map: map,
                 icon: positieMarker,
@@ -167,7 +167,7 @@ var myApp = myApp || {};
             });
 
             // Zorg dat de kaart geupdated wordt als het POSITION_UPDATED event afgevuurd wordt
-            ET.addListener(myApp.positionUpdated, myApp.map.updatePositie);
+            ET.addListener(positionUpdated, map.updatePositie);
         }
     };
 
