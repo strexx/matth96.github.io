@@ -71,6 +71,31 @@ video {
     padding: 0;
     border: 0;
 }
+
 body {
     font-size: 100%;
+    font-family: Ampersand, "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+}
+
+header > nav {
+    background: #78C278;
+    display: inline-block;
+    width: 100%;
+}
+
+header > nav > ul > li {
+    padding: 1em;
+    list-style-type: none;
+    display: inline-block;
+}
+header > nav > ul > li:hover {
+    background: #639E63;
+}
+
+body > header > nav> ul > li > a {
+    color: #fff;
+    display: block;
+    width: 100%;
+    text-decoration: none;
 }
