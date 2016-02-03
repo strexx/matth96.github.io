@@ -1,0 +1,37 @@
+.filter-effects {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+}
+.filter-effects > header{
+    width: 100%;
+}
+.filter-effects img {
+    border-radius: 50% 50%;
+    width: 80px;
+    text-align: center;
+}
+
+/*
+.effect-01 > img {
+    filter:
+}
+
+.effect-02 > img {
+    filter:
+}
+
+.effect-03 > img {
+    filter:
+}
+
+.effect-04 > img {
+    filter:
+}
+
+.effect-05 > img {
+    filter:
+}
+*/

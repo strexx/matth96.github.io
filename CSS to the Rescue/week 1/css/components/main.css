@@ -4,10 +4,11 @@ body {
 
 main {
     background: #EFEFEF;
+    display: block;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     align-content: flex-start;
 }
 
@@ -37,6 +38,9 @@ main > article > header span {
     color: #5c73ef;
 }
 
+main > article figure > figcaption{
+    font-size: 0.8em;
+}
 main > article figure {
     position: relative;
 }
@@ -65,7 +69,6 @@ main > article figure > svg:hover {
 
 
 /*form*/
-
 main > article form >fieldset > label > input {
     width: 100%;
     border: #5c73ef solid 0.2em;
@@ -81,6 +84,7 @@ main > article form >fieldset > button {
     color: #fff;
     margin: 1em 0;
 }
+
 @media screen and (min-width:30em) {
     main > article {
         margin: 1em;
