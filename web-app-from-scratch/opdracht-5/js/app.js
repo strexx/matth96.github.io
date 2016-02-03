@@ -22,9 +22,12 @@ var app = app || {};
         }
     }
 
-    //router funtion
+    //router function
     app.router = {
         init: function () {
+            window.addEventListener("load", function () {
+                app.sections.toggle(location.hash)
+            }, false);
             window.addEventListener("hashchange", function () {
                 app.sections.toggle(location.hash)
             }, false);
@@ -34,13 +37,21 @@ var app = app || {};
     //toggle between the sections
     app.sections = {
         toggle: function (route) {
-            var sections = app.html.selectors("main section"),
-                s = 0;
+            var sections = app.html.selectors("main section");
+
+            if (!route) {
+                this.hideall(sections)
+                app.html.selector("#home").classList.remove("none")
+            } else {
+                this.hideall(sections)
+                app.html.selector(route).classList.remove("none")
+            }
+        },
+        hideall: function (sections) {
+            var s = 0;
             for (s; s < sections.length; s++) {
                 sections[s].classList.add("none")
             }
-
-            app.html.selector(route).classList.remove("none")
         }
     }
     app.support = {
