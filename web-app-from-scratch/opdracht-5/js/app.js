@@ -8,7 +8,7 @@ var app = app || {};
     //start all funtions
     app.start = {
         init: function () {
-            app.router.init();
+            app.routes.init();
             console.log('app started')
         }
     };
@@ -22,8 +22,8 @@ var app = app || {};
         }
     }
 
-    //router function
-    app.router = {
+    //routes function
+    app.routes = {
         init: function () {
             window.addEventListener("load", function () {
                 app.sections.toggle(location.hash)
@@ -41,16 +41,16 @@ var app = app || {};
 
             if (!route) {
                 this.hideall(sections)
-                app.html.selector("#home").classList.remove("none")
+                app.html.selector("#home").classList.remove("active")
             } else {
                 this.hideall(sections)
-                app.html.selector(route).classList.remove("none")
+                app.html.selector(route).classList.remove("active")
             }
         },
         hideall: function (sections) {
             var s = 0;
             for (s; s < sections.length; s++) {
-                sections[s].classList.add("none")
+                sections[s].classList.add("active")
             }
         }
     }
