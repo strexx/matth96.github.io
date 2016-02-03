@@ -27,6 +27,7 @@ var app = app || {};
         init: function () {
             window.addEventListener("load", function () {
                 app.sections.toggle(location.hash)
+                app.support.init()
             }, false);
             window.addEventListener("hashchange", function () {
                 app.sections.toggle(location.hash)
@@ -60,7 +61,10 @@ var app = app || {};
         },
         onhashchange: function () {
             if ("onhashchange" in window) {
-                alert("The browser supports the hashchange event!");
+                console.log("onhashchange is supported")
+            } else {
+                app.html.selector(".error").classList.add("show-error")
+                app.html.selector(".error").innerHTML = "The browser isn't supporting this app :("
             }
         }
     }
