@@ -9,15 +9,16 @@ var app = app || {};
     app.start = {
         init: function () {
             app.routes.init();
+            app.page.weer()
             console.log('app started')
         }
     };
 
-    app.html = {
-        selector: function (selector) {
+    app.select = {
+        one: function (selector) {
             return document.querySelector(selector);
         },
-        selectors: function (selector) {
+        all: function (selector) {
             return document.querySelectorAll(selector);
         }
     }
@@ -38,14 +39,14 @@ var app = app || {};
     //toggle between the sections
     app.sections = {
         toggle: function (route) {
-            var sections = app.html.selectors("main section");
+            var sections = app.select.all("main section");
 
             if (!route) {
                 this.hideall(sections)
-                app.html.selector("#home").classList.remove("active")
+                app.select.one("#home").classList.remove("active")
             } else {
                 this.hideall(sections)
-                app.html.selector(route).classList.remove("active")
+                app.select.one(route).classList.remove("active")
             }
         },
         hideall: function (sections) {
@@ -55,6 +56,42 @@ var app = app || {};
             }
         }
     }
+
+    app.data = {
+        apiKey: "7aa0e92a8b7be8ed7e420e33de310e0e",
+        url: ["http://api.openweathermap.org/data/2.5/weather?q=",
+            "&appid="],
+        fullUrl: function (city) {
+            var fullUrl = app.data.url[0] + city + app.data.url[1] + app.data.apiKey;
+            return fullUrl;
+        }
+    };
+
+    //source https://stackoverflow.com/questions/247483/http-get-request-in-javascript
+    var HttpClient = function () {
+        this.get = function (aUrl, aCallback) {
+            var anHttpRequest = new XMLHttpRequest();
+            anHttpRequest.onreadystatechange = function () {
+                if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+                    aCallback(anHttpRequest.responseText);
+            }
+            anHttpRequest.open("GET", aUrl, true);
+            anHttpRequest.send(null);
+        }
+    }
+
+
+    app.page = {
+        weer: function () {
+            var temp, description, wind,
+                aClient = new HttpClient();
+            aClient.get(app.data.fullUrl('amsterdam,nl'), function (response) {
+                console.log(description)
+            });
+
+        }
+    }
+
     app.support = {
         init: function () {
             this.onhashchange()
@@ -63,8 +100,8 @@ var app = app || {};
             if ("onhashchange" in window) {
                 console.log("onhashchange is supported")
             } else {
-                app.html.selector(".error").classList.add("show-error")
-                app.html.selector(".error").innerHTML = "The browser isn't supporting this app :("
+                app.select.one(".error").classList.add("show-error")
+                app.select.one(".error").innerHTML = "The browser isn't supporting this app :("
             }
         }
     }
