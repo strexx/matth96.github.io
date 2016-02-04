@@ -1,6 +1,6 @@
 /*menu*/
 
-html. body > header {
+html.no-flexbox body > header {
     display: block;
 }
 
