@@ -22,10 +22,14 @@ Create a responive website with flexbox.
 ## Exercises
 - [Week 1](http://matth96.github.io/css-to-the-Rescue/week-1/)
 
-## Made by
+# Weekly Nerd
+- [blog.dolstra.me](https://blog.dolstra.me)
+
+
+# Made by
 [Matthias](http://dolstra.me)
 
-## Credits
+# Credits
 
 ###Html:
 - HTML5 UP
