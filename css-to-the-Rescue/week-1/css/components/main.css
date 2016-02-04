@@ -3,14 +3,14 @@ body {
 }
 
 nav {
-    display: inline-block;
     box-sizing: border-box;
+    display: inline-block;
 }
 
 nav > ul > li,
 ul > li {
-    list-style-type: none;
     box-sizing: border-box;
+    list-style-type: none;
 }
 
 a {
@@ -18,12 +18,14 @@ a {
 }
 
 .flex {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -66,32 +68,38 @@ svg {
 }
 
 main {
-    background: #EFEFEF;
+    -webkit-justify-content: space-around;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    -ms-flex-pack: distribute;
+    -ms-flex-line-pack: start;
+    -webkit-align-content: flex-start;
     display: block;
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    -webkit-justify-content: space-around;
-    -ms-flex-pack: distribute;
-    justify-content: space-around;
     -webkit-align-content: flex-start;
     -ms-flex-line-pack: start;
     align-content: flex-start;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    background: #EFEFEF;
 }
 
 main > article {
     max-width: 30em;
-    background: #fff;
-    border-top: #5C73EF solid 0.5em;
-    box-shadow: 0.125rem 0.25rem 0.625rem RGBA(160, 160, 160, 0.54);
+    margin: 1em 0;
     padding: 1em;
     overflow: hidden;
-    margin: 1em 0;
+    border-top: #5C73EF solid 0.5em;
+    background: #fff;
+    box-shadow: 0.125rem 0.25rem 0.625rem RGBA(160, 160, 160, 0.54);
 }
 
 main > article > header {
-    border-bottom: #efefef solid 0.1em;
     margin: 0 0 0.3em 0;
+    border-bottom: #efefef solid 0.1em;
 }
 
 main > article > header h2 {
@@ -99,10 +107,10 @@ main > article > header h2 {
 }
 
 main > article > header span {
-    font-size: 0.4em;
     margin: 0;
     padding: 0;
     color: #5c73ef;
+    font-size: 0.4em;
 }
 
 main > article figure figcaption {
@@ -114,16 +122,16 @@ main > article figure {
 }
 
 main > article figure > svg {
-    position: absolute;
-    background: RGBA(45, 46, 46, 0.76);
-    border-radius: 50% 50%;
-    padding: 1em;
-    margin: 0 35%;
-    top: 30%;
     fill: #fff;
+    position: absolute;
+    top: 30%;
+    left: 0;
     width: 2em;
     height: 2em;
-    left: 0;
+    margin: 0 35%;
+    padding: 1em;
+    border-radius: 50% 50%;
+    background: RGBA(45, 46, 46, 0.76);
 }
 
 main > article figure > svg:hover {
@@ -135,18 +143,18 @@ main > article figure > svg:hover {
 
 main > article form > fieldset label input {
     width: 100%;
-    border: #5c73ef solid 0.2em;
     height: 2em;
     margin: 1em 0;
+    border: #5c73ef solid 0.2em;
 }
 
 main > article form >fieldset > button {
     width: 100%;
-    background: #5c73ef;
     height: 3em;
-    border: none;
-    color: #fff;
     margin: 1em 0;
+    border: none;
+    background: #5c73ef;
+    color: #fff;
 }
 
 @media screen and (min-width:30em) {
