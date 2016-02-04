@@ -33,6 +33,9 @@ footer a {
     margin: 1em;
     color: #fff;
 }
+footer a:hover{
+    color: #DBDBDB;
+}
 
 footer > nav {
     -ms-flex-negative: 0;

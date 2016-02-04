@@ -1,5 +1,6 @@
 body {
     max-width: 100%;
+    background: #EFEFEF;
 }
 
 nav {
@@ -17,6 +18,7 @@ a {
     text-decoration: none;
 }
 
+
 .flex {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -29,14 +31,6 @@ a {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
-}
-
-img,
-video,
-figure,
-svg {
-    max-width: 100%;
-    height: auto;
 }
 
 .order-1 {
@@ -60,13 +54,6 @@ svg {
     order: 3;
 }
 
-.order-4 {
-    -webkit-box-ordinal-group: 5;
-    -webkit-order: 4;
-    -ms-flex-order: 4;
-    order: 4;
-}
-
 main {
     -webkit-justify-content: space-around;
     -webkit-flex-wrap: wrap;
@@ -84,7 +71,6 @@ main {
     -webkit-justify-content: space-around;
     -ms-flex-pack: distribute;
     justify-content: space-around;
-    background: #EFEFEF;
 }
 
 main > article {
@@ -102,7 +88,7 @@ main > article > header {
     border-bottom: #efefef solid 0.1em;
 }
 
-main > article > header h2 {
+main > article h2 {
     margin: 0;
 }
 
@@ -113,8 +99,19 @@ main > article > header span {
     font-size: 0.4em;
 }
 
-main > article figure figcaption {
+main > article figcaption {
     font-size: 0.8em;
+}
+
+main > article img {
+    -webkit-transition: all .7s ease;
+    transition: all .7s ease;
+}
+
+main > article img:hover {
+    -webkit-filter: blur(2px);
+    filter: blur(2px);
+    opacity: 0.8;
 }
 
 main > article figure {
@@ -141,7 +138,7 @@ main > article figure > svg:hover {
 
 /*form*/
 
-main > article form > fieldset label input {
+main > article form input {
     width: 100%;
     height: 2em;
     margin: 1em 0;
@@ -155,6 +152,13 @@ main > article form >fieldset > button {
     border: none;
     background: #5c73ef;
     color: #fff;
+    font-size: 0.8em;
+    -webkit-transition: all .7s ease;
+    transition: all .7s ease;
+}
+
+main > article form >fieldset > button:active {
+    font-size: 0.9em;
 }
 
 @media screen and (min-width:30em) {

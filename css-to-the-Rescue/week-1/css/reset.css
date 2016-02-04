@@ -71,3 +71,11 @@ video {
     padding: 0;
     border: 0;
 }
+
+img,
+video,
+figure,
+svg {
+    max-width: 100%;
+    height: auto;
+}
