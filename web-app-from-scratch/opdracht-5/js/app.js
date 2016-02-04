@@ -12,7 +12,6 @@ var app = app || {};
             // run the function app.routes.init.
             app.routes.init();
             app.support.init();
-            app.page.weer();
             console.log('app started');
         }
     };
@@ -30,11 +29,16 @@ var app = app || {};
     //routes function
     app.routes = {
         init: function () {
+            this.load();
+            this.hashchange();
+        },
+        load: function () {
             //if the window is loaded run app.sectons.toggle
             window.addEventListener("load", function () {
                 app.sections.toggle(location.hash)
-
             }, false);
+        },
+        hashchange: function () {
             //if the hash changes run app.sectons.toggle
             window.addEventListener("hashchange", function () {
                 app.sections.toggle(location.hash)
