@@ -44,9 +44,9 @@ footer > nav {
     -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0;
-    -webkit-flex-basis: 200px;
-    -ms-flex-preferred-size: 200px;
-    flex-basis: 200px;
+    -webkit-flex-basis: 12.5em;
+    -ms-flex-preferred-size: 12.5em;
+    flex-basis: 12.5em;
     -webkit-box-ordinal-group: 3;
     -webkit-order: 2;
     -ms-flex-order: 2;
@@ -81,9 +81,9 @@ footer > ul {
     -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0;
-    -webkit-flex-basis: 200px;
-    -ms-flex-preferred-size: 200px;
-    flex-basis: 200px;
+    -webkit-flex-basis: 3.33em;
+    -ms-flex-preferred-size: 3.33em;
+    flex-basis: 3.33em;
     -webkit-box-ordinal-group: 4;
     -webkit-order: 3;
     -ms-flex-order: 3;
@@ -126,7 +126,7 @@ footer > ul {
         -webkit-order: 3;
         -ms-flex-order: 3;
         order: 3;
-        width: 200px;
+        width: 3.33em;
     }
     footer > ul {
         -webkit-box-flex: 0;

@@ -62,8 +62,8 @@ body > header p {
 
 body > header img {
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 3rem;
+    height: 3rem;
     margin: 0.5em;
     filter: contrast(1);
     -webkit-filter: contrast(1);
@@ -122,13 +122,13 @@ body > header > nav:active ul {
 
 body > header > nav > ul {
     background: RGBA(92, 115, 239, 0.80);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(1em);
+    backdrop-filter: blur(1em);
 }
 
 body > header > nav:hover ul {
     display: block;
-    box-shadow: 2px 4px 10px RGBA(160, 160, 160, 0.54);
+    box-shadow: 0.1em 0.4em 0.9em RGBA(160, 160, 160, 0.54);
 }
 
 body > header > nav > ul > li {
@@ -146,15 +146,15 @@ body > header > nav > ul > li:hover {
 }
 
 body > header > nav > ul > li svg {
-    width: 30px;
-    height: 10px;
+    width: 2em;
+    height: 1em;
 }
 
 
 /*source http://codepen.io/tonkec/pen/BjKjpV*/
 
 .con {
-    width: 40px;
+    width: 3rem;
     display: block;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
@@ -166,10 +166,10 @@ body > header > nav > ul > li svg {
 
 .bar {
     display: block;
-    height: 5px;
-    width: 40px;
+    height: 0.2rem;
+    width: 2rem;
     background: #fff;
-    margin: 10px auto;
+    margin: 0.5rem auto;
 }
 
 .middle {
@@ -182,13 +182,13 @@ body > header > nav > ul > li svg {
 }
 
 .con:hover .top {
-    -webkit-transform: translateY(15px) rotateZ(45deg);
-    transform: translateY(15px) rotateZ(45deg);
+    -webkit-transform: translateY(0.7rem) rotateZ(45deg);
+    transform: translateY(0.7rem) rotateZ(45deg);
 }
 
 .con:hover .bottom {
-    -webkit-transform: translateY(-15px) rotateZ(-45deg);
-    transform: translateY(-15px) rotateZ(-45deg);
+    -webkit-transform: translateY(-0.7rem) rotateZ(-45deg);
+    transform: translateY(-0.7rem) rotateZ(-45deg);
 }
 
 .con:hover .middle {
@@ -231,9 +231,9 @@ body > header > nav > ul > li svg {
         -webkit-flex-shrink: 0;
         -ms-flex-negative: 0;
         flex-shrink: 0;
-        -webkit-flex-basis: 210px;
-        -ms-flex-preferred-size: 210px;
-        flex-basis: 210px;
+        -webkit-flex-basis: 13em;
+        -ms-flex-preferred-size: 13em;
+        flex-basis: 13em;
     }
     body > header > figure {
         -webkit-box-ordinal-group: 4;
@@ -251,9 +251,9 @@ body > header > nav > ul > li svg {
         font-size: 0.6em;
         margin: 0;
         padding: 0;
-        -webkit-flex-basis: 80px;
-        -ms-flex-preferred-size: 80px;
-        flex-basis: 80px;
+        -webkit-flex-basis: 5em;
+        -ms-flex-preferred-size: 5em;
+        flex-basis: 5em;
     }
     body > header > nav {
         -webkit-box-ordinal-group: 5;
@@ -262,9 +262,9 @@ body > header > nav > ul > li svg {
         order: 4;
         margin: 0.4em;
         padding: 0;
-        -webkit-flex-basis: 60px;
-        -ms-flex-preferred-size: 60px;
-        flex-basis: 60px;
+        -webkit-flex-basis: 3, 75em;
+        -ms-flex-preferred-size: 3, 75em;
+        flex-basis: 3, 75em;
     }
     body > header > nav ul,
     body > header > nav:active ul {

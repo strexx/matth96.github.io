@@ -29,7 +29,7 @@ main > article {
     max-width: 30em;
     background: #fff;
     border-top: #5C73EF solid 0.5em;
-    box-shadow: 2px 4px 10px RGBA(160, 160, 160, 0.54);
+    box-shadow: 0.125rem 0.25rem 0.625rem RGBA(160, 160, 160, 0.54);
     padding: 1em;
     overflow: hidden;
     margin: 1em 0;
