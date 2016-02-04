@@ -1,14 +1,6 @@
 footer {
     background: #a2a5b2;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
     -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -22,15 +14,11 @@ footer {
     -webkit-box-align: center;
     -webkit-align-items: center;
     -ms-flex-align: center;
+    -ms-grid-row-align: center;
     align-items: center;
 }
 
-footer ul {
-    list-style-type: none;
-}
-
 footer a {
-    text-decoration: none;
     color: #fff;
     margin: 1em;
 }
@@ -47,21 +35,12 @@ footer > nav {
     -webkit-flex-basis: 12.5em;
     -ms-flex-preferred-size: 12.5em;
     flex-basis: 12.5em;
-    -webkit-box-ordinal-group: 3;
-    -webkit-order: 2;
-    -ms-flex-order: 2;
-    order: 2;
     margin: 1em 0;
     font-size: 0.8em;
 }
 
-footer > address {
-    -webkit-box-ordinal-group: 2;
-    -webkit-order: 1;
-    -ms-flex-order: 1;
-    order: 1;
+address {
     width: 100%;
-    box-sizing: border-box;
     margin: 0;
     color: #fff;
     background: #5c73ef;
@@ -84,10 +63,6 @@ footer > ul {
     -webkit-flex-basis: 3.33em;
     -ms-flex-preferred-size: 3.33em;
     flex-basis: 3.33em;
-    -webkit-box-ordinal-group: 4;
-    -webkit-order: 3;
-    -ms-flex-order: 3;
-    order: 3;
     font-size: 0.8em;
     margin: 1em 0;
 }
@@ -110,32 +85,20 @@ footer > ul {
         -webkit-box-flex: 0;
         -webkit-flex-grow: 0;
         -ms-flex-positive: 0;
-        flex-grow: 0;
-        -webkit-box-ordinal-group: 3;
-        -webkit-order: 2;
-        -ms-flex-order: 2;
-        order: 2
+        flex-grow: 1;
     }
     footer > address {
         background: none;
         -webkit-box-flex: 0;
         -webkit-flex-grow: 0;
         -ms-flex-positive: 0;
-        flex-grow: 0;
-        -webkit-box-ordinal-group: 4;
-        -webkit-order: 3;
-        -ms-flex-order: 3;
-        order: 3;
-        width: 3.33em;
+        flex-grow: 1;
+        width: 8em;
     }
     footer > ul {
         -webkit-box-flex: 0;
         -webkit-flex-grow: 0;
         -ms-flex-positive: 0;
-        flex-grow: 0;
-        -webkit-box-ordinal-group: 3;
-        -webkit-order: 2;
-        -ms-flex-order: 2;
-        order: 2;
+        flex-grow: 1;
     }
 }

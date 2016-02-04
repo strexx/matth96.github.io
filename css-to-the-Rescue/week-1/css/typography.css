@@ -1,3 +1,9 @@
+@font-face {
+    font-family: Ampersand;
+    src: local('Baskerville-Italic'), local('GoudyOldStyleT-Italic'), local('Garamond-Italic'), local('Palatino-Italic');
+    unicode-range: U+26;
+}
+
 html {
     font-size: 1.1em;
 }
@@ -40,10 +46,4 @@ h4 {
 
 small {
     font-size: 0.707em;
-}
-
-@font-face {
-    font-family: Ampersand;
-    src: local('Baskerville-Italic'), local('GoudyOldStyleT-Italic'), local('Garamond-Italic'), local('Palatino-Italic');
-    unicode-range: U+26;
 }

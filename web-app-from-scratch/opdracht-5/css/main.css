@@ -106,10 +106,10 @@ header > nav > ul > li:hover {
 
 body > header > nav> ul > li > a {
     padding: 1em;
+    text-decoration: none;
     color: #fff;
     display: block;
     width: 100%;
-    text-decoration: none;
 }
 
 main > section {
