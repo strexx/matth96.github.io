@@ -59,7 +59,7 @@ body > header img:hover {
     filter: contrast(0.5);
 }
 
-body > header > section > p {
+body > header p {
     height: 2em;
     margin: 0.5rem;
 }
@@ -96,17 +96,17 @@ body > header > nav:hover ul {
     box-shadow: 0.1em 0.4em 0.9em RGBA(160, 160, 160, 0.54);
 }
 
-body > header > nav > ul > li {
+body > header li {
     margin: 0;
     padding: 0.3rem 1rem;
     border-bottom: #A2A5B2 solid 0.05em;
 }
 
-body > header > nav > ul > li:hover {
+body > header li:hover {
     background: RGBA(36, 69, 248, 0.94);
 }
 
-body > header > nav > ul > li svg {
+body > header li svg {
     width: 2em;
     height: 1em;
 }

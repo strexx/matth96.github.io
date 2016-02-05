@@ -12,14 +12,14 @@
     <link rel="stylesheet" href="css/components/menu.css">
     <link rel="stylesheet" href="css/components/main.css">
     <link rel="stylesheet" href="css/components/footer.css">
-    <link rel="stylesheet" href="css/components/no-flexbox.css">
+    <link rel="stylesheet" href="css/components/no-responsivebox.css">
 </head>
 
 <body>
     <!-- De header, met een navigatie -->
-    <header class="flex">
-        <h1 class="order-2">Rescue & Secrets</h1>
-        <nav class="order-1">
+    <header class="responsive">
+        <h1 class="second">Rescue & Secrets</h1>
+        <nav class="first">
             <a id="menu-icon" href="#">
                 <div class="con">
                     <div class="bar top"></div>
@@ -70,7 +70,7 @@
                 <li><a href="#">Another list item</a></li>
             </ul>
         </nav>
-        <section class="order-3 flex">
+        <section class="third responsive">
             <p> Welcome back, Mona</p>
             <figure>
                 <img src="images/profile-picture-thumb.jpg" alt="Profile picture of Monica Krajeck">
@@ -79,7 +79,7 @@
 
     </header>
     <!-- De main content begint hier -->
-    <main class="flex">
+    <main class="responsive">
         <article>
             <header>
                 <h1>Mona Krajeck <span>@monakrajeck</span></h1>
@@ -109,7 +109,7 @@
                 </header>
                 <a title="Opens upload window" role="button" href="/">Upload</a>
             </div>
-            <section class="filter-effects flex">
+            <section class="filter-effects responsive">
                 <header>
                     <h3>Select a filter</h3>
                 </header>
@@ -235,8 +235,8 @@
 <div title="Load more articles" class="loader">Loading…</div>
 -->
     </main>
-    <footer class="flex">
-        <nav class="order-2">
+    <footer class="responsive">
+        <nav class="second">
             <ul>
                 <li><a href="">About</a></li>
                 <li><a href="">FAQ</a></li>
@@ -246,7 +246,7 @@
                 <li><a href="">Privacy</a></li>
             </ul>
         </nav>
-        <address class="order-1">
+        <address class="first">
                 <pre>
                     Rescue & Secrets
                     Wibautstraat 2-4
@@ -254,7 +254,7 @@
                     020 599 5555
                 </pre>
         </address>
-        <ul class="order-3">
+        <ul class="third">
             <li><a href="">Status</a></li>
             <li><a href="">API</a></li>
             <li><a href="">Training</a></li>
