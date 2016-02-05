@@ -3,7 +3,7 @@ var app = app || {};
 
 // use IIFE to avoid global vars
 (function () {
-    "use strict"
+    "use strict" //This is a EJS 5 function. If you enable it you can't use undifned varibles and your code will crash if you don't code properly.
 
     //start all funtions
     app.start = { //litteral opbject
@@ -18,7 +18,7 @@ var app = app || {};
 
     //To easy select something form the DOM
     app.select = {
-        one: function (selector) {
+        one: function (selector) { //This is a method
             return document.querySelector(selector);
         },
         all: function (selector) {
@@ -29,7 +29,7 @@ var app = app || {};
     //routes function
     app.routes = {
         init: function () {
-            this.load();
+            this.load(); //this is a closure
             this.hashchange();
         },
         load: function () {
@@ -49,7 +49,7 @@ var app = app || {};
     //toggle between the sections
     app.sections = {
         toggle: function (route) {
-            var sections = app.select.all("main section");
+            var sections = app.select.all("main section"); //this is variable hoisting
 
             //if route is not defined hide all sections except the home section.
             if (!route) {
@@ -81,7 +81,7 @@ var app = app || {};
     //    };
     //
     //    //source https://stackoverflow.com/questions/247483/http-get-request-in-javascript
-    //    var HttpClient = function () {
+    //    var HttpClient = function () { // this is a constructor
     //        this.get = function (aUrl, aCallback) {
     //            var anHttpRequest = new XMLHttpRequest();
     //            anHttpRequest.onreadystatechange = function () {
