@@ -1,0 +1,63 @@
+<!doctype html>
+
+<html lang="nl">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>Web App from Scratch</title>
+</head>
+
+<body>
+    <header>
+        <section class="error"></section>
+        <nav>
+            <ul>
+                <li>
+                    <a href="#/home">Home</a>
+                </li>
+                <li>
+                    <a href="#/citys">Citys</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="target">Loading...</section>
+
+
+        <script id="home" type="x-tmpl-mustache">
+            <h1>Welkom,</h1>
+            <article>
+               Dit is een weer app op basis van de openweather API
+            </article>
+        </script>
+
+        <script id="citys" type="x-tmpl-mustache">
+
+        </script>
+        <script id="best-practices" type="x-tmpl-mustache">
+            <h1>Weer</h1>
+            <article>
+                <h2>City {{city}}</h2>
+                <ul>
+                    <li>Description: {{description}}</li>
+                    <li>Temparatuur: {{temp}}</li>
+                    <li>Wind: {{wind}}</li>
+                </ul>
+            </article>
+        </script>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+
+<script src="./lib/director.min.js"></script>
+<script src="./node_modules/mustache/mustache.min.js"></script>
+<script src="./node_modules/underscore/underscore-min.js"></script>
+<script src="./js/app.js"></script>
+
+</html>

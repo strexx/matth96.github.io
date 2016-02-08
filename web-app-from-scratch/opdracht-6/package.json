@@ -1,0 +1,14 @@
+{
+  "name": "web-app-from-scratch",
+  "version": "0.0.1",
+  "description": "This is a webapp with pure JS without frameworks",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matth96/matth96.github.io/"
+  },
+  "author": "Matthias",
+  "dependencies": {
+    "mustache": "^2.2.1",
+    "underscore": "^1.8.3"
+  }
+}
