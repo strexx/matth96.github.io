@@ -1,0 +1,10 @@
+{{#citys}}
+<a href="#/city/{{cityName}}" class="citys">
+    <h2>{{cityName}}</h2>
+    <ul>
+        <li>Description: {{description}}</li>
+        <li class="temp">{{temp}} °C</li>
+        <li>Wind: {{wind}}</li>
+    </ul>
+</a>
+{{/citys}}

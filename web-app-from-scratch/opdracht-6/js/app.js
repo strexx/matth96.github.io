@@ -8,8 +8,6 @@ var app = app || {};
     //Start all functions
     app.start = { //Literal opbject
         init: function () { //Start object in this object are all start functions
-
-            app.page.init();
             app.routes.init();
             console.log('app started');
         }
@@ -25,6 +23,28 @@ var app = app || {};
         }
     }
 
+    //difine all routers in app
+    app.routes = {
+        init: function () {
+            var routes = {
+                    '/': this.home,
+                    '/home': this.home,
+                    '/citys': this.citys,
+                    '/city/:city': this.city
+                },
+                router = Router(routes);
+            router.init();
+        },
+        home: function () {
+            app.page.home()
+        },
+        citys: function () {
+            app.page.citys()
+        },
+        city: function (cityParam) {
+            app.page.city(cityParam)
+        }
+    };
     app.data = {
         apiKey: "7aa0e92a8b7be8ed7e420e33de310e0e",
         url: ["http://api.openweathermap.org/data/2.5/weather?q=",
@@ -49,61 +69,68 @@ var app = app || {};
             anHttpRequest.send(null);
         }
     }
+    var tempCovert = function (tempCelvin) { // this is a constructor
+        var rawTemp = tempCelvin - 273.2,
+            newTemp = (Math.round(rawTemp * 100) / 100).toFixed(1);
+        return newTemp
+    }
 
+    //define all pages in the app.
     app.page = {
-        init: function () {
-            app.page.citys();
+
+        home: function () {
+            var Getemplate = new HttpClient();
+            Getemplate.get('./temp/home.mst', function (response) {
+                app.select.one('#target').innerHTML = Mustache.render(response);
+            });
         },
         citys: function () {
-            var temp, description, wind
+            var savedCitys = ["Amsterdam", "Den haag", "Ermelo"],
+                savedCitysData = [],
+                weatherCity = new HttpClient();
+            savedCitys.forEach(function (element, index, array) {
+                weatherCity.get(app.data.fullUrl(savedCitys[index]), function (response) {
+                    var data = JSON.parse(response);
+
+                    savedCitysData.push({
+                        cityName: data.name,
+                        description: data.weather[0].description,
+                        temp: tempCovert(data.main.temp),
+                        wind: data.wind.speed
+                    })
+                    if (savedCitysData.length === savedCitys.length) {
+                        var Getemplate = new HttpClient();
+                        Getemplate.get('./temp/citys.mst', function (response) {
+                            app.select.one('#target').innerHTML = Mustache.render(response, {
+                                citys: savedCitysData
+                            });
+                        });
+                    }
+                });
+            });
+        },
+        city: function (cityParam) {
             var weatherCity = new HttpClient();
 
-            weatherCity.get(app.data.fullUrl('amsterdam,nl'), function (response) {
+            weatherCity.get(app.data.fullUrl(cityParam), function (response) {
+                var data = JSON.parse(response),
+                    Getemplate = new HttpClient();
 
-                var data = JSON.parse(response);
-                var description = data.weather[0].description,
-                    temp = description.coord,
-                    wind = data;
+                Getemplate.get('./temp/city.mst', function (response) {
+                    app.select.one('#target').innerHTML = Mustache.render(response, {
+                        cityName: data.name,
+                        description: data.weather[0].description,
+                        minTemp: tempCovert(data.main.temp_min),
+                        maxTemp: tempCovert(data.main.temp_max),
+                        temp: tempCovert(data.main.temp),
+                        clouds: data.clouds.all,
+                        wind: data.wind.speed
 
+                    });
+                });
             });
         }
     }
-
-
-    app.routes = {
-        init: function () {
-            var routes = {
-                    '/home': this.home,
-                    '/citys': this.citys,
-                    '/city/:city': this.city
-                },
-                router = Router(routes);
-
-            router.init();
-        },
-        home: function () {
-            var home = app.select.one('#home').innerHTML,
-                rendered = Mustache.render(home, {
-                    name: "Luke",
-                    power: "force"
-                });
-
-            Mustache.parse(home);
-            app.select.one('#target').innerHTML = rendered;
-        },
-        citys: function () {
-
-            var citys = app.select.one('#citys').innerHTML,
-                rendered = Mustache.render(citys, {
-                    name: "citys",
-                    power: "force"
-                });
-
-            Mustache.parse(citys);
-            app.select.one('#target').innerHTML = rendered;
-        }
-    };
-
 
 
 

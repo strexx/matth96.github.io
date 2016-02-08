@@ -1,0 +1,29 @@
+a.citys {
+    display: block;
+    background: #545D5C;
+    text-decoration: none;
+    color: #fff;
+    padding: 1rem;
+}
+
+a.citys:hover {
+    background: #313333;
+}
+
+.citys ul {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.citys li {
+
+}
+.citys li.temp{
+    order: 1;
+    font-size: 2em;
+/*   border: red solid*/
+}

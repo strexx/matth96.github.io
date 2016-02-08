@@ -1,0 +1,27 @@
+header > nav {
+    background: #78C278;
+    display: inline-block;
+    width: 100%;
+}
+
+header > nav > ul > li:hover {
+    background: #639E63;
+}
+
+header > nav> ul > li > a {
+    padding: 1em;
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    width: 100%;
+}
+
+.right {
+    float: right;
+    height: 100%;
+}
+
+.right > a {
+    font-size: 2em;
+     padding: 0.4rem 1rem;
+}

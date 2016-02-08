@@ -1,0 +1,12 @@
+<article>
+    <h2>{{cityName}}</h2>
+    <ul>
+        <li>Description: {{description}}</li>
+        <li class="temp">temp now: {{temp}} °C</li>
+        <li class="temp">min temp: {{minTemp}} °C</li>
+        <li class="temp">max temp: {{maxTemp}} °C</li>
+        <li class="temp">{{temp}} °C</li>
+        <li>Wind: {{wind}}</li>
+        <li>Clouds: {{clouds}} %</li>
+    </ul>
+</article>
