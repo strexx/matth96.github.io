@@ -1,4 +1,4 @@
-body > header {
+[role=banner] {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -7,7 +7,8 @@ body > header {
     color: #fff;
 }
 
-body > header > h1 {
+[role=heading] {
+    margin: auto;
     -webkit-box-flex: 1;
     -webkit-flex-grow: 1;
     -ms-flex-positive: 1;
@@ -23,13 +24,7 @@ body > header > h1 {
     font-size: 1.3em;
 }
 
-body > header > section {
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-    -ms-flex-positive: 1;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
+[role=banner] > section {
     -webkit-box-flex: 1;
     -webkit-flex-grow: 1;
     -ms-flex-positive: 1;
@@ -39,19 +34,38 @@ body > header > section {
     -ms-flex-pack: justify;
     justify-content: space-between;
     height: 3em;
+    width: 100%;
     background: RGB(108, 108, 108);
 }
 
-body > header img {
+[role=banner] figure,
+[role=banner] p {
+    margin: auto;
+    display: block;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+[role=banner] figure {
+    height: 2em;
+    margin-right: 1rem;
+}
+
+[role=banner] p {
+    margin-left: 1rem;
+}
+
+[role=banner] img {
     width: 2em;
     height: 2em;
-    margin: 0.5rem;
     border-radius: 50%;
-     -webkit-transition: all .7s ease;
+    -webkit-transition: all .7s ease;
     transition: all .7s ease;
 }
 
-body > header img:hover {
+[role=banner] img:hover {
     -webkit-filter: contrast(0.5);
     -moz-filter: contrast(0.5);
     -o-filter: contrast(0.5);
@@ -59,19 +73,25 @@ body > header img:hover {
     filter: contrast(0.5);
 }
 
-body > header p {
-    height: 2em;
-    margin: 0.5rem;
+[role=button] {
+    padding: 1em 0 0 1em;
 }
 
-body > header > nav {
-    width: 3rem;
-    height: 3.8em;
+[role=navigation] {
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
-body > header > nav ul,
-body > header > nav:active ul {
-    display: none;
+[role=navigation] {
+    transition: width 0.3s ease;
+}
+
+[role=navigation] ul {
+    display: block;
     position: absolute;
     top: 3.5em;
     left: 0;
@@ -81,32 +101,30 @@ body > header > nav:active ul {
     background: RGBA(92, 115, 239, 0.80);
 }
 
-body > header > nav > a {
-    padding: 1em 0 0 1em;
+#main-navigation:target {
+    height: 100%;
 }
 
-body > header > nav a {
-    width: 100%;
-    color: #fff;
-    display: block
-}
-
-body > header > nav:hover ul {
+/*
+[role=navigation]:hover ul {
     display: block;
     box-shadow: 0.1em 0.4em 0.9em RGBA(160, 160, 160, 0.54);
 }
+*/
 
-body > header li {
+[role=banner] ul a {
+    color: #fff;
+    display: block;
     margin: 0;
     padding: 0.3rem 1rem;
     border-bottom: #A2A5B2 solid 0.05em;
 }
 
-body > header li:hover {
+[role=banner] ul a:hover {
     background: RGBA(36, 69, 248, 0.94);
 }
 
-body > header li svg {
+[role=banner] li svg {
     width: 2em;
     height: 1em;
 }
@@ -158,12 +176,18 @@ body > header li svg {
 }
 
 @media screen and (min-width:32em) {
-    body > header p {
+    [role=banner] {
+        -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    }
+    [role=banner] p {
         width: 6em;
         font-size: 0.7em;
         text-align: right;
     }
-    body > header > section {
+    [role=banner] > section {
+        max-width: 10em;
         -webkit-box-flex: 0;
         -webkit-flex-grow: 0;
         -ms-flex-positive: 0;
@@ -177,8 +201,8 @@ body > header li svg {
         max-width: 100%;
         margin-left: 15em;
     }
-    body > header > nav ul,
-    body > header > nav:active ul {
+    [role=navigation] ul,
+    [role=navigation]:active ul {
         -webkit-backdrop-filter: blur(1em);
         display: block;
         position: fixed;
@@ -190,10 +214,10 @@ body > header li svg {
         backdrop-filter: blur(1em);
         background: RGBA(92, 115, 239, 0.80);
     }
-    body > header > nav {
+    [role=navigation] {
         width: 0;
     }
-    body > header > nav > a {
+    [role=button] {
         display: none;
     }
 }

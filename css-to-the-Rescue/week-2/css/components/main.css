@@ -23,13 +23,11 @@ a {
     -webkit-box-direction: normal;
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
+    flex-direction: row;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
 }
 
 .first {
@@ -54,22 +52,25 @@ a {
 }
 
 main {
-    -webkit-justify-content: space-around;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    -ms-flex-pack: distribute;
-    -ms-flex-line-pack: start;
-    -webkit-align-content: flex-start;
-    display: block;
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    -webkit-align-content: flex-start;
-    -ms-flex-line-pack: start;
-    align-content: flex-start;
     -webkit-justify-content: space-around;
     -ms-flex-pack: distribute;
     justify-content: space-around;
+}
+
+main article:first-child:nth-last-child(n+4),
+main article:first-child:nth-last-child(n+4) ~ article {
+    max-width: 25em;
+}
+
+:target {
+  animation: highlight 1s ease;
+}
+@keyframes highlight {
+  0% { border-top-color: #5C73EF; }
+  100% { border-top-color: #62EF5C; }
 }
 
 article {
@@ -102,24 +103,23 @@ article figcaption {
     font-size: 0.8em;
 }
 
-article img {
-    -webkit-transition: all .7s ease;
-    transition: all .7s ease;
+img.lightbox:active {
+    position: fixed;
+    z-index: 100;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    margin: -200px;
+    box-shadow: 0 0 0 50vmax rgba(0, 0, 0, .8);
 }
 
-article img:hover {
-    -webkit-filter: blur(2px);
-    filter: blur(2px);
-    opacity: 0.8;
-}
-
-figure {
+#photo-albums > figure {
     position: relative;
 }
 
-figure > svg {
-    fill: #fff;
+#photo-albums > figure > svg {
     position: absolute;
+    fill: #fff;
     top: 30%;
     left: 0;
     width: 2em;

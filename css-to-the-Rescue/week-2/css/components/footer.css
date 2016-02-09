@@ -1,4 +1,4 @@
-footer {
+[role=contentinfo] {
     -webkit-box-orient: horizontal;
     -ms-grid-row-align: center;
     -ms-flex-wrap: wrap;
@@ -12,32 +12,33 @@ footer {
     -webkit-align-items: center;
     -webkit-box-align: center;
     -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
     -webkit-align-content: flex-start;
-        -ms-flex-line-pack: start;
-            align-content: flex-start;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
     -webkit-box-align: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
-                -ms-grid-row-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    -ms-grid-row-align: center;
+    align-items: center;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
     background: #a2a5b2;
 }
 
-footer a {
+[role=contentinfo] a {
     margin: 1em;
     color: #fff;
 }
-footer a:hover{
+
+[role=contentinfo] a:hover {
     color: #DBDBDB;
 }
 
-footer > nav {
+[role=contentinfo] > nav {
     -ms-flex-negative: 0;
     -webkit-flex-grow: 1;
     -ms-flex-positive: 1;
@@ -47,15 +48,15 @@ footer > nav {
     -webkit-flex-basis: 12.5em;
     box-sizing: border-box;
     -webkit-flex-basis: 12.5em;
-        -ms-flex-preferred-size: 12.5em;
-            flex-basis: 12.5em;
+    -ms-flex-preferred-size: 12.5em;
+    flex-basis: 12.5em;
     -webkit-box-flex: 1;
     -webkit-flex-grow: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
     -webkit-flex-shrink: 0;
-        -ms-flex-negative: 0;
-            flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
     margin: 1em 0;
     font-size: 0.8em;
 }
@@ -72,7 +73,7 @@ address > pre {
     white-space: pre-line;
 }
 
-footer > ul {
+[role=contentinfo] > ul {
     -ms-flex-negative: 0;
     -webkit-flex-grow: 1;
     -ms-flex-positive: 1;
@@ -82,21 +83,21 @@ footer > ul {
     -webkit-flex-basis: 3.33em;
     box-sizing: border-box;
     -webkit-flex-basis: 3.33em;
-        -ms-flex-preferred-size: 3.33em;
-            flex-basis: 3.33em;
+    -ms-flex-preferred-size: 3.33em;
+    flex-basis: 3.33em;
     -webkit-box-flex: 1;
     -webkit-flex-grow: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
     -webkit-flex-shrink: 0;
-        -ms-flex-negative: 0;
-            flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
     margin: 1em 0;
     font-size: 0.8em;
 }
 
 @media screen and (min-width:40em) {
-    footer {
+    [role=contentinfo] {
         -webkit-justify-content: space-around;
         -ms-grid-row-align: center;
         -webkit-align-content: space-around;
@@ -106,24 +107,24 @@ footer > ul {
         -webkit-align-items: center;
         -ms-flex-align: center;
         -webkit-align-content: space-around;
-            -ms-flex-line-pack: distribute;
-                align-content: space-around;
+        -ms-flex-line-pack: distribute;
+        align-content: space-around;
         -webkit-box-align: center;
         -webkit-align-items: center;
-            -ms-flex-align: center;
-                    -ms-grid-row-align: center;
-                align-items: center;
+        -ms-flex-align: center;
+        -ms-grid-row-align: center;
+        align-items: center;
         -webkit-justify-content: space-around;
-            -ms-flex-pack: distribute;
-                justify-content: space-around;
+        -ms-flex-pack: distribute;
+        justify-content: space-around;
     }
-    footer > nav {
+    [role=contentinfo] > nav {
         -webkit-box-flex: 0;
         -webkit-flex-grow: 0;
         -ms-flex-positive: 0;
         flex-grow: 1;
     }
-    footer > address {
+    [role=contentinfo] > address {
         -webkit-box-flex: 0;
         -webkit-flex-grow: 0;
         -ms-flex-positive: 0;
@@ -131,7 +132,7 @@ footer > ul {
         width: 8em;
         background: none;
     }
-    footer > ul {
+    [role=contentinfo] > ul {
         -webkit-box-flex: 0;
         -webkit-flex-grow: 0;
         -ms-flex-positive: 0;
