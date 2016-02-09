@@ -43,12 +43,11 @@ body > header > section {
 }
 
 body > header img {
-    z-index: 0;
     width: 2em;
     height: 2em;
     margin: 0.5rem;
     border-radius: 50%;
-    -webkit-transition: all .7s ease;
+     -webkit-transition: all .7s ease;
     transition: all .7s ease;
 }
 
@@ -65,7 +64,14 @@ body > header p {
     margin: 0.5rem;
 }
 
-body > header > nav ul {
+body > header > nav {
+    width: 3rem;
+    height: 3.8em;
+}
+
+body > header > nav ul,
+body > header > nav:active ul {
+    display: none;
     position: absolute;
     top: 3.5em;
     left: 0;
@@ -82,16 +88,21 @@ body > header > nav > a {
 body > header > nav a {
     width: 100%;
     color: #fff;
+    display: block
+}
+
+body > header > nav:hover ul {
     display: block;
-    margin: 0;
-    padding: 0.3rem 1rem;
+    box-shadow: 0.1em 0.4em 0.9em RGBA(160, 160, 160, 0.54);
 }
 
 body > header li {
+    margin: 0;
+    padding: 0.3rem 1rem;
     border-bottom: #A2A5B2 solid 0.05em;
 }
 
-body > header a:hover {
+body > header li:hover {
     background: RGBA(36, 69, 248, 0.94);
 }
 
@@ -101,34 +112,12 @@ body > header li svg {
 }
 
 
-/*show or hide the menu*/
-
-.show-menu {
-    display: inline-block;
-    margin: 1.7rem 0 0 1rem;
-    height: 1em;
-}
-
-input[type=checkbox] {
-    display: none;
-}
-
-input[type=checkbox] ~ nav {
-    display: none;
-}
-
-input[type=checkbox]:checked ~ nav {
-    display: block;
-    z-index: 10;
-    box-shadow: 0.1em 0.4em 0.9em RGBA(160, 160, 160, 0.54);
-}
-
-
 /*source http://codepen.io/tonkec/pen/BjKjpV*/
 
 .con {
-    display: inline-block;
+    display: block;
     width: 2rem;
+    margin: 0.3em;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
 }
@@ -188,7 +177,8 @@ input[type=checkbox]:checked ~ nav {
         max-width: 100%;
         margin-left: 15em;
     }
-    body > header > nav ul {
+    body > header > nav ul,
+    body > header > nav:active ul {
         -webkit-backdrop-filter: blur(1em);
         display: block;
         position: fixed;
@@ -200,10 +190,10 @@ input[type=checkbox]:checked ~ nav {
         backdrop-filter: blur(1em);
         background: RGBA(92, 115, 239, 0.80);
     }
-    input[type=checkbox] ~ nav {
-        display: block;
+    body > header > nav {
+        width: 0;
     }
-    .show-menu {
+    body > header > nav > a {
         display: none;
     }
 }

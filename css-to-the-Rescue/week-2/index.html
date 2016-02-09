@@ -12,22 +12,21 @@
     <link rel="stylesheet" href="css/components/menu.css">
     <link rel="stylesheet" href="css/components/main.css">
     <link rel="stylesheet" href="css/components/footer.css">
-    <link rel="stylesheet" href="css/components/no-flexbox.css">
+    <link rel="stylesheet" href="css/components/no-responsivebox.css">
 </head>
 
 <body>
     <!-- De header, met een navigatie -->
-    <header class="responsive" role="banner">
+    <header class="responsive">
         <h1 class="second">Rescue & Secrets</h1>
-        <label for="show-menu" class="show-menu">
-            <div class="con" role="button">
-                <div class="bar top"></div>
-                <div class="bar middle"></div>
-                <div class="bar bottom"></div>
-            </div>
-        </label>
-        <input type="checkbox" id="show-menu" role="button">
         <nav class="first" role="navigation">
+            <a id="menu-icon" href="#" role="button">
+                <div class="con">
+                    <div class="bar top"></div>
+                    <div class="bar middle"></div>
+                    <div class="bar bottom"></div>
+                </div>
+            </a>
             <ul>
                 <li>
                     <a href="#profile-picture">
@@ -80,7 +79,7 @@
 
     </header>
     <!-- De main content begint hier -->
-    <main class="responsive">
+    <main class="responsive" role="main">
         <article>
             <header>
                 <h1>Mona Krajeck <span>@monakrajeck</span></h1>
@@ -122,17 +121,14 @@
                     <img class="profile-picture" src="images/profile-picture.jpg" alt="Image effect: overlay">
                     <figcaption>Overlay</figcaption>
                 </figure>
-
                 <figure class="effect-03">
                     <img class="profile-picture" src="images/profile-picture.jpg" alt="Image effect: soft light">
                     <figcaption>Soft Light</figcaption>
                 </figure>
-
                 <figure class="effect-04">
                     <img class="profile-picture" src="images/profile-picture.jpg" alt="Image effect: color">
                     <figcaption>Color</figcaption>
                 </figure>
-
                 <figure class="effect-05">
                     <img class="profile-picture" src="images/profile-picture.jpg" alt="Image effect: difference">
                     <figcaption>Difference</figcaption>
