@@ -15,12 +15,14 @@ Create a web app with pure JS.
 - [Exercise 3](https://github.com/matth96/matth96.github.io/blob/master/web-app-from-scratch/opdracht-3/opdracht-3.md)
 - [Exercise 4](https://github.com/matth96/matth96.github.io/blob/master/web-app-from-scratch/opdracht-4/)
 - [Exercise 5](https://github.com/matth96/matth96.github.io/blob/master/web-app-from-scratch/opdracht-5/)
+- [Exercise 6](https://github.com/matth96/matth96.github.io/blob/master/web-app-from-scratch/opdracht-6/)
 
 # CSS to the rescue
 Create a responive website with flexbox.
 
 ## Exercises
 - [Week 1](http://matth96.github.io/css-to-the-Rescue/week-1/)
+- [Week 2](http://matth96.github.io/css-to-the-Rescue/week-2/)
 
 # Weekly Nerd
 - [blog.dolstra.me](https://blog.dolstra.me)
