@@ -102,15 +102,16 @@
 }
 
 #main-navigation:target {
+    z-index: 100;
     height: 100%;
+    -webkit-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
 }
 
-/*
 [role=navigation]:hover ul {
     display: block;
     box-shadow: 0.1em 0.4em 0.9em RGBA(160, 160, 160, 0.54);
 }
-*/
 
 [role=banner] ul a {
     color: #fff;
