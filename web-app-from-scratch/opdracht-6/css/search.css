@@ -1,0 +1,20 @@
+fieldset.search {
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+fieldset.search form {
+    background: #E0DFDF;
+    width: 100%;
+    margin: 0;
+    height: 3em;
+}
+
+fieldset.search input {
+    background: #fff;
+    width: 91%;
+    margin: 0.5em 1em 0 1em;
+    font-size: 1em;
+    padding: 0.4em;
+    border: none;
+}

@@ -1,0 +1,13 @@
+<section>
+    <fieldset class="search">
+        <form action="">
+            <input type="text" id="search" placeholder="search">
+        </form>
+    </fieldset>
+</section>
+
+<section>
+    <ul>
+        <li></li>
+    </ul>
+</section>

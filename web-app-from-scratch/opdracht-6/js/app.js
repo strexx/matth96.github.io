@@ -27,22 +27,16 @@ var app = app || {};
     app.routes = {
         init: function () {
             var routes = {
-                    '/': this.home,
-                    '/home': this.home,
-                    '/citys': this.citys,
-                    '/city/:city': this.city
+                    '/home': app.page.home,
+                    '/search': app.page.search,
+                    '/citys': app.page.citys,
+                    '/city/:city': app.page.city
                 },
                 router = Router(routes);
             router.init();
         },
-        home: function () {
-            app.page.home()
-        },
-        citys: function () {
-            app.page.citys()
-        },
-        city: function (cityParam) {
-            app.page.city(cityParam)
+        routes: {
+
         }
     };
     app.data = {
@@ -77,15 +71,20 @@ var app = app || {};
 
     //define all pages in the app.
     app.page = {
-
         home: function () {
+            var GetTemplate = new HttpClient();
+            GetTemplate.get('./temp/home.mst', function (response) {
+                app.select.one('#target').innerHTML = Mustache.render(response);
+            });
+        },
+        search: function () {
             var Getemplate = new HttpClient();
-            Getemplate.get('./temp/home.mst', function (response) {
+            Getemplate.get('./temp/search.mst', function (response) {
                 app.select.one('#target').innerHTML = Mustache.render(response);
             });
         },
         citys: function () {
-            var savedCitys = ["Amsterdam", "Den haag", "Ermelo"],
+            var savedCitys = ["Amsterdam", "Den haag", "Ermelo", "haarlem"],
                 savedCitysData = [],
                 weatherCity = new HttpClient();
             savedCitys.forEach(function (element, index, array) {
@@ -131,9 +130,6 @@ var app = app || {};
             });
         }
     }
-
-
-
 
     //Check if all functions are supported, if not, show an error message at top of the app.
     app.support = {
