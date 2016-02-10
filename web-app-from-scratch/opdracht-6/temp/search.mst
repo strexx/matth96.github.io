@@ -1,13 +1,18 @@
 <section>
-    <fieldset class="search">
+    <fieldset class="search" role="form">
         <form action="">
-            <input type="text" id="search" placeholder="search">
+            <input type="text" id="search" placeholder="search" role="search">
         </form>
     </fieldset>
 </section>
 
 <section>
-    <ul>
-        <li></li>
+    <ul role="list" class="searchlist">
+        {{#searchresult}}
+        <li>
+           {{name}}
+        </li>{{/searchresult}} {{^searchresult}}
+        <li class="no-search">Zoek om resultaten te zien..</li>{{/searchresult}}
+
     </ul>
 </section>

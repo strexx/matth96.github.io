@@ -1,4 +1,4 @@
-<article>
+<article role="article">
     <h2>{{cityName}}</h2>
     <ul>
         <li>Description: {{description}}</li>

@@ -19,3 +19,12 @@ ul > li {
 main > section {
     padding:  3.5em 0 0 0;
 }
+
+.home{
+    color: #fff;
+    padding: 1em;
+    height: calc(100vh - 5em);
+    background: url(/assets/i/home-background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover
+}
