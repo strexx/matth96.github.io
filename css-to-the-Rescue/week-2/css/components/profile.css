@@ -1,52 +1,59 @@
 .filter-effects {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-align-content: space-between;
+    -ms-flex-line-pack: justify;
+    align-content: space-between;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
-    -webkit-align-content: space-between;
-    -ms-flex-line-pack: justify;
-    -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-    -webkit-align-content: space-between;
-        -ms-flex-line-pack: justify;
-            align-content: space-between;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    justify-content: space-between;
+    margin: 1em 0;
 }
 
 .filter-effects > header {
     width: 100%;
+    display: block;
 }
 
 .filter-effects img {
-    width: 2rem;
+    width: 4rem;
+    height: auto;
     border-radius: 50% 50%;
-    text-align: center;
 }
 
+.filter-effect > figure {
+    padding: 1em;
+}
 
-/*
+article [role=button] {
+    background: #5c73ef;
+    color: #fff;
+    padding: 0.4em 1em;
+}
+
 .effect-01 > img {
-    filter:
+    filter: saturate(30%);
+    -webkit-filter: saturate(30%);
 }
 
 .effect-02 > img {
-    filter:
+     filter: brightness(70%);
+    -webkit-filter: brightness(70%);
 }
 
 .effect-03 > img {
-    filter:
+     filter: saturate(30%);
+    -webkit-filter: saturate(30%);
 }
 
 .effect-04 > img {
-    filter:
+     filter: saturate(30%);
+    -webkit-filter: saturate(30%);
 }
 
 .effect-05 > img {
-    filter:
+     filter: saturate(30%);
+    -webkit-filter: saturate(30%);
 }
-*/

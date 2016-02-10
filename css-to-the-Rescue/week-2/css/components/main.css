@@ -66,7 +66,12 @@ main article:first-child:nth-last-child(n+4) ~ article {
 }
 
 :target {
-  animation: highlight 1s ease;
+  -webkit-animation: highlight 1s ease;
+          animation: highlight 1s ease;
+}
+@-webkit-keyframes highlight {
+  0% { border-top-color: #5C73EF; }
+  100% { border-top-color: #62EF5C; }
 }
 @keyframes highlight {
   0% { border-top-color: #5C73EF; }
@@ -161,6 +166,9 @@ form > fieldset > button:active {
 }
 
 /*loading*/
+@-webkit-keyframes loader {
+    to { background-position: -800px 0; }
+}
 @keyframes loader {
     to { background-position: -800px 0; }
 }
@@ -169,7 +177,8 @@ form > fieldset > button:active {
     width: 100px; height: 100px;
     text-indent: 999px; overflow: hidden; /* Hide text */
     background: url(https://raw.githubusercontent.com/matth96/matth96.github.io/master/css-to-the-Rescue/week-2/images/loader.png) 0 0;
-    animation: loader 1s infinite steps(8);
+    -webkit-animation: loader 1s infinite steps(8);
+            animation: loader 1s infinite steps(8);
 }
 
 @media screen and (min-width:30em) {
