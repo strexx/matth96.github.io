@@ -66,16 +66,32 @@ main article:first-child:nth-last-child(n+4) ~ article {
 }
 
 :target {
-  -webkit-animation: highlight 1s ease;
-          animation: highlight 1s ease;
+    -webkit-animation: highlight 1.3s ease;
+    animation: highlight 1.3s ease;
 }
+
 @-webkit-keyframes highlight {
-  0% { border-top-color: #5C73EF; }
-  100% { border-top-color: #62EF5C; }
+    0% {
+        border-top-color: #5C73EF;
+    }
+    50% {
+        border-top-color: #62EF5C;
+    }
+    100% {
+        border-top-color: #5C73EF;
+    }
 }
+
 @keyframes highlight {
-  0% { border-top-color: #5C73EF; }
-  100% { border-top-color: #62EF5C; }
+    0% {
+        border-top-color: #5C73EF;
+    }
+    50% {
+        border-top-color: #62EF5C;
+    }
+    100% {
+        border-top-color: #5C73EF;
+    }
 }
 
 article {
@@ -108,31 +124,38 @@ article figcaption {
     font-size: 0.8em;
 }
 
-img.lightbox:active {
+#bigimage a {
+    display: none;
+}
+
+#bigimage:target {
+    top: 0;
+    border-top: #5c73ef solid 0.2em;
+    display: block;
     position: fixed;
-    z-index: 100;
-    top: 50%;
-    left: 50%;
-    width: 600px;
-    margin: -200px;
+    background: #fff;
+    overflow: hidden;
+    width: 30%;
+    padding: 1em;
+    margin: auto;
+    margin-top: 5vh;
+    z-index: 1000;
     box-shadow: 0 0 0 50vmax rgba(0, 0, 0, .8);
+}
+
+#bigimage:target a {
+    display: block;
 }
 
 #photo-albums > figure {
     position: relative;
 }
 
-#photo-albums > figure > svg {
-    position: absolute;
-    fill: #fff;
-    top: 30%;
-    left: 0;
-    width: 2em;
-    height: 2em;
-    margin: 0 35%;
+#photo-albums svg {
+    fill: #000;
+    width: 1em;
+    height: 1em;
     padding: 1em;
-    border-radius: 50% 50%;
-    background: RGBA(45, 46, 46, 0.76);
 }
 
 figure > svg:hover {
@@ -165,20 +188,29 @@ form > fieldset > button:active {
     font-size: 0.9em;
 }
 
+
 /*loading*/
-@-webkit-keyframes loader {
-    to { background-position: -800px 0; }
-}
-@keyframes loader {
-    to { background-position: -800px 0; }
-}
 
 .loader {
-    width: 100px; height: 100px;
-    text-indent: 999px; overflow: hidden; /* Hide text */
-    background: url(https://raw.githubusercontent.com/matth96/matth96.github.io/master/css-to-the-Rescue/week-2/images/loader.png) 0 0;
+    width: 100px;
+    height: 100px;
+    text-indent: 999px;
+    overflow: hidden;
+    background: url(../../images/loader.png) 0 0;
     -webkit-animation: loader 1s infinite steps(8);
-            animation: loader 1s infinite steps(8);
+    animation: loader 1s infinite steps(8);
+}
+
+@-webkit-keyframes loader {
+    to {
+        background-position: -800px 0;
+    }
+}
+
+@keyframes loader {
+    to {
+        background-position: -800px 0;
+    }
 }
 
 @media screen and (min-width:30em) {

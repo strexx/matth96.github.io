@@ -87,6 +87,7 @@
 }
 
 [role=navigation] {
+    -webkit-transition: width 0.3s ease;
     transition: width 0.3s ease;
 }
 
@@ -174,6 +175,35 @@
 
 .con:hover .middle {
     width: 0;
+}
+
+#other-members {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+#other-members:target figure {
+    display: inline-block;
+}
+
+#other-members:target h1 {
+    color: #000;
+}
+
+#other-members:target {
+    border-top: #5c73ef solid 0.2em;
+    margin: 25vh 15vw;
+    display: block;
+    position: fixed;
+    background: #fff;
+    overflow: hidden;
+    padding: 1em;
+    width: calc(50vw - 2em);
+    height: 30vh;
+    max-width: 50vw;
+    z-index: 1000;
+    box-shadow: 0 0 0 50vmax rgba(0, 0, 0, .8);
 }
 
 @media screen and (min-width:32em) {
