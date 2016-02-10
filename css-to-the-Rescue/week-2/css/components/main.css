@@ -131,24 +131,37 @@ article figcaption {
 #bigimage:target {
     top: 0;
     border-top: #5c73ef solid 0.2em;
-    display: block;
     position: fixed;
     background: #fff;
     overflow: hidden;
-    width: 30%;
     padding: 1em;
-    margin: auto;
     margin-top: 5vh;
     z-index: 1000;
-    box-shadow: 0 0 0 50vmax rgba(0, 0, 0, .8);
+    box-shadow: 0 0 0 60vmax rgba(0, 0, 0, .8);
 }
 
 #bigimage:target a {
     display: block;
 }
 
-#photo-albums > figure {
-    position: relative;
+#bigimage:target figure {
+    max-width: 300px;
+    max-width: -webkit-min-content;
+    max-width: -moz-min-content;
+    max-width: min-content;
+    margin: auto;
+}
+
+#bigimage:target  img {
+    max-width: inherit;
+    width: 40vw;
+}
+
+/* Basic styling */
+
+#bigimage:targe figure {
+    padding: 10px;
+    border: 1px solid silver;
 }
 
 #photo-albums svg {
