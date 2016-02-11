@@ -9,7 +9,8 @@ body {
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 400;
     height: calc(100vh);
-    background: url(/assets/i/home-background.jpg);
+    background: #3E3D3D;
+    background: url(./assets/i/home-background.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     color: #fff;
