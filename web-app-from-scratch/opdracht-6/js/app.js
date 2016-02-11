@@ -132,8 +132,7 @@ var app = app || {};
 
         },
         search: function () {
-            var searchQuery = "Ermelo",
-                searchResultsTemplate = "",
+            var searchResultsTemplate = "",
                 searchField = "",
                 searchFuntion = function (searchField) {
                     searchField.addEventListener('input', function () {
