@@ -1,10 +1,4 @@
-<!--
-<fieldset>
-    <form action="">
-        <input type="text" class="filter">
-    </form>
-</fieldset>
--->
+<article role="article">
 {{#data}}
 <a href="#/city/{{cityNameUrl}}" class="citys">
     <h2>{{cityName}}</h2>
@@ -14,3 +8,4 @@
     </ul>
 </a>
 {{/data}}
+</article>

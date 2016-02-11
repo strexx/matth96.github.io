@@ -36,3 +36,7 @@ a.citys:hover {
     font-size: 2em;
 /*   border: red solid*/
 }
+.city li {
+    display: block;
+
+}

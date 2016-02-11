@@ -10,7 +10,7 @@ body {
     font-weight: 400;
     height: calc(100vh);
     background: #3E3D3D;
-    background: url(./assets/i/home-background.jpg);
+    background: url(https://hva.dolstra.me/web-app-from-scratch/opdracht-6/assets/i/home-background.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     color: #fff;
@@ -30,4 +30,8 @@ main > section {
 }
 .disabled{
     display: none;
+}
+
+[role=article]{
+    overflow: scroll;
 }
