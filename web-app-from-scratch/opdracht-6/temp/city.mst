@@ -5,7 +5,6 @@
         <li class="temp">temp now: {{data.temp}} °C</li>
         <li class="temp">min temp: {{data.minTemp}} °C</li>
         <li class="temp">max temp: {{data.maxTemp}} °C</li>
-        <li class="temp">{{data.temp}} °C</li>
         <li>Wind: {{data.wind}}</li>
         <li>Clouds: {{data.clouds}} %</li>
     </ul>

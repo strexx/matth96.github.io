@@ -7,4 +7,4 @@
 #url
 [Zie live](http://matth96.github.io/web-app-from-scratch/opdracht-6/#/home)
 
-**let op de app werkt alleen in de nieuwste brouwser, zoals de nieuwste versie van chrome en vivaldi**
+**let op de app werkt alleen in de nieuwste browser, zoals de nieuwste versie van chrome en vivaldi**

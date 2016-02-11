@@ -3,7 +3,8 @@ var app = app || {};
 
 // use IIFE to avoid global vars
 (function () {
-    "use strict" //This is a EJS 5 function. If you enable it you can't use undifned varibles and your code will crash if you don't code properly.
+    "use strict"; //This is a EJS 5 function. If you enable it you can't use undifned varibles and your code will crash if you don't code properly.
+
 
     //Start all functions
     app.start = { //Literal opbject
@@ -22,36 +23,31 @@ var app = app || {};
         all: function (selector) {
             return document.querySelectorAll(selector);
         },
-        tempCovert: function (tempCelvin) { // this is a constructor
-            var rawTemp = tempCelvin - 273.2,
-                newTemp = (Math.round(rawTemp * 100) / 100).toFixed(1);
-
-            return newTemp
-        },
         data: function (url) {
-
             // return a Promise object
             return new Promise((resolve, reject) => {
                 var request = new XMLHttpRequest();
-
+                //open an get request
                 request.open('GET', url);
+                //if the request is done
                 request.onload = function () {
                     //ony if request is done
                     if (request.status == 200) {
 
-                        // send resolve
+                        // send text form request
                         resolve(request.responseText);
                     } else {
-                        // reject the promise
+                        // reject the promise if there is a err
                         reject(new Error('request failed!'));
                     }
                 };
+                //send the request
                 request.send();
             });
-        },
+        }
     };
 
-    app.render = {
+    app.render = { //funtion to render a template.
         template: function (target, template, data) {
             app.get.one(target).innerHTML = Mustache.render(template, {
                 data: data
@@ -60,25 +56,26 @@ var app = app || {};
     };
 
     app.localStorage = {
-        init: function () {
+        init: function () { //check if savedCitys exists if not create a [];
             if (localStorage.getItem('savedCitys') === null || localStorage.getItem('savedCitys') === undefined) {
                 localStorage.setItem('savedCitys', "[]");
             }
         },
-        get: function () {
+        get: function () { //get the data from the savedCitys array
             var savedCitys = localStorage.getItem('savedCitys');
-            return JSON.parse(savedCitys)
+
+            return JSON.parse(savedCitys);
         },
-        add: function (data) {
+        add: function (data) { //add a new city to the array
             var savedCitys = this.get(),
                 contains = _.contains(savedCitys, data);
 
-            if (contains === false) {
+            if (contains === false) { //ceck if the city is already in the array if not add the city to the array
                 savedCitys.push(data);
                 var stringifiedData = JSON.stringify(savedCitys);
                 localStorage.setItem('savedCitys', stringifiedData);
             } else {
-                console.log("bestaat al")
+                console.log("bestaat al");
             }
         }
     };
@@ -87,7 +84,6 @@ var app = app || {};
     app.routes = {
         init: function () {
             var routes = {
-                    '/': app.page.init,
                     '/home': app.page.home,
                     '/search': app.page.search,
                     '/citys': app.page.citys,
@@ -95,8 +91,9 @@ var app = app || {};
                 },
                 router = Router(routes);
             router.init();
+            //if the hash is undefined or a "" redirect to #/home
             if (location.hash === undefined || location.hash === "") {
-                window.location = "#/home"
+                window.location = "#/home";
             }
         }
     };
@@ -106,12 +103,12 @@ var app = app || {};
         brokenWeatherUrl: ["http://api.openweathermap.org/data/2.5/weather?q=",
                     "&units=metric&appid="],
         brokenSearchUrl: ["http://api.openweathermap.org/data/2.5/find?q=", "&type=like&mode=json&appid=", "&units=metric&appid="],
-        WeatherUrl: function (city) {
+        WeatherUrl: function (city) { //create api url for the wheather of a city
             var fullUrl = app.data.brokenWeatherUrl[0] + city + app.data.brokenWeatherUrl[1] + app.data.apiKey;
 
             return fullUrl;
         },
-        SearchUrl: function (search) {
+        SearchUrl: function (search) { //create a api url for the search.
             var fullUrl = app.data.brokenSearchUrl[0] + search + app.data.brokenSearchUrl[1] + app.data.apiKey;
 
             return fullUrl;
@@ -123,58 +120,66 @@ var app = app || {};
         init: function () {
             location.replace('#/home');
         },
-        home: function () {
+        home: function () { //render the home template
             app.get.data('./temp/home.mst').then(response => {
-                app.get.one('#target').innerHTML = Mustache.render(response);
+                app.render.template("#target", response);
             }).catch(e => {
+                //if there is a error console.log the error
                 console.error(e);
             });
 
         },
         search: function () {
-            var searchQuery = "Ermelo",
-                searchResultsTemplate = "",
-                searchField = "",
+            //define all vars for the search funtion
+            var searchResultsTemplate = "",
                 searchFuntion = function (searchField) {
+                    //if the input of the searchfield changes run this function
                     searchField.addEventListener('input', function () {
+                        //get data from api with the input of the input field
                         app.get.data(app.data.SearchUrl(searchField.value))
                             .then(response => {
-                                var data = JSON.parse(response).list
+                                var data = JSON.parse(response).list;
 
+                                //if the checkbox is checked filer the results
                                 if (app.get.one(".in-nl").checked === true) {
                                     var rawData = _.filter(data, function (searchData, predicate) {
                                         return searchData.sys.country === "NL";
                                     });
                                 } else {
-                                    var rawData = _.filter(data, function (searchData) {
-                                        return searchData;
-                                    });
+                                    //if the checkbox is not checked the data is not filterd.
+                                    var rawData = data;
                                 }
                                 app.render.template("#searchresults", searchResultsTemplate, rawData);
                                 app.get.one(".searchlist").addEventListener("click", function (e) {
                                     if (e.target && e.target.nodeName == "LI") {
-                                        app.localStorage.add(e.target.innerHTML)
-                                        window.location = "#/citys"
+                                        //add the clicked city to local storage.
+                                        app.localStorage.add(e.target.innerHTML);
+                                        // go to #/citys
+                                        window.location = "#/citys";
                                     }
                                 });
                             });
                     });
                 };
-
+            //get the search and the searchresults templates
             Promise.all([app.get.data('./temp/search.mst'), app.get.data('./temp/searchresults.mst')])
                 .then(response => {
                     searchResultsTemplate = response[1]
+                        //render the search template
                     app.render.template("#target", response[0]);
                 })
                 .then(response => {
+                    //if the template is renderd run the searchFuntion proporty
                     var searchField = app.get.one('#search');
                     searchFuntion(searchField);
                 })
                 .catch(err => {
+                    // if there is a err console.log it
                     console.log(err);
                 })
         },
         citys: function () {
+            // a emty array with the
             var savedCitysData = [],
                 savedCitys = app.localStorage.get()
 
@@ -193,7 +198,7 @@ var app = app || {};
                         });
                         if (savedCitysData.length === savedCitys.length) {
                             app.get.data('./temp/citys.mst').then(response => {
-                                app.render.template("#target", response, savedCitysData)
+                                app.render.template("#target", response, savedCitysData);
                             }).catch(e => {
                                 // catching all failures!
                                 console.error(e);
@@ -204,18 +209,23 @@ var app = app || {};
                     });
                 });
             }).catch(e => {
+                // console a error if there is a err
                 console.error(e);
             });
         },
         city: function (cityParam) {
+            //get the weather data
             app.get.data(app.data.WeatherUrl(cityParam))
                 .then(response => {
+                    //parse data
                     var data = JSON.parse(response);
                     return data;
                 }).then(response => {
                     var cityData = response;
+                    //load template
                     app.get.data('./temp/city.mst')
                         .then(response => {
+                            //render template with data form api
                             app.render.template("#target", response, {
                                 cityName: cityData.name,
                                 description: cityData.weather[0].description,
@@ -228,8 +238,6 @@ var app = app || {};
                         }).catch(e => {
                             console.error(e);
                         });
-                }).then(response => {
-
                 }).catch(e => {
                     console.error(e);
                 });
@@ -252,6 +260,7 @@ var app = app || {};
             }
         },
         online: function () {
+            //check if the app is online
             if (navigator.onLine) {
                 return true;
             } else {
@@ -260,8 +269,8 @@ var app = app || {};
                 return false;
             }
         }
-    }
+    };
 
     //Run the app
-    app.start.init()
+    app.start.init();
 }())
