@@ -34,26 +34,26 @@ article [role=button] {
 }
 
 .effect-01 > img {
-    filter: saturate(30%);
-    -webkit-filter: saturate(30%);
+    -webkit-filter: brightness(1.5);
+    filter: brightness(1.5);
 }
 
 .effect-02 > img {
-     filter: brightness(70%);
-    -webkit-filter: brightness(70%);
+    -webkit-filter: sepia();
+    filter: sepia();
 }
 
 .effect-03 > img {
-     filter: saturate(30%);
-    -webkit-filter: saturate(30%);
+    -webkit-filter: hue-rotate(90deg);
+    filter: hue-rotate(90deg);
 }
 
 .effect-04 > img {
-     filter: saturate(30%);
-    -webkit-filter: saturate(30%);
+    -webkit-filter: invert();
+    filter: invert();
 }
 
 .effect-05 > img {
-     filter: saturate(30%);
-    -webkit-filter: saturate(30%);
+    -webkit-filter: saturate(5.6);
+    filter: saturate(5.6);
 }
