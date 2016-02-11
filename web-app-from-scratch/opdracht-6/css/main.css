@@ -1,6 +1,5 @@
 .show-error {
     background: #E25454;
-    color: #fff;
     padding: 0.5em;
     text-align: center;
 }
@@ -9,6 +8,11 @@ body {
     font-size: 100%;
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 400;
+    height: calc(100vh);
+    background: url(/assets/i/home-background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
 }
 
 ul > li {
@@ -17,14 +21,12 @@ ul > li {
 }
 
 main > section {
-    padding:  3.5em 0 0 0;
+    padding: 3.5em 0 0 0;
 }
 
-.home{
-    color: #fff;
+.home {
     padding: 1em;
-    height: calc(100vh - 5em);
-    background: url(/assets/i/home-background.jpg);
-    background-repeat: no-repeat;
-    background-size: cover
+}
+.disabled{
+    display: none;
 }

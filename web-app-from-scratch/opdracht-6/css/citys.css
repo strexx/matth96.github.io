@@ -1,13 +1,15 @@
 a.citys {
     display: block;
-    background: #545D5C;
+    background: RGBA(84, 93, 92, 0.6);
+   -webkit-backdrop-filter: blur(1em);
+    backdrop-filter: blur(1em);
     text-decoration: none;
-    color: #fff;
     padding: 1rem;
+    color: #fff;
 }
 
 a.citys:hover {
-    background: #313333;
+    background: RGBA(49, 51, 51, 0.85);
 }
 
 .citys ul {
@@ -15,15 +17,22 @@ a.citys:hover {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
 }
 
-.citys li {
-
-}
 .citys li.temp{
-    order: 1;
+    -webkit-box-ordinal-group: 2;
+    -webkit-order: 1;
+        -ms-flex-order: 1;
+            order: 1;
     font-size: 2em;
 /*   border: red solid*/
 }

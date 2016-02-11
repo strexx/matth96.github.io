@@ -1,12 +1,12 @@
 <article role="article">
-    <h2>{{cityName}}</h2>
+    <h2>{{data.cityName}}</h2>
     <ul>
-        <li>Description: {{description}}</li>
-        <li class="temp">temp now: {{temp}} °C</li>
-        <li class="temp">min temp: {{minTemp}} °C</li>
-        <li class="temp">max temp: {{maxTemp}} °C</li>
-        <li class="temp">{{temp}} °C</li>
-        <li>Wind: {{wind}}</li>
-        <li>Clouds: {{clouds}} %</li>
+        <li>Description: {{data.description}}</li>
+        <li class="temp">temp now: {{data.temp}} °C</li>
+        <li class="temp">min temp: {{data.minTemp}} °C</li>
+        <li class="temp">max temp: {{data.maxTemp}} °C</li>
+        <li class="temp">{{data.temp}} °C</li>
+        <li>Wind: {{data.wind}}</li>
+        <li>Clouds: {{data.clouds}} %</li>
     </ul>
 </article>

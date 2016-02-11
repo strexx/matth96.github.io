@@ -12,33 +12,42 @@ fieldset.search form {
     height: 3em;
 }
 
-fieldset.search input {
+fieldset.search form > input {
     box-sizing: border-box;
     background: #fff;
-    width: calc(100% - 2em);
+    width: calc(80% - 2em);
     margin: 0.5em 1em 0 1em;
     font-size: 1em;
     padding: 0.4em;
     border: none;
 }
+fieldset.search div{
+    display: inline-block;
+    color: #000;
+}
+
 
 [role=list] > li {
     display: block;
     cursor: pointer;
     padding: 1em;
-    background: #898989;
-    color: #fff;
+    background: RGBA(137, 137, 137, 0.8);
     list-style-type: none;
 }
-[role=list] > li:hover{
+
+[role=list] > li:hover {
     background: #4E4E4E;
 }
 
-[role=list] .no-search{
+[role=list] .no-search {
     background: none;
-    color: #000;
+    cursor: default;
 }
-[role=list] .no-search:hover{
+
+[role=list] .no-search:hover {
     background: none;
-    color: #000;
+}
+#searchresults{
+    margin: 0;
+    padding: 0;
 }

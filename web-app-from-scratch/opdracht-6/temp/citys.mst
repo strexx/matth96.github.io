@@ -1,10 +1,16 @@
-{{#citys}}
-<a href="#/city/{{cityName}}" class="citys">
+<!--
+<fieldset>
+    <form action="">
+        <input type="text" class="filter">
+    </form>
+</fieldset>
+-->
+{{#data}}
+<a href="#/city/{{cityNameUrl}}" class="citys">
     <h2>{{cityName}}</h2>
     <ul>
         <li>Description: {{description}}</li>
         <li class="temp">{{temp}} °C</li>
-        <li>Wind: {{wind}}</li>
     </ul>
 </a>
-{{/citys}}
+{{/data}}
