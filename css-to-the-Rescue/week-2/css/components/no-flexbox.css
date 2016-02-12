@@ -1,70 +1,73 @@
 /*menu*/
 
-html.no-flexbox body > header {
+.no-flexbox body > header {
     display: block;
 }
 
-html.no-flexbox body > header > h1 {
+.no-flexbox body > header > h1 {
     width: 80%;
     float: right;
     padding: 0.5em;
+    height: 2em;
+    margin: 0.6em;
 }
 
-html.no-flexbox body > header > nav {
-    height: 3em;
+.no-flexbox body > header section p {
+    width: 40%;
+    margin: 0.6em 0 0 1em;
+    display: inline-block;
 }
 
-html.no-flexbox body > header > section {
-    width: 100%;
-    display: block;
-}
-
-html.no-flexbox body > header img {
+.no-flexbox body > header figure {
     float: right;
     display: inline-block;
+    margin: 0.4em 1em 0 1em;
 }
 
-html.no-flexbox body > header p {
-    width: 40%;
-    float: left;
-    display: inline-block;
-    margin: 0.3em 0 0 1em;
-}
-
-html.no-flexbox body > main > article {
+.no-flexbox body > main > article {
     margin: 1em auto;
 }
 
 @media screen and (min-width:32em) {
-    html.no-flexbox body > header h1 {
+    .no-flexbox body > header h1 {
         float: left;
-        width: 30%;
+        margin-left: 50px;
+        width: 50%;
+        background: #5c73ef;
     }
-    html.no-flexbox body > header > section {
+    .no-flexbox body > header > section {
         width: 30%;
-        float: right;
+     position: absolute;
+        top: 0;
+        right: 20px;
         display: inline-block;
         background: #5c73ef;
     }
-    html.no-flexbox body > main {
+    .no-flexbox body > main {
         clear: both;
     }
-    html.no-flexbox footer {
+    .no-flexbox footer {
         min-height: 10em;
     }
-    html.no-flexbox footer > nav,
-    html.no-flexbox footer > address,
-    html.no-flexbox footer > ul {
+    .no-flexbox footer > nav,
+    .no-flexbox footer > address,
+    .no-flexbox footer > ul {
         width: 28%;
         display: inline-block;
         margin: 1em;
         padding: 0;
     }
-    html.no-flexbox footer > address pre {
+    .no-flexbox footer > address pre {
         margin: 0;
         padding: 0;
     }
-    html.no-flexbox footer > ul {
+    .no-flexbox footer > ul {
         float: right;
+    }
+}
+@media screen and (min-width:65em) {
+    .no-flexbox body > header {
+        background: #5c73ef;
+        height: 4em;
     }
 }
