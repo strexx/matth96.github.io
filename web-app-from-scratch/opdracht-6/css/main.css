@@ -22,16 +22,17 @@ ul > li {
 }
 
 main > section {
-    padding: 3.5em 0 0 0;
+    padding: 0;
 }
 
 .home {
     padding: 1em;
 }
-.disabled{
+
+.disabled {
     display: none;
 }
 
-[role=article]{
+[role=article] {
     overflow: scroll;
 }
