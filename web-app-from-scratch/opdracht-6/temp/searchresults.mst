@@ -1,7 +1,7 @@
 <section>
     <ul role="list" class="searchlist">
         {{#data}}
-        <li>
+        <li id="{{attachedName}}">
             {{name}}
         </li>{{/data}} {{^data}}
         <li class="no-search">Zoek om resultaten te zien..</li>{{/data}}

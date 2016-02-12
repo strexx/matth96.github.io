@@ -5,17 +5,17 @@ var app = app || {};
 (function () {
     "use strict"; //This is a EJS 5 function. If you enable it you can't use undifned varibles and your code will crash if you don't code properly.
 
-
     //Start all functions
     app.start = { //Literal opbject
         init: function () { //Start object in this object are all start functions
             app.support.init();
             app.routes.init();
             app.localStorage.init();
+            app.webWorker.init();
         }
     };
 
-    //To easily select something from the DOM
+    //    To easily select something from the DOM
     app.get = {
         one: function (selector) { //This is a method
             return document.querySelector(selector);
@@ -47,6 +47,31 @@ var app = app || {};
         }
     };
 
+    app.webWorker = { //define web worker
+        init: function () {
+
+            var templateWorker = new Worker('js/templateWorker.js');
+
+            templateWorker.addEventListener('message', function (e) {
+                console.log(e.data);
+            }, false);
+
+            this.start(templateWorker);
+        },
+        stop: function (templateWorker) {
+            templateWorker.postMessage({
+                'cmd': 'stop',
+                'msg': 'all'
+            });
+        },
+        start: function (templateWorker) {
+            templateWorker.postMessage({
+                'cmd': 'start',
+                'msg': 'hoi',
+                'templates': app.localStorage.templates
+            });
+        }
+    };
     app.render = { //funtion to render a template.
         template: function (target, template, data) {
             app.get.one(target).innerHTML = Mustache.render(template, {
@@ -57,17 +82,22 @@ var app = app || {};
 
     app.localStorage = {
         init: function () { //check if savedCitys exists if not create a [];
-            if (localStorage.getItem('savedCitys') === null || localStorage.getItem('savedCitys') === undefined) {
-                localStorage.setItem('savedCitys', "[]");
-            }
+            var localstorageKeys = this.templates;
+            localstorageKeys.push("savedCitys");
+            localstorageKeys.forEach(function (currentValue, index) {
+                if (localStorage.getItem(currentValue) === null || localStorage.getItem(currentValue) === undefined) {
+                    localStorage.setItem(currentValue, "[]");
+                }
+            });
+            this.eventListener()
         },
-        get: function () { //get the data from the savedCitys array
-            var savedCitys = localStorage.getItem('savedCitys');
-
+        templates: ["home", "citys", "city", "search", "searchresults"],
+        get: function (key) { //get the data from the savedCitys array
+            var savedCitys = localStorage.getItem(key);
             return JSON.parse(savedCitys);
         },
-        add: function (data) { //add a new city to the array
-            var savedCitys = this.get(),
+        add: function (key, data) { //add a new city to the array
+            var savedCitys = this.get(key),
                 contains = _.contains(savedCitys, data);
 
             if (contains === false) { //ceck if the city is already in the array if not add the city to the array
@@ -75,8 +105,19 @@ var app = app || {};
                 var stringifiedData = JSON.stringify(savedCitys);
                 localStorage.setItem('savedCitys', stringifiedData);
             } else {
-                console.log("bestaat al");
+                app.support.showErr("Deze heb je al toegevoegd");
             }
+        },
+        eventListener: function () {
+            var emtyTemplates = [];
+
+            this.templates.forEach(function (currentValue, index) {
+                var lenghtOfLocalstorage = JSON.parse(localStorage.getItem(currentValue)).length
+
+                if (lenghtOfLocalstorage <= 0) {
+                    emtyTemplates.push(currentValue)
+                }
+            });
         }
     };
 
@@ -104,12 +145,12 @@ var app = app || {};
                     "&units=metric&appid="],
         brokenSearchUrl: ["http://api.openweathermap.org/data/2.5/find?q=", "&type=like&mode=json&appid=", "&units=metric&appid="],
         WeatherUrl: function (city) { //create api url for the wheather of a city
-            var fullUrl = app.data.brokenWeatherUrl[0] + city + app.data.brokenWeatherUrl[1] + app.data.apiKey;
+            var fullUrl = this.brokenWeatherUrl[0] + city + this.brokenWeatherUrl[1] + this.apiKey;
 
             return fullUrl;
         },
         SearchUrl: function (search) { //create a api url for the search.
-            var fullUrl = app.data.brokenSearchUrl[0] + search + app.data.brokenSearchUrl[1] + app.data.apiKey;
+            var fullUrl = this.brokenSearchUrl[0] + search + this.brokenSearchUrl[1] + this.apiKey;
 
             return fullUrl;
         }
@@ -118,7 +159,7 @@ var app = app || {};
     //define all pages in the app.
     app.page = {
         init: function () {
-            location.replace('#/home');
+            window.location = "#/home";
         },
         home: function () { //render the home template
             app.get.data('./temp/home.mst').then(response => {
@@ -139,21 +180,24 @@ var app = app || {};
                         app.get.data(app.data.SearchUrl(searchField.value))
                             .then(response => {
                                 var data = JSON.parse(response).list;
-
-                                //if the checkbox is checked filer the results
+                                var newdata = _.map(data, function (data) {
+                                        data.attachedName = data.name.replace(/ /g, "-").toLowerCase();
+                                        return data
+                                    })
+                                    //if the checkbox is checked filer the results
                                 if (app.get.one(".in-nl").checked === true) {
-                                    var rawData = _.filter(data, function (searchData, predicate) {
+                                    var rawData = _.filter(newdata, function (searchData, predicate) {
                                         return searchData.sys.country === "NL";
                                     });
                                 } else {
                                     //if the checkbox is not checked the data is not filterd.
-                                    var rawData = data;
+                                    var rawData = newdata;
                                 }
                                 app.render.template("#searchresults", searchResultsTemplate, rawData);
                                 app.get.one(".searchlist").addEventListener("click", function (e) {
                                     if (e.target && e.target.nodeName == "LI") {
                                         //add the clicked city to local storage.
-                                        app.localStorage.add(e.target.innerHTML);
+                                        app.localStorage.add("savedCitys", e.target.id);
                                         // go to #/citys
                                         window.location = "#/citys";
                                     }
@@ -176,42 +220,48 @@ var app = app || {};
                 .catch(err => {
                     // if there is a err console.log it
                     console.log(err);
-                })
+                });
         },
         citys: function () {
             // a emty array with the
             var savedCitysData = [],
-                savedCitys = app.localStorage.get()
+                savedCitys = app.localStorage.get("savedCitys");
 
-            app.get.data('./temp/citys.mst').then(response => {
-                var data = response;
-                return data;
-            }).then(response => {
-                savedCitys.forEach(function (element, index, array) {
-                    app.get.data(app.data.WeatherUrl(savedCitys[index])).then(response => {
-                        var data = JSON.parse(response);
-                        savedCitysData.push({
-                            cityName: data.name,
-                            cityNameUrl: data.name.replace(/ /g, '-'),
-                            description: data.weather[0].description,
-                            temp: data.main.temp,
-                        });
-                        if (savedCitysData.length === savedCitys.length) {
-                            app.get.data('./temp/citys.mst').then(response => {
-                                app.render.template("#target", response, savedCitysData);
-                            }).catch(e => {
-                                // catching all failures!
-                                console.error(e);
+            if (savedCitys.length <= 0) {
+                window.location = "#/search";
+                app.support.showErr("Er staat hier niks in, voeg een nieuwe stad toe");
+            } else {
+                app.get.data('./temp/citys.mst').then(response => {
+                    var data = response;
+                    return data;
+                }).then(response => {
+                    savedCitys.forEach(function (element, index, array) {
+                        app.get.data(app.data.WeatherUrl(savedCitys[index])).then(response => {
+                            var data = JSON.parse(response);
+                            savedCitysData.push({
+                                cityName: data.name,
+                                cityNameUrl: data.name.replace(/ /g, '-'),
+                                description: data.weather[0].description,
+                                temp: data.main.temp,
                             });
-                        }
-                    }).catch(e => {
-                        console.error(e);
+                            if (savedCitysData.length === savedCitys.length) {
+                                app.get.data('./temp/citys.mst').then(response => {
+                                    app.render.template("#target", response, savedCitysData);
+                                }).catch(e => {
+                                    // catching all failures!
+                                    console.error(e);
+                                });
+                            }
+                        }).catch(e => {
+                            console.error(e);
+                        });
                     });
+
+                }).catch(e => {
+                    // console a error if there is a err
+                    console.error(e);
                 });
-            }).catch(e => {
-                // console a error if there is a err
-                console.error(e);
-            });
+            }
         },
         city: function (cityParam) {
             //get the weather data
@@ -268,9 +318,18 @@ var app = app || {};
                 app.get.one(".error").innerHTML = "The browser is offline :(";
                 return false;
             }
+        },
+        showErr: function (errMessage) {
+            app.get.one(".error").classList.add("show-error");
+            app.get.one(".error").innerHTML = errMessage;
+
+            setTimeout(function () {
+                app.get.one(".error").classList.remove("show-error");
+                app.get.one(".error").innerHTML = "";
+            }, 3000);
         }
     };
 
     //Run the app
     app.start.init();
-}())
+}());
