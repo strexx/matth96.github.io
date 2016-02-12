@@ -53,7 +53,12 @@ var app = app || {};
             var templateWorker = new Worker('js/templateWorker.js');
 
             templateWorker.addEventListener('message', function (e) {
-                console.log(e.data);
+                //                console.log(e.data);
+                if (e.data.name === "savedCitys" || e.data.name === undefined) {
+                    console.log("not in savedCitys");
+                } else {
+                    localStorage.setItem(e.data.name, e.data.template);
+                }
             }, false);
 
             this.start(templateWorker);
@@ -65,13 +70,24 @@ var app = app || {};
             });
         },
         start: function (templateWorker) {
+            var emtyTemplates = [];
+
+            app.localStorage.templates.forEach(function (currentValue, index) {
+                var lenghtOfLocalstorage = JSON.parse(localStorage.getItem(currentValue)).length
+
+                if (lenghtOfLocalstorage <= 0) {
+                    emtyTemplates.push(currentValue)
+                }
+            });
+
             templateWorker.postMessage({
                 'cmd': 'start',
                 'msg': 'hoi',
-                'templates': app.localStorage.templates
+                'templates': emtyTemplates
             });
         }
     };
+
     app.render = { //funtion to render a template.
         template: function (target, template, data) {
             app.get.one(target).innerHTML = Mustache.render(template, {
@@ -82,14 +98,14 @@ var app = app || {};
 
     app.localStorage = {
         init: function () { //check if savedCitys exists if not create a [];
-            var localstorageKeys = this.templates;
-            localstorageKeys.push("savedCitys");
-            localstorageKeys.forEach(function (currentValue, index) {
+            this.templates.forEach(function (currentValue, index) {
                 if (localStorage.getItem(currentValue) === null || localStorage.getItem(currentValue) === undefined) {
                     localStorage.setItem(currentValue, "[]");
                 }
             });
-            this.eventListener()
+            if (localStorage.getItem("savedCitys") === null || localStorage.getItem("savedCitys") === undefined) {
+                localStorage.setItem("savedCitys", "[]");
+            }
         },
         templates: ["home", "citys", "city", "search", "searchresults"],
         get: function (key) { //get the data from the savedCitys array
@@ -107,17 +123,6 @@ var app = app || {};
             } else {
                 app.support.showErr("Deze heb je al toegevoegd");
             }
-        },
-        eventListener: function () {
-            var emtyTemplates = [];
-
-            this.templates.forEach(function (currentValue, index) {
-                var lenghtOfLocalstorage = JSON.parse(localStorage.getItem(currentValue)).length
-
-                if (lenghtOfLocalstorage <= 0) {
-                    emtyTemplates.push(currentValue)
-                }
-            });
         }
     };
 
@@ -162,65 +167,49 @@ var app = app || {};
             window.location = "#/home";
         },
         home: function () { //render the home template
-            app.get.data('./temp/home.mst').then(response => {
-                app.render.template("#target", response);
-            }).catch(e => {
-                //if there is a error console.log the error
-                console.error(e);
-            });
-
+            app.render.template("#target", app.localStorage.get("home"));
         },
         search: function () {
             //define all vars for the search funtion
-            var searchResultsTemplate = "",
-                searchFuntion = function (searchField) {
-                    //if the input of the searchfield changes run this function
-                    searchField.addEventListener('input', function () {
-                        //get data from api with the input of the input field
-                        app.get.data(app.data.SearchUrl(searchField.value))
-                            .then(response => {
-                                var data = JSON.parse(response).list;
-                                var newdata = _.map(data, function (data) {
-                                        data.attachedName = data.name.replace(/ /g, "-").toLowerCase();
-                                        return data
-                                    })
-                                    //if the checkbox is checked filer the results
-                                if (app.get.one(".in-nl").checked === true) {
-                                    var rawData = _.filter(newdata, function (searchData, predicate) {
-                                        return searchData.sys.country === "NL";
-                                    });
-                                } else {
-                                    //if the checkbox is not checked the data is not filterd.
-                                    var rawData = newdata;
-                                }
-                                app.render.template("#searchresults", searchResultsTemplate, rawData);
-                                app.get.one(".searchlist").addEventListener("click", function (e) {
-                                    if (e.target && e.target.nodeName == "LI") {
-                                        //add the clicked city to local storage.
-                                        app.localStorage.add("savedCitys", e.target.id);
-                                        // go to #/citys
-                                        window.location = "#/citys";
-                                    }
+            var searchFuntion = function (searchField) {
+                //if the input of the searchfield changes run this function
+                searchField.addEventListener('input', function () {
+                    //get data from api with the input of the input field
+                    app.get.data(app.data.SearchUrl(searchField.value))
+                        .then(response => {
+                            var data = JSON.parse(response).list;
+                            var newdata = _.map(data, function (data) {
+                                    data.attachedName = data.name.replace(/ /g, "-").toLowerCase();
+                                    return data
+                                })
+                                //if the checkbox is checked filer the results
+                            if (app.get.one(".in-nl").checked === true) {
+                                var rawData = _.filter(newdata, function (searchData, predicate) {
+                                    return searchData.sys.country === "NL";
                                 });
+                            } else {
+                                //if the checkbox is not checked the data is not filterd.
+                                var rawData = newdata;
+                            }
+                            app.render.template("#searchresults", app.localStorage.get("searchresults"), rawData);
+                            app.get.one(".searchlist").addEventListener("click", function (e) {
+                                if (e.target && e.target.nodeName == "LI") {
+                                    //add the clicked city to local storage.
+                                    app.localStorage.add("savedCitys", e.target.id);
+                                    // go to #/citys
+                                    window.location = "#/citys";
+                                }
                             });
-                    });
-                };
-            //get the search and the searchresults templates
-            Promise.all([app.get.data('./temp/search.mst'), app.get.data('./temp/searchresults.mst')])
-                .then(response => {
-                    searchResultsTemplate = response[1]
-                        //render the search template
-                    app.render.template("#target", response[0]);
-                })
-                .then(response => {
-                    //if the template is renderd run the searchFuntion proporty
-                    var searchField = app.get.one('#search');
-                    searchFuntion(searchField);
-                })
-                .catch(err => {
-                    // if there is a err console.log it
-                    console.log(err);
+                        }).catch(e => {
+                            console.error(e);
+                        });
                 });
+            };
+            //get the search and the searchresults templates
+            app.render.template("#target", app.localStorage.get("search"));
+            var searchField = app.get.one('#search');
+            searchFuntion(searchField);
+
         },
         citys: function () {
             // a emty array with the
@@ -231,36 +220,24 @@ var app = app || {};
                 window.location = "#/search";
                 app.support.showErr("Er staat hier niks in, voeg een nieuwe stad toe");
             } else {
-                app.get.data('./temp/citys.mst').then(response => {
-                    var data = response;
-                    return data;
-                }).then(response => {
-                    savedCitys.forEach(function (element, index, array) {
-                        app.get.data(app.data.WeatherUrl(savedCitys[index])).then(response => {
-                            var data = JSON.parse(response);
-                            savedCitysData.push({
-                                cityName: data.name,
-                                cityNameUrl: data.name.replace(/ /g, '-'),
-                                description: data.weather[0].description,
-                                temp: data.main.temp,
-                            });
-                            if (savedCitysData.length === savedCitys.length) {
-                                app.get.data('./temp/citys.mst').then(response => {
-                                    app.render.template("#target", response, savedCitysData);
-                                }).catch(e => {
-                                    // catching all failures!
-                                    console.error(e);
-                                });
-                            }
-                        }).catch(e => {
-                            console.error(e);
+                app.render.template("#target", app.localStorage.get("citys"));
+                savedCitys.forEach(function (element, index, array) {
+                    app.get.data(app.data.WeatherUrl(savedCitys[index])).then(response => {
+                        var data = JSON.parse(response);
+                        savedCitysData.push({
+                            cityName: data.name,
+                            cityNameUrl: data.name.replace(/ /g, '-'),
+                            description: data.weather[0].description,
+                            temp: data.main.temp,
                         });
+                        if (savedCitysData.length === savedCitys.length) {
+                            app.render.template("#target", app.localStorage.get("citys"), savedCitysData);
+                        }
+                    }).catch(e => {
+                        console.error(e);
                     });
-
-                }).catch(e => {
-                    // console a error if there is a err
-                    console.error(e);
                 });
+
             }
         },
         city: function (cityParam) {
