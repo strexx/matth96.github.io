@@ -36,3 +36,15 @@ main > section {
 [role=article] {
     overflow: scroll;
 }
+
+.fade-in {
+    transform: scale(0);
+    animation: growHeight 0.2s ease forwards;
+}
+
+@keyframes growHeight {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

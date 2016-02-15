@@ -1,6 +1,6 @@
-<article role="article">
+<article role="article" class="fade-in citys">
 {{#data}}
-<a href="#/city/{{cityNameUrl}}" class="citys">
+<a href="#/city/{{cityNameUrl}}" class="citylist" id="{{cityNameUrl}}">
     <h2>{{cityName}}</h2>
     <ul>
         <li>Description: {{description}}</li>

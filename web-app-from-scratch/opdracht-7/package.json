@@ -10,5 +10,8 @@
   "dependencies": {
     "mustache": "^2.2.1",
     "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "gulp-babel": "^6.1.2"
   }
 }

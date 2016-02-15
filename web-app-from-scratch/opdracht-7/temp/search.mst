@@ -1,4 +1,4 @@
-<section>
+<section class="fade-in">
     <fieldset class="search" role="form">
         <form action="">
             <input type="text" id="search" placeholder="search" role="search">

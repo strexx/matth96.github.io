@@ -1,4 +1,4 @@
-<article role="article" class="city">
+<article role="article" class="city fade-in">
     <h2>{{data.cityName}}</h2>
     <ul>
         <li>Description: {{data.description}}</li>

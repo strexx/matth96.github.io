@@ -40,14 +40,14 @@ self.addEventListener('message', function (e) {
                     response
                 );
             }).catch(e => {
-                // catching all failures!
+                // catching all the errors
                 console.error(e);
             });
         });
     }
     if (data.cmd === 'stop') {
         self.postMessage('worker stopped: ' + data.msg)
-        self.close(); // Terminates the worker.
+        self.close(); // stops the worker.
     } else {
         self.postMessage('error: ' + data.msg);
     }

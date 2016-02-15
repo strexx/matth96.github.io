@@ -8,120 +8,10 @@ var weatherApp = weatherApp || {};
     //Start all functions
     weatherApp.start = { //Literal opbject
         init: function () { //Start object in this object are all start functions
-            weatherApp.support.init();
-            weatherApp.routes.init();
             weatherApp.localStorage.init();
             weatherApp.webWorker.init();
-        }
-    };
-
-    //To easily select something from the DOM
-    weatherApp.get = {
-        one: function (selector) { //This is a method
-            return document.querySelector(selector);
-        },
-        all: function (selector) {
-            return document.querySelectorAll(selector);
-        },
-        data: function (url) {
-            // return a Promise object
-            return new Promise((resolve, reject) => {
-                var request = new XMLHttpRequest();
-                //open an get request
-                request.open('GET', url);
-                //if the request is done
-                request.onload = function () {
-                    //ony if request is done
-                    if (request.status == 200) {
-
-                        // send text form request
-                        resolve(request.responseText);
-                    } else {
-                        // reject the promise if there is a err
-                        reject(new Error('request failed!'));
-                        weatherApp.support.showErr('There went something wrong');
-                    }
-                };
-                //send the request
-                request.send();
-            });
-        }
-    };
-
-    weatherApp.webWorker = { //define web worker
-        init: function () {
-            var templateWorker = new Worker('js/templateWorker.js');
-
-            templateWorker.addEventListener('message', function (e) {
-                if (e.data.name === 'savedCitys' || e.data.name === undefined) {
-                    console.log('not in savedCitys');
-                } else {
-                    localStorage.setItem(e.data.name, e.data.template);
-                }
-            }, false);
-
-            this.start(templateWorker);
-        },
-        stop: function (templateWorker) {
-            templateWorker.postMessage({
-                'cmd': 'stop',
-                'msg': 'all'
-            });
-        },
-        start: function (templateWorker) {
-            var emtyTemplates = [];
-
-            weatherApp.localStorage.templates.forEach(function (currentValue, index) {
-                var lenghtOfLocalstorage = JSON.parse(localStorage.getItem(currentValue)).length
-
-                if (lenghtOfLocalstorage <= 0) {
-                    emtyTemplates.push(currentValue)
-                }
-            });
-
-            templateWorker.postMessage({
-                'cmd': 'start',
-                'msg': 'hoi',
-                'templates': emtyTemplates
-            });
-        }
-    };
-
-    weatherApp.render = { //funtion to render a template.
-        template: function (target, template, data) {
-            weatherApp.get.one(target).innerHTML = Mustache.render(template, {
-                data: data
-            });
-        }
-    };
-
-    weatherApp.localStorage = {
-        init: function () { //check if savedCitys exists if not create a [];
-            this.templates.forEach(function (currentValue, index) {
-                if (localStorage.getItem(currentValue) === null || localStorage.getItem(currentValue) === undefined) {
-                    localStorage.setItem(currentValue, '[]');
-                }
-            });
-            if (localStorage.getItem('savedCitys') === null || localStorage.getItem('savedCitys') === undefined) {
-                localStorage.setItem('savedCitys', '[]');
-            }
-        },
-        templates: ['home', 'citys', 'city', 'search', 'searchresults'],
-        get: function (key) { //get the data from the savedCitys array
-            var savedCitys = localStorage.getItem(key);
-            return JSON.parse(savedCitys);
-        },
-        add: function (key, data) { //add a new city to the array
-            var savedCitys = this.get(key),
-                contains = _.contains(savedCitys, data);
-
-            if (contains === false) { //ceck if the city is already in the array if not add the city to the array
-                savedCitys.push(data);
-                var stringifiedData = JSON.stringify(savedCitys);
-                localStorage.setItem('savedCitys', stringifiedData);
-            } else {
-                weatherApp.support.showErr('You already add this one.');
-            }
+            weatherApp.routes.init();
+            weatherApp.support.init();
         }
     };
 
@@ -136,42 +26,20 @@ var weatherApp = weatherApp || {};
                 },
                 router = Router(routes);
             router.init();
+
             //if the hash is undefined or a '' redirect to #/home
             if (location.hash === undefined || location.hash === '') {
                 window.location = '#/home';
             }
-        }
-    };
-
-    weatherApp.data = {
-        apiKey: '7aa0e92a8b7be8ed7e420e33de310e0e',
-        brokenWeatherUrl: ['http://api.openweathermap.org/data/2.5/weather?q=',
-                    '&units=metric&appid='],
-        brokenSearchUrl: ['http://api.openweathermap.org/data/2.5/find?q=', '&type=like&mode=json&appid=', '&units=metric&appid='],
-        WeatherUrl: function (city) { //create api url for the wheather of a city
-            var fullUrl = this.brokenWeatherUrl[0] + city + this.brokenWeatherUrl[1] + this.apiKey;
-
-            return fullUrl;
-        },
-        SearchUrl: function (search) { //create a api url for the search.
-            var fullUrl = this.brokenSearchUrl[0] + search + this.brokenSearchUrl[1] + this.apiKey;
-
-            return fullUrl;
+            weatherApp.get.one('.loading').classList.add('disabled');
         }
     };
 
     //define all pages in the weatherApp.
     weatherApp.page = {
         home: function () { //render the home template
-            if (weatherApp.localStorage.get('home') === null) {
-                setTimeout(function () {
-                    var homeTemplate = weatherApp.localStorage.get('home')
-                    weatherApp.render.template('#target', homeTemplate);
-                }, 300);
-            } else {
-                var homeTemplate = weatherApp.localStorage.get('home')
-                weatherApp.render.template('#target', homeTemplate);
-            }
+            var homeTemplate = weatherApp.localStorage.get('home')
+            weatherApp.render.template('#target', homeTemplate);
         },
         search: function () {
             //define all vars for the search funtion
@@ -225,14 +93,15 @@ var weatherApp = weatherApp || {};
             // a emty array with the
             var savedCitysData = [],
                 citysTemplate = weatherApp.localStorage.get('citys'),
-                savedCitys = weatherApp.localStorage.get('savedCitys');
+                savedCitys = weatherApp.localStorage.get('savedCitys'),
+                touchFunction = function () {
+
+                }
 
             if (savedCitys.length <= 0) {
                 window.location = '#/search';
                 weatherApp.support.showErr('There\' nothing here, please add a city.');
             } else {
-                weatherApp.render.template('#target', citysTemplate);
-
                 savedCitys.forEach(function (element) {
                     var url = weatherApp.data.WeatherUrl(element);
                     weatherApp.get.data(url)
@@ -248,6 +117,7 @@ var weatherApp = weatherApp || {};
                             });
                             if (savedCitysData.length === savedCitys.length) {
                                 weatherApp.render.template('#target', citysTemplate, savedCitysData);
+                                touchFunction();
                             }
                         }).catch(e => {
                             console.error(e);
@@ -283,6 +153,183 @@ var weatherApp = weatherApp || {};
         }
     };
 
+    weatherApp.data = {
+        apiKey: '7aa0e92a8b7be8ed7e420e33de310e0e',
+        brokenWeatherUrl: ['http://api.openweathermap.org/data/2.5/weather?q=',
+                    '&units=metric&appid='],
+        brokenSearchUrl: ['http://api.openweathermap.org/data/2.5/find?q=', '&type=like&mode=json&appid=', '&units=metric&appid='],
+        WeatherUrl: function (city) { //create api url for the wheather of a city
+            var fullUrl = this.brokenWeatherUrl[0] + city + this.brokenWeatherUrl[1] + this.apiKey;
+
+            return fullUrl;
+        },
+        SearchUrl: function (search) { //create a api url for the search.
+            var fullUrl = this.brokenSearchUrl[0] + search + this.brokenSearchUrl[1] + this.apiKey;
+
+            return fullUrl;
+        }
+    };
+
+
+    //To easily select something from the DOM
+    weatherApp.get = {
+        one: function (selector) { //This is a method
+            return document.querySelector(selector);
+        },
+        all: function (selector) {
+            return document.querySelectorAll(selector);
+        },
+        data: function (url) {
+            // return a Promise object
+            return new Promise((resolve, reject) => {
+                var request = new XMLHttpRequest();
+                //open an get request
+                request.open('GET', url);
+
+                //                request.addEventListener("progress", updateProgress);
+
+                //                function updateProgress(oEvent) {
+                //                    console.log(oEvent)
+                //                    weatherApp.render.progresbar(true, oEvent.loaded, oEvent.total);
+                //                }
+
+                request.onloadstart = function () {
+                    weatherApp.render.loading(true);
+                };
+                request.onloadend = function () {
+                    weatherApp.render.loading(true);
+                };
+
+                //if the request is done
+                request.onload = function () {
+                    //ony if request is done
+                    if (request.status == 200) {
+                        weatherApp.render.loading(false);
+
+                        // send text form request
+                        resolve(request.responseText);
+                        weatherApp.render.progresbar(false);
+                    } else {
+                        // reject the promise if there is a err
+                        reject(new Error('request failed!'));
+                        weatherApp.support.showErr('There went something wrong');
+                    }
+                };
+                //send the request
+                request.send();
+            });
+        }
+    };
+
+    weatherApp.render = { //funtion to render a template.
+        template: function (target, template, data) {
+            //check if template is in localstorage if not reload the page
+            if (template === null || template === [] || template.length === 0) {
+                setTimeout(function () {
+                    document.location.reload(true);
+                }, 200)
+            } else {
+                weatherApp.get.one(target).innerHTML = Mustache.render(template, {
+                    data: data
+                });
+            }
+        },
+        progresbar: function (show, startVal, EndVal) {
+            var progess = weatherApp.get.one('progress')
+            if (show) {
+                progess.classList.remove('disabled');
+                console.log(startVal)
+                progess.valueOf(startVal);
+            } else {
+                setTimeout(function () {
+                    progess.classList.add('disabled');
+                }, 300)
+            }
+        },
+        loading: function (show) {
+            if (show) {
+                weatherApp.get.one('.loading').classList.remove('disabled')
+            } else {
+                setTimeout(function () {
+                    weatherApp.get.one('.loading').classList.add('disabled')
+                }, 300)
+
+            }
+        }
+    };
+
+    weatherApp.localStorage = {
+        init: function () { //check if savedCitys exists if not create a [];
+            this.templates.forEach(function (currentValue, index) {
+                if (localStorage.getItem(currentValue) === null || localStorage.getItem(currentValue) === undefined) {
+                    localStorage.setItem(currentValue, '[]');
+                }
+            });
+            if (localStorage.getItem('savedCitys') === null || localStorage.getItem('savedCitys') === undefined) {
+                localStorage.setItem('savedCitys', '[]');
+            }
+        },
+        templates: ['home', 'citys', 'city', 'search', 'searchresults'],
+        get: function (key) { //get the data from the savedCitys array
+            var savedCitys = localStorage.getItem(key);
+            return JSON.parse(savedCitys);
+        },
+        add: function (key, data) { //add a new city to the array
+            var savedCitys = this.get(key),
+                contains = _.contains(savedCitys, data);
+
+            if (contains === false) { //ceck if the city is already in the array if not add the city to the array
+                savedCitys.push(data);
+                var stringifiedData = JSON.stringify(savedCitys);
+                localStorage.setItem('savedCitys', stringifiedData);
+            } else {
+                weatherApp.support.showErr('You already add this one.');
+            }
+        }
+    };
+
+    weatherApp.webWorker = { //define web worker
+        init: function () {
+            var templateWorker = new Worker('js/templateWorker.js');
+
+            templateWorker.addEventListener('message', function (e) {
+                if (e.data.name === 'savedCitys' || e.data.name === undefined) {
+                    console.log('not in savedCitys');
+                } else {
+                    localStorage.setItem(e.data.name, e.data.template);
+                    if (weatherApp.localStorage.get('home') != null) {
+
+                    }
+                }
+            }, false);
+
+            this.start(templateWorker);
+        },
+        stop: function (templateWorker) {
+            templateWorker.postMessage({
+                'cmd': 'stop',
+                'msg': 'all'
+            });
+        },
+        start: function (templateWorker) {
+            var emtyTemplates = [];
+
+            weatherApp.localStorage.templates.forEach(function (currentValue, index) {
+                var lenghtOfLocalstorage = JSON.parse(localStorage.getItem(currentValue)).length
+
+                if (lenghtOfLocalstorage <= 0) {
+                    emtyTemplates.push(currentValue)
+                }
+            });
+
+            templateWorker.postMessage({
+                'cmd': 'start',
+                'msg': 'hoi',
+                'templates': emtyTemplates
+            });
+        }
+    };
+
     //Check if all functions are supported, if not, show an error message at top of the weatherApp.
     weatherApp.support = {
         init: function () {
@@ -302,7 +349,7 @@ var weatherApp = weatherApp || {};
             if (navigator.onLine) {
                 return true;
             } else {
-                this.showErr('The browser is offline :(');
+                this.showErr('Your are offline :(');
                 return false;
             }
         },
