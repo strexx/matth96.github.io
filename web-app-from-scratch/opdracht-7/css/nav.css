@@ -1,0 +1,30 @@
+header {
+    width: 100%;
+}
+[role=navigation]{
+    background: #78C278;
+    display: inline-block;
+    width: 100%;
+}
+
+[role=navigation] > ul > li:hover {
+    background: #639E63;
+}
+
+nav > ul > li > a {
+    padding: 1em;
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    width: 100%;
+}
+
+.right {
+    float: right;
+    height: 100%;
+}
+
+.right > a {
+    font-size: 2em;
+     padding: 0.4rem 1rem;
+}

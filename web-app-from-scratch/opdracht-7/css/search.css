@@ -1,0 +1,53 @@
+fieldset.search {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100vw;
+}
+
+fieldset.search form {
+    box-sizing: border-box;
+    background: #E0DFDF;
+    width: 100vw;
+    margin: 0;
+    height: 3em;
+}
+
+fieldset.search form > input {
+    box-sizing: border-box;
+    background: #fff;
+    width: calc(80% - 2em);
+    margin: 0.5em 1em 0 1em;
+    font-size: 1em;
+    padding: 0.4em;
+    border: none;
+}
+fieldset.search div{
+    display: inline-block;
+    color: #000;
+}
+
+
+[role=list] > li {
+    display: block;
+    cursor: pointer;
+    padding: 1em;
+    background: RGBA(137, 137, 137, 0.8);
+    list-style-type: none;
+}
+
+[role=list] > li:hover {
+    background: #4E4E4E;
+}
+
+[role=list] .no-search {
+    background: none;
+    cursor: default;
+}
+
+[role=list] .no-search:hover {
+    background: none;
+}
+#searchresults{
+    margin: 0;
+    padding: 0;
+}
