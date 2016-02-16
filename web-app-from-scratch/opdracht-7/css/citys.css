@@ -1,7 +1,7 @@
 a.citylist {
     display: block;
     background: RGBA(84, 93, 92, 0.6);
-   -webkit-backdrop-filter: blur(1em);
+    -webkit-backdrop-filter: blur(1em);
     backdrop-filter: blur(1em);
     text-decoration: none;
     padding: 1rem;
@@ -20,26 +20,49 @@ a.citylist:hover {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-            flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
     -webkit-box-pack: justify;
     -webkit-justify-content: space-between;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
 }
 
-.citylist li.temp{
+.citylist li.temp {
     -webkit-box-ordinal-group: 2;
     -webkit-order: 1;
-        -ms-flex-order: 1;
-            order: 1;
+    -ms-flex-order: 1;
+    order: 1;
     font-size: 2em;
-/*   border: red solid*/
+    /*   border: red solid*/
 }
+
+.content {
+    display: inline-block;
+}
+
+.delete {
+    margin: 0;
+    height: 100%;
+    padding: 0;
+    width: 0;
+    overflow: hidden;
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 1.1em;
+    background: red;
+}
+
+.delete small {
+    margin: auto;
+}
+
 .city li {
     display: block;
-
 }
-.city{
+
+.city {
     padding: 1em;
 }
