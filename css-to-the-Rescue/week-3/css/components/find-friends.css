@@ -1,0 +1,51 @@
+.friends {
+    flex-flow: row wrap;
+}
+
+.friends header {
+    width: 100%;
+}
+
+.friends figure {
+    margin: 1em;
+    width: 5em;
+}
+
+.friends footer {
+    width: 100%;
+}
+
+.friends img:hover {
+    border-radius: 50%;
+}
+
+.friends img {
+    -webkit-transition: all 0.7s ease;
+    transition: all 0.7s ease;
+}
+
+/*loading*/
+
+.loader {
+    margin: auto;
+    width: 100px;
+    height: 100px;
+    transform: scale(0.5);
+    text-indent: 999px;
+    overflow: hidden;
+    background: url(../../images/loader.png) 0 0;
+    -webkit-animation: loader 1s infinite steps(8);
+    animation: loader 1s infinite steps(8);
+}
+
+@-webkit-keyframes loader {
+    to {
+        background-position: -800px 0;
+    }
+}
+
+@keyframes loader {
+    to {
+        background-position: -800px 0;
+    }
+}

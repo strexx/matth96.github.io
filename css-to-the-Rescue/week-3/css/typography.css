@@ -1,0 +1,49 @@
+@font-face {
+    font-family: Ampersand;
+    src: local('Baskerville-Italic'), local('GoudyOldStyleT-Italic'), local('Garamond-Italic'), local('Palatino-Italic');
+    unicode-range: U+26;
+}
+
+html {
+    font-size: 1.1em;
+}
+
+body {
+    font-family: Ampersand, "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.45;
+}
+
+p {
+    margin-bottom: 1.3em;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    margin: 1.414em 0 0.5em;
+    font-weight: inherit;
+    line-height: 1.2;
+}
+
+h1 {
+    margin-top: 0;
+    font-size: 2.369em;
+}
+
+h2 {
+    font-size: 1.777em;
+}
+
+h3 {
+    font-size: 1.333em;
+}
+
+h4 {
+    font-size: 1.111em;
+}
+
+small {
+    font-size: 0.707em;
+}
