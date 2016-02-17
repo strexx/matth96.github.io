@@ -77,7 +77,7 @@ weatherApp.localStorage = function () {
         } else {
             weatherApp.ux.showErr('You already add this one.');
         }
-    }
+    };
 
     function remove(delCity, citysTemplate) {
         var index = _getSavedCitys.indexOf(delCity);
@@ -89,9 +89,10 @@ weatherApp.localStorage = function () {
             localStorage.setItem('savedCitys', newCityArray);
             document.location.reload(true);
         } else {
-            weatherApp.ux.showErr("Sorry, your city isn't deleted. Try again.");
+            weatherApp.ux.showErr('Sorry, your city isn\'t deleted.Try again.');
         }
-    }
+    };
+
     return {
         init: init,
         templates: templates,
@@ -110,14 +111,14 @@ weatherApp.webWorker = function () {
         //lissen to the responses of the webworker.
         templateWorker.addEventListener('message', function (e) {
             if (e.data.name === 'savedCitys' || e.data.name === undefined) {
-                console.log('not in savedCitys');
+                console.log('Not in savedCitys');
             } else {
                 localStorage.setItem(e.data.name, e.data.template);
             }
         }, false);
 
         _start(templateWorker);
-    }
+    };
 
     function _ceckTemplates() {
         var emtyTemplates = [];
@@ -130,7 +131,7 @@ weatherApp.webWorker = function () {
             }
         });
         return emtyTemplates;
-    }
+    };
 
     function _start(templateWorker) {
         //send message to worker with templates
@@ -139,7 +140,7 @@ weatherApp.webWorker = function () {
             'msg': 'hoi',
             'templates': _ceckTemplates()
         });
-    }
+    };
     return {
         init: init
     };
@@ -186,7 +187,8 @@ weatherApp.get = function () {
             //send the request
             request.send();
         });
-    }
+    };
+
     return {
         one: one,
         all: all,
@@ -368,6 +370,7 @@ weatherApp.render = function () {
             }, 300);
         }
     };
+
     return {
         template: template,
         loading: loading
@@ -410,7 +413,8 @@ weatherApp.ux = function () {
             _errorLocation.classList.remove('show-error');
             _errorLocation.innerHTML = '';
         }, 4000);
-    }
+    };
+
     return {
         init: init,
         showErr: showErr
@@ -429,14 +433,14 @@ weatherApp.routes = function () {
     function _createRoutes() {
         var router = Router(_routes);
         router.init();
-    }
+    };
 
     function _ceckRoute() {
         //if the hash is undefined or a '' redirect to #/home
         if (location.hash === undefined || location.hash === '') {
             window.location = '#/home';
         }
-    }
+    };
 
     function init() {
         _createRoutes();

@@ -10,14 +10,14 @@ weatherApp.routes = (function () {
     function _createRoutes() {
         var router = Router(_routes);
         router.init();
-    }
+    };
 
     function _ceckRoute() {
         //if the hash is undefined or a '' redirect to #/home
         if (location.hash === undefined || location.hash === '') {
             window.location = '#/home';
         }
-    }
+    };
 
     function init() {
         _createRoutes();

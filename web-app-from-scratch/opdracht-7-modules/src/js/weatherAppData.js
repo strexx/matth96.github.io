@@ -57,7 +57,7 @@ weatherApp.localStorage = (function () {
         } else {
             weatherApp.ux.showErr('You already add this one.');
         }
-    }
+    };
 
     function remove(delCity, citysTemplate) {
         var index = _getSavedCitys.indexOf(delCity);
@@ -69,9 +69,10 @@ weatherApp.localStorage = (function () {
             localStorage.setItem('savedCitys', newCityArray);
             document.location.reload(true);
         } else {
-            weatherApp.ux.showErr("Sorry, your city isn't deleted. Try again.")
+            weatherApp.ux.showErr('Sorry, your city isn\'t deleted.Try again.');
         }
-    }
+    };
+
     return {
         init: init,
         templates: templates,
@@ -90,14 +91,14 @@ weatherApp.webWorker = (function () { //define web worker
         //lissen to the responses of the webworker.
         templateWorker.addEventListener('message', function (e) {
             if (e.data.name === 'savedCitys' || e.data.name === undefined) {
-                console.log('not in savedCitys');
+                console.log('Not in savedCitys');
             } else {
                 localStorage.setItem(e.data.name, e.data.template);
             }
         }, false);
 
         _start(templateWorker);
-    }
+    };
 
     function _ceckTemplates() {
         var emtyTemplates = [];
@@ -110,7 +111,7 @@ weatherApp.webWorker = (function () { //define web worker
             }
         });
         return emtyTemplates;
-    }
+    };
 
     function _start(templateWorker) {
         //send message to worker with templates
@@ -119,10 +120,10 @@ weatherApp.webWorker = (function () { //define web worker
             'msg': 'hoi',
             'templates': _ceckTemplates()
         });
-    }
+    };
     return {
         init: init
-    }
+    };
 })();
 
 //To easily select something from the DOM
@@ -165,7 +166,8 @@ weatherApp.get = (function () {
             //send the request
             request.send();
         });
-    }
+    };
+
     return {
         one: one,
         all: all,

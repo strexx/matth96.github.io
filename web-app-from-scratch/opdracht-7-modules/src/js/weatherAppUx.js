@@ -33,7 +33,8 @@ weatherApp.ux = (function () {
             _errorLocation.classList.remove('show-error');
             _errorLocation.innerHTML = '';
         }, 4000);
-    }
+    };
+
     return {
         init: init,
         showErr: showErr
