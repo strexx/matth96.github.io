@@ -35,7 +35,7 @@ var weatherApp = weatherApp || {};
             if (location.hash === undefined || location.hash === '') {
                 window.location = '#/home';
             }
-            weatherApp.get.one('.loading').classList.add('disabled');
+            weatherApp.render.loading(false);
         }
     };
 
@@ -108,7 +108,7 @@ var weatherApp = weatherApp || {};
 
             if (savedCitys.length <= 0) {
                 window.location = '#/search';
-                weatherApp.support.showErr('Sorry, there\' nothing here, please add a city.');
+                weatherApp.ux.showErr('Sorry, there\' nothing here, please add a city.');
             } else {
                 savedCitys.forEach(function (element) {
                     var url = weatherApp.data.WeatherUrl(element);
@@ -155,7 +155,7 @@ var weatherApp = weatherApp || {};
                 weatherApp.render.template('#target', cityTemplate, cityData);
             }).catch(function (e) {
                 console.error(e);
-                weatherApp.support.showErr('There was a error :(');
+                weatherApp.ux.showErr('There was a error :(');
             });
         }
     };
@@ -220,7 +220,7 @@ var weatherApp = weatherApp || {};
                     } else {
                         // reject the promise if there is a err
                         reject(new Error('request failed!'));
-                        weatherApp.support.showErr('There went something wrong');
+                        weatherApp.ux.showErr('There went something wrong');
                     }
                 };
                 //send the request
@@ -295,7 +295,7 @@ var weatherApp = weatherApp || {};
                 var stringifiedData = JSON.stringify(savedCitys);
                 localStorage.setItem('savedCitys', stringifiedData);
             } else {
-                weatherApp.support.showErr('You already add this one.');
+                weatherApp.ux.showErr('You already add this one.');
             }
         },
         remove: function remove(delCity, citysTemplate) {
@@ -309,7 +309,7 @@ var weatherApp = weatherApp || {};
                 localStorage.setItem('savedCitys', newCityArray);
                 document.location.reload(true);
             } else {
-                weatherApp.support.showErr("Sorry, your city isn't deleted. Try again.");
+                weatherApp.ux.showErr("Sorry, your city isn't deleted. Try again.");
             }
         }
     };
@@ -375,8 +375,19 @@ var weatherApp = weatherApp || {};
                 var deleteButton = weatherApp.get.one('.' + ev.target.id);
                 deleteButton.style.width = '0px';
             });
+        },
+        showErr: function showErr(errMessage) {
+            //show a error on top of the app.
+            weatherApp.get.one('.error').classList.add('show-error');
+            weatherApp.get.one('.error').innerHTML = errMessage;
+
+            setTimeout(function () {
+                weatherApp.get.one('.error').classList.remove('show-error');
+                weatherApp.get.one('.error').innerHTML = '';
+            }, 4000);
         }
     };
+
     //Check if all functions are supported, if not, show an error message at top of the weatherApp.
     weatherApp.support = {
         init: function init() {
@@ -388,7 +399,7 @@ var weatherApp = weatherApp || {};
             if ('onhashchange' in window) {
                 console.log('onhashchange is supported');
             } else {
-                this.showErr('The browser isn\'t supporting this app :(');
+                weatherApp.ux.showErr('The browser isn\'t supporting this app :(');
             }
         },
         online: function online() {
@@ -396,19 +407,9 @@ var weatherApp = weatherApp || {};
             if (navigator.onLine) {
                 return true;
             } else {
-                this.showErr('Your are offline :(');
+                weatherApp.ux.showErr('Your are offline :(');
                 return false;
             }
-        },
-        showErr: function showErr(errMessage) {
-            //show a error on top of the app.
-            weatherApp.get.one('.error').classList.add('show-error');
-            weatherApp.get.one('.error').innerHTML = errMessage;
-
-            setTimeout(function () {
-                weatherApp.get.one('.error').classList.remove('show-error');
-                weatherApp.get.one('.error').innerHTML = '';
-            }, 4000);
         }
     };
 

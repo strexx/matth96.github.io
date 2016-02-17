@@ -305,6 +305,7 @@ var weatherApp = weatherApp || {};
             } else {
                 weatherApp.support.showErr("Sorry, your city isn't deleted. Try again.")
             }
+
         }
     };
 

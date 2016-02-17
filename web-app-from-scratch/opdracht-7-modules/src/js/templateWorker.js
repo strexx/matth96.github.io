@@ -8,6 +8,7 @@ var dataFunction = {
 
             request.open('GET', url);
             request.onload = function () {
+
                 if (request.status == 200) {
                     resolve(request.responseText);
                 } else {
