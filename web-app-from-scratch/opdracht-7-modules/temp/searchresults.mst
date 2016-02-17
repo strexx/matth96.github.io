@@ -1,0 +1,10 @@
+<section>
+    <ul role="list" class="searchlist">
+        {{#data}}
+        <li id="{{attachedName}}">
+            {{name}}
+        </li>{{/data}} {{^data}}
+        <li class="no-search">Zoek om resultaten te zien..</li>{{/data}}
+
+    </ul>
+</section>

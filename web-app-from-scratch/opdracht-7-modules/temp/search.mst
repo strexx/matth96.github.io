@@ -1,0 +1,12 @@
+<section class="fade-in">
+    <fieldset class="search" role="form">
+        <form action="">
+            <input type="text" id="search" placeholder="search" role="search">
+            <div>
+                <label for="nl">in nl</label>
+                <input type="checkbox" role="checkbox" id="nl" class="in-nl">
+            </div>
+        </form>
+    </fieldset>
+</section>
+<section id="searchresults"></section>

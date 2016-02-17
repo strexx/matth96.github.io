@@ -1,0 +1,50 @@
+.show-error {
+    background: #E25454;
+    padding: 0.5em;
+    text-align: center;
+}
+
+body {
+    font-size: 100%;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    height: calc(100vh);
+    background: #3E3D3D;
+    background: url(https://hva.dolstra.me/web-app-from-scratch/opdracht-6/assets/i/home-background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+}
+
+ul > li {
+    list-style-type: none;
+    display: inline-block;
+}
+
+main > section {
+    padding: 0;
+}
+
+.home {
+    padding: 1em;
+}
+
+.disabled {
+    display: none;
+}
+
+[role=article] {
+    overflow: scroll;
+}
+
+.fade-in {
+    transform: scale(0);
+    animation: growHeight 0.2s ease forwards;
+}
+
+@keyframes growHeight {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

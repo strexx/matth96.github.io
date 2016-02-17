@@ -1,0 +1,36 @@
+header {
+    width: 100%;
+}
+
+[role=navigation] {
+    background: #78C278;
+    display: inline-block;
+    width: 100%;
+}
+
+[role=navigation] > ul a:hover {
+    background: #639E63;
+}
+
+[role=navigation] > ul > li > a:active {
+    background: #508950;
+}
+
+nav > ul > li > a {
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    padding: 1em;
+    text-decoration: none;
+    color: #fff;
+    display: block;
+}
+
+.right {
+    float: right;
+    height: 100%;
+}
+
+.right > a {
+    font-size: 2em;
+    padding: 0.4rem 1rem;
+}
