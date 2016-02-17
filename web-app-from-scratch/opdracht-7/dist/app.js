@@ -98,18 +98,17 @@ var weatherApp = weatherApp || {};
             var savedCitysData = [],
                 citysTemplate = weatherApp.localStorage.get('citys'),
                 savedCitys = weatherApp.localStorage.get('savedCitys'),
-                touchFunction = function touchFunction() {
-                weatherApp.get.one('.citys').addEventListener('touchmove', function (e) {});
-                weatherApp.get.one('.citys').addEventListener('mousemove', function (e) {
-                    if (e.target && e.target.nodeName == 'a') {
-                        console.log(e.target);
-                    }
+                deleteCity = function deleteCity() {
+                var citys = document.querySelector('.citys');
+                citys.addEventListener('click', function (e) {
+                    var delCity = e.target.id.toLowerCase();
+                    weatherApp.localStorage.remove(delCity);
                 });
             };
 
             if (savedCitys.length <= 0) {
                 window.location = '#/search';
-                weatherApp.support.showErr('There\' nothing here, please add a city.');
+                weatherApp.support.showErr('Sorry, there\' nothing here, please add a city.');
             } else {
                 savedCitys.forEach(function (element) {
                     var url = weatherApp.data.WeatherUrl(element);
@@ -125,7 +124,8 @@ var weatherApp = weatherApp || {};
                         });
                         if (savedCitysData.length === savedCitys.length) {
                             weatherApp.render.template('#target', citysTemplate, savedCitysData);
-                            touchFunction();
+                            weatherApp.ux.init();
+                            deleteCity();
                         }
                     }).catch(function (e) {
                         console.error(e);
@@ -258,6 +258,7 @@ var weatherApp = weatherApp || {};
             if (show) {
                 weatherApp.get.one('.loading').classList.remove('disabled');
             } else {
+                //show loading
                 setTimeout(function () {
                     weatherApp.get.one('.loading').classList.add('disabled');
                 }, 300);
@@ -296,19 +297,32 @@ var weatherApp = weatherApp || {};
             } else {
                 weatherApp.support.showErr('You already add this one.');
             }
+        },
+        remove: function remove(delCity) {
+            var citys = this.get('savedCitys'),
+                index = citys.indexOf(delCity);
+            console.log(index);
+            if (index !== -1) {
+                citys.splice(index, 1);
+                localStorage.setItem('savedCitys', JSON.stringify(citys));
+                document.location.reload(true);
+            } else {
+                weatherApp.support.showErr("Sorry, your city isn't deleted. Try again.");
+            }
         }
     };
 
     weatherApp.webWorker = { //define web worker
         init: function init() {
+            //create web worker.
             var templateWorker = new Worker('./dist/templateWorker.js');
 
+            //lissen to the responses of the webworker.
             templateWorker.addEventListener('message', function (e) {
                 if (e.data.name === 'savedCitys' || e.data.name === undefined) {
                     console.log('not in savedCitys');
                 } else {
                     localStorage.setItem(e.data.name, e.data.template);
-                    if (weatherApp.localStorage.get('home') != null) {}
                 }
             }, false);
 
@@ -322,7 +336,7 @@ var weatherApp = weatherApp || {};
         },
         start: function start(templateWorker) {
             var emtyTemplates = [];
-
+            //get al names of templates and check them.
             weatherApp.localStorage.templates.forEach(function (currentValue, index) {
                 var lenghtOfLocalstorage = JSON.parse(localStorage.getItem(currentValue)).length;
 
@@ -330,7 +344,7 @@ var weatherApp = weatherApp || {};
                     emtyTemplates.push(currentValue);
                 }
             });
-
+            //send message to worker with templates
             templateWorker.postMessage({
                 'cmd': 'start',
                 'msg': 'hoi',
@@ -339,6 +353,28 @@ var weatherApp = weatherApp || {};
         }
     };
 
+    weatherApp.ux = {
+        init: function init() {
+            var citys = weatherApp.get.one('.citys'),
+                hammer = new Hammer(citys);
+
+            this.swipeLeft(citys, hammer);
+            this.swipeRight(citys, hammer);
+        },
+        swipeLeft: function swipeLeft(citys, hammer) {
+            hammer.on('swipeleft', function (ev) {
+                var deleteButton = weatherApp.get.one('.' + ev.target.id);
+
+                deleteButton.style.width = '100px';
+            });
+        },
+        swipeRight: function swipeRight(citys, hammer) {
+            hammer.on('swiperight', function (ev) {
+                var deleteButton = weatherApp.get.one('.' + ev.target.id);
+                deleteButton.style.width = '0px';
+            });
+        }
+    };
     //Check if all functions are supported, if not, show an error message at top of the weatherApp.
     weatherApp.support = {
         init: function init() {
@@ -363,6 +399,7 @@ var weatherApp = weatherApp || {};
             }
         },
         showErr: function showErr(errMessage) {
+            //show a error on top of the app.
             weatherApp.get.one('.error').classList.add('show-error');
             weatherApp.get.one('.error').innerHTML = errMessage;
 

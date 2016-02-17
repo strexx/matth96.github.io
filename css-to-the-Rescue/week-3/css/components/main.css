@@ -1,9 +1,7 @@
 body {
     max-width: 100%;
     background: #efefef;
-    background-image: linear-gradient(90deg, #5C73EF 11px, transparent 0),
-        linear-gradient(90deg, #efefef 23px, transparent 0),
-        linear-gradient(90deg, #464646 23px, transparent 0);
+    background-image: linear-gradient(90deg, #B4BEF2 11px, transparent 0), linear-gradient(90deg, #efefef 13px, transparent 0), linear-gradient(90deg, #BABABA 23px, transparent 0);
     background-size: 40px 100%, 30px 100%, 35px 100%;
 }
 
