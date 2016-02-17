@@ -1,6 +1,3 @@
-var weatherApp = weatherApp || {};
-'use strict';
-
 //Check if all functions are supported, if not, show an error message at top of the weatherApp.
 weatherApp.support = (function () {
     function init() {

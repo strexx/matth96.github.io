@@ -1,14 +1,10 @@
-var weatherApp = weatherApp || {};
-'use strict';
-
 //define all pages in the weatherApp.
 weatherApp.page = (function () {
     var _homeTemplate = weatherApp.localStorage.get('home'),
         _searchresultsTemplate = weatherApp.localStorage.get('searchresults'),
         _searchTemplate = weatherApp.localStorage.get('search'),
         _citysTemplate = weatherApp.localStorage.get('citys'),
-        _cityTemplate = weatherApp.localStorage.get('city'),
-        _savedCitys = weatherApp.localStorage.get('savedCitys');
+        _cityTemplate = weatherApp.localStorage.get('city');
 
     function home() { //render the home template
         weatherApp.render.template('#target', _homeTemplate);
@@ -65,13 +61,14 @@ weatherApp.page = (function () {
 
     function citys() {
         // a emty array with the
-        var savedCitysData = [];
+        var savedCitysData = [],
+            savedCitys = weatherApp.localStorage.get('savedCitys');
 
-        if (_savedCitys.length <= 0) {
+        if (savedCitys.length <= 0) {
             window.location = '#/search';
             weatherApp.ux.showErr('Sorry, there\' nothing here, please add a city.');
         } else {
-            _savedCitys.forEach(function (element) {
+            savedCitys.forEach(function (element) {
                 var url = weatherApp.data.WeatherUrl(element),
                     deleteCity = function () {
                         var citys = weatherApp.get.one('.citys');
@@ -93,7 +90,7 @@ weatherApp.page = (function () {
                             description: response.weather[0].description,
                             temp: response.main.temp,
                         });
-                        if (savedCitysData.length === _savedCitys.length) {
+                        if (savedCitysData.length === savedCitys.length) {
                             weatherApp.render.template('#target', _citysTemplate, savedCitysData);
                             weatherApp.ux.init();
                             deleteCity();

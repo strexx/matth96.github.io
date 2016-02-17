@@ -1,6 +1,3 @@
-var weatherApp = weatherApp || {};
-'use strict';
-
 //difine all routers in app
 weatherApp.routes = (function () {
     var _routes = {

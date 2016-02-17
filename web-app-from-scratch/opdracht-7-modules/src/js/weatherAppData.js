@@ -1,6 +1,3 @@
-var weatherApp = weatherApp || {};
-'use strict';
-
 weatherApp.data = (function () {
     var _apiKey = '7aa0e92a8b7be8ed7e420e33de310e0e',
         _brokenWeatherUrl = ['http://api.openweathermap.org/data/2.5/weather?q=', '&units=metric&appid='],

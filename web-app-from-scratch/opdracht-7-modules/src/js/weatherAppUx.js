@@ -1,6 +1,3 @@
-var weatherApp = weatherApp || {};
-'use strict';
-
 weatherApp.ux = (function () {
     var _errorLocation = weatherApp.get.one('.error');
 

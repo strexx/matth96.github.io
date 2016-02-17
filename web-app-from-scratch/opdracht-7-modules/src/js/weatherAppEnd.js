@@ -1,0 +1,1 @@
+weatherApp.start.init();

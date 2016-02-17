@@ -1,6 +1,3 @@
-var weatherApp = weatherApp || {};
-'use strict';
-
 weatherApp.render = (function () { //funtion to render a template.
      function template(target, template, data) {
          //check if template is in localstorage if not reload the page
