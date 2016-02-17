@@ -4,7 +4,8 @@
 [![forthebadge](http://forthebadge.com/images/badges/uses-css.svg)]()
 [![forthebadge](http://forthebadge.com/images/badges/uses-js.svg)]()
 
-#url
-[Zie live](http://matth96.github.io/web-app-from-scratch/opdracht-6/#/home)
+# Live URL
+[Zie live](http://matth96.github.io/web-app-from-scratch/opdracht-7/)
 
-**let op de app werkt alleen in de nieuwste browser, zoals de nieuwste versie van chrome en vivaldi**
+##Flow 
+![Flowchart Matthias](https://raw.githubusercontent.com/matth96/matth96.github.io/master/web-app-from-scratch/opdracht-7/flow.png)
