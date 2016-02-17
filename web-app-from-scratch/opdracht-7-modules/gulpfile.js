@@ -4,13 +4,16 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     notify = require('gulp-notify'),
-    livereload = require('gulp-livereload'),
-    del = require('del');
+    minifyCss = require('gulp-minify-css'),
+    livereload = require('gulp-livereload');
 
 // Styles
 gulp.task('styles', function (cb) {
     gulp.src(['./src/css/reset.css', './src/css/loading.css', './src/css/main.css', './src/css/nav.css', './src/css/citys.css', './src/css/search.css'])
         .pipe(concat('main.css'))
+        .pipe(minifyCss({
+            compatibility: 'ie8'
+        }))
         .pipe(gulp.dest('dist/css/'))
 });
 
