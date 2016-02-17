@@ -1,4 +1,6 @@
 .friends {
+    -webkit-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
     flex-flow: row wrap;
 }
 
@@ -24,9 +26,11 @@
     transition: all 0.7s ease;
 }
 
+
 /*loading*/
 
 .loader {
+    -webkit-transform: scale(0.5);
     -webkit-animation: loader 1s infinite steps(8);
     width: 100px;
     height: 100px;

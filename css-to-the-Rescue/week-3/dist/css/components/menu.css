@@ -121,6 +121,7 @@
 }
 
 [role=navigation] a:hover {
+    -webkit-transition: all 1s ease-in-out;
     background: RGBA(36, 69, 248, 0.94);
     transition: all 1s ease-in-out;
 }
