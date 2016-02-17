@@ -25,11 +25,11 @@ a {
     -webkit-box-direction: normal;
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
-    flex-direction: row;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
+    flex-direction: row;
 }
 
 .first {
@@ -67,9 +67,9 @@ a {
 main {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
     -webkit-justify-content: space-around;
     -ms-flex-pack: distribute;
+    flex-wrap: wrap;
     justify-content: space-around;
 }
 
@@ -142,15 +142,15 @@ article figcaption {
 }
 
 #bigimage:target {
-    top: 0;
-    border-top: #5c73ef solid 0.2em;
     position: fixed;
-    background: #fff;
-    overflow: hidden;
-    padding: 1em;
+    top: 0;
     margin-top: 5vh;
-    z-index: 1000;
+    padding: 1em;
+    overflow: hidden;
+    border-top: #5c73ef solid 0.2em;
+    background: #fff;
     box-shadow: 0 0 0 60vmax rgba(0, 0, 0, .8);
+    z-index: 1000;
 }
 
 #bigimage:target a {
@@ -166,8 +166,8 @@ article figcaption {
 }
 
 #bigimage:target img {
-    max-width: inherit;
     width: 40vw;
+    max-width: inherit;
 }
 
 
@@ -218,15 +218,15 @@ article form input:focus {
 }
 
 [role=form] button {
+    -webkit-transition: all .7s ease;
+    position: relative;
     width: 100%;
     height: 3em;
     margin: 1em 0;
     border: none;
     background: #5c73ef;
     color: #fff;
-    position: relative;
     font-size: 0.8em;
-    -webkit-transition: all .7s ease;
     transition: all .7s ease;
 }
 
@@ -235,27 +235,27 @@ article form input:focus {
 }
 
 [role=form] button:before {
-    content: '';
     position: absolute;
     top: -10px;
     right: -10px;
     bottom: -10px;
     left: -10px;
+    content: '';
 }
 
 [role=contentinfo] a {
-    margin: 1em;
     position: relative;
+    margin: 1em;
     color: #fff;
 }
 
 [role=contentinfo] a:before {
-    content: '';
     position: absolute;
     top: -10px;
     right: -10px;
     bottom: -10px;
     left: -10px;
+    content: '';
 }
 
 input[type="checkbox"] {
@@ -264,20 +264,20 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"] + label::before {
-    content: '\a0';
     display: inline-block;
-    vertical-align: .2em;
     width: .8em;
     height: .8em;
     margin-right: .2em;
     background: silver;
-    text-indent: .15em;
     line-height: .65;
+    text-indent: .15em;
+    content: '\a0';
+    vertical-align: .2em;
 }
 
 input[type="checkbox"]:checked + label::before {
-    content: '\2713';
     background: #62ef5c;
+    content: '\2713';
 }
 
 input[type="checkbox"]:focus + label::before {
@@ -286,8 +286,8 @@ input[type="checkbox"]:focus + label::before {
 
 input[type="checkbox"]:disabled + label::before {
     background: gray;
-    box-shadow: none;
     color: #555;
+    box-shadow: none;
     cursor: not-allowed;
 }
 

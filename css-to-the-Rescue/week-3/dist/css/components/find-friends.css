@@ -7,8 +7,8 @@
 }
 
 .friends figure {
-    margin: 1em;
     width: 5em;
+    margin: 1em;
 }
 
 .friends footer {
@@ -27,14 +27,14 @@
 /*loading*/
 
 .loader {
-    margin: auto;
+    -webkit-animation: loader 1s infinite steps(8);
     width: 100px;
     height: 100px;
-    transform: scale(0.5);
-    text-indent: 999px;
+    margin: auto;
     overflow: hidden;
+    transform: scale(0.5);
     background: url(../../images/loader.png) 0 0;
-    -webkit-animation: loader 1s infinite steps(8);
+    text-indent: 999px;
     animation: loader 1s infinite steps(8);
 }
 

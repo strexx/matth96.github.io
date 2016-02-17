@@ -1,11 +1,16 @@
-var gulp = require('gulp');
-var gulpPostcss = require('gulp-postcss');
-var cssdeclsort = require('css-declaration-sorter');
+var gulp = require('gulp'),
+    gulpPostcss = require('gulp-postcss'),
+    cssdeclsort = require('css-declaration-sorter'),
+    cssPrefix = require('gulp-css-prefix'),
+    concat = require('gulp-concat');
 
-gulp.task('default', function () {
-    return gulp.src('css/components/profile.css')
+
+gulp.task('default', ['shortCSS']);
+
+gulp.task('shortCSS', function () {
+    return gulp.src(['src/css/**/**.css', 'src/css/**.css'])
         .pipe(gulpPostcss([cssdeclsort({
             order: 'smacss'
         })]))
-        .pipe(gulp.dest('./'));
+        .pipe(gulp.dest('./dist/css/'));
 });

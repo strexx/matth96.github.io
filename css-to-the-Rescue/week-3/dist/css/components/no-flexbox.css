@@ -6,22 +6,22 @@
 
 .no-flexbox body > header > h1 {
     width: 80%;
-    float: right;
-    padding: 0.5em;
     height: 2em;
     margin: 0.6em;
+    padding: 0.5em;
+    float: right;
 }
 
 .no-flexbox body > header section p {
+    display: inline-block;
     width: 40%;
     margin: 0.6em 0 0 1em;
-    display: inline-block;
 }
 
 .no-flexbox body > header figure {
-    float: right;
     display: inline-block;
     margin: 0.4em 1em 0 1em;
+    float: right;
 }
 
 .no-flexbox body > main > article {
@@ -30,17 +30,17 @@
 
 @media screen and (min-width:32em) {
     .no-flexbox body > header h1 {
-        float: left;
-        margin-left: 50px;
         width: 50%;
+        margin-left: 50px;
+        float: left;
         background: #5c73ef;
     }
     .no-flexbox body > header > section {
-        width: 30%;
+        display: inline-block;
      position: absolute;
         top: 0;
         right: 20px;
-        display: inline-block;
+        width: 30%;
         background: #5c73ef;
     }
     .no-flexbox body > main {
@@ -52,8 +52,8 @@
     .no-flexbox footer > nav,
     .no-flexbox footer > address,
     .no-flexbox footer > ul {
-        width: 28%;
         display: inline-block;
+        width: 28%;
         margin: 1em;
         padding: 0;
     }
@@ -67,7 +67,7 @@
 }
 @media screen and (min-width:65em) {
     .no-flexbox body > header {
-        background: #5c73ef;
         height: 4em;
+        background: #5c73ef;
     }
 }

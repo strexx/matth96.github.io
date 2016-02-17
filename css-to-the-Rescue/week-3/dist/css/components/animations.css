@@ -1,15 +1,15 @@
 /*basic source http://www.justinaguilar.com/animations/css/animations.css*/
 
 .hatch {
-    animation-name: hatch;
     -webkit-animation-name: hatch;
-    animation-duration: 2s;
     -webkit-animation-duration: 2s;
-    animation-timing-function: ease-in-out;
     -webkit-animation-timing-function: ease-in-out;
-    transform-origin: 50% 100%;
     -ms-transform-origin: 50% 100%;
     -webkit-transform-origin: 50% 100%;
+    transform-origin: 50% 100%;
+    animation-name: hatch;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
     z-index: 99;
 }
 
