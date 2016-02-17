@@ -38,13 +38,24 @@ main > section {
 }
 
 .fade-in {
+    -webkit-transform: scale(0);
     transform: scale(0);
+    -webkit-animation: growHeight 0.2s ease forwards;
     animation: growHeight 0.2s ease forwards;
+}
+
+@-webkit-keyframes growHeight {
+    to {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
 }
 
 @keyframes growHeight {
     to {
         opacity: 1;
+        -webkit-transform: scale(1);
         transform: scale(1);
     }
 }
