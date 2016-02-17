@@ -19,11 +19,11 @@ gulp.task('worker', () =>
     .pipe(babel({
         presets: ['es2015']
     }))
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest('dist/js/'))
 );
 
 gulp.task('combineCSS', function (cb) {
-    gulp.src(['./src/css/reset.css', './src/css/main.css', './src/css/nav.css', './src/css/citys.css', './src/css/loading.css', './src/css/search.css'])
+    gulp.src(['./src/css/reset.css', './src/css/loading.css', './src/css/main.css', './src/css/nav.css', './src/css/citys.css', './src/css/search.css'])
         .pipe(concat('main.css'))
         .pipe(gulp.dest('dist/css/'))
 });

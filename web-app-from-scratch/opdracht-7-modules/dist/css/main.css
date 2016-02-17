@@ -72,172 +72,6 @@ video {
     border: 0;
 }
 
-.show-error {
-    background: #E25454;
-    padding: 0.5em;
-    text-align: center;
-}
-
-body {
-    font-size: 100%;
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 400;
-    height: calc(100vh);
-    background: #3E3D3D;
-    background: url(https://hva.dolstra.me/web-app-from-scratch/opdracht-6/assets/i/home-background.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: #fff;
-}
-
-ul > li {
-    list-style-type: none;
-    display: inline-block;
-}
-
-main > section {
-    padding: 0;
-}
-
-.home {
-    padding: 1em;
-}
-
-.disabled {
-    display: none;
-}
-
-[role=article] {
-    overflow: scroll;
-}
-
-.fade-in {
-    transform: scale(0);
-    animation: growHeight 0.2s ease forwards;
-}
-
-@keyframes growHeight {
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-header {
-    width: 100%;
-}
-
-[role=navigation] {
-    background: #78C278;
-    display: inline-block;
-    width: 100%;
-}
-
-[role=navigation] > ul a:hover {
-    background: #639E63;
-}
-
-[role=navigation] > ul > li > a:active {
-    background: #508950;
-}
-
-nav > ul > li > a {
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
-    padding: 1em;
-    text-decoration: none;
-    color: #fff;
-    display: block;
-}
-
-.right {
-    float: right;
-    height: 100%;
-}
-
-.right > a {
-    font-size: 2em;
-    padding: 0.4rem 1rem;
-}
-
-.citylist {
-    display: block;
-    background: RGBA(84, 93, 92, 0.6);
-    -webkit-backdrop-filter: blur(1em);
-    backdrop-filter: blur(1em);
-    text-decoration: none;
-    padding: 1rem;
-    position: relative;
-    color: #fff;
-}
-
-.citylist a {
-    color: #fff;
-    text-decoration: none;
-    width: 100%;
-}
-
-.citylist:hover {
-    background: RGBA(49, 51, 51, 0.85);
-}
-
-.citylist ul {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-}
-
-.citylist li.temp {
-    -webkit-box-ordinal-group: 2;
-    -webkit-order: 1;
-    -ms-flex-order: 1;
-    order: 1;
-    font-size: 2em;
-    /*   border: red solid*/
-}
-
-.content {
-    display: inline-block;
-}
-
-.citylist button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    width: 0;
-    display: inline-block;
-    overflow: hidden;
-    border: none;
-    color: #fff;
-    font-size: 1.1em;
-    background: red;
-    height: 100%;
-}
-
-.delete small {
-    margin: auto;
-}
-
-.city li {
-    display: block;
-}
-
-.city {
-    padding: 1em;
-}
-
 progress {
     width: 100%;
     margin: 0;
@@ -459,6 +293,172 @@ progress::-webkit-progress-value {
     100% {
         -moz-transform: translate(49px, 0) scale(1);
     }
+}
+
+.show-error {
+    background: #E25454;
+    padding: 0.5em;
+    text-align: center;
+}
+
+body {
+    font-size: 100%;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    height: calc(100vh);
+    background: #3E3D3D;
+    background: url(https://hva.dolstra.me/web-app-from-scratch/opdracht-6/assets/i/home-background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+}
+
+ul > li {
+    list-style-type: none;
+    display: inline-block;
+}
+
+main > section {
+    padding: 0;
+}
+
+.home {
+    padding: 1em;
+}
+
+.disabled {
+    display: none;
+}
+
+[role=article] {
+    overflow: scroll;
+}
+
+.fade-in {
+    transform: scale(0);
+    animation: growHeight 0.2s ease forwards;
+}
+
+@keyframes growHeight {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+header {
+    width: 100%;
+}
+
+[role=navigation] {
+    background: #78C278;
+    display: inline-block;
+    width: 100%;
+}
+
+[role=navigation] > ul a:hover {
+    background: #639E63;
+}
+
+[role=navigation] > ul > li > a:active {
+    background: #508950;
+}
+
+nav > ul > li > a {
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    padding: 1em;
+    text-decoration: none;
+    color: #fff;
+    display: block;
+}
+
+.right {
+    float: right;
+    height: 100%;
+}
+
+.right > a {
+    font-size: 2em;
+    padding: 0.4rem 1rem;
+}
+
+.citylist {
+    display: block;
+    background: RGBA(84, 93, 92, 0.6);
+    -webkit-backdrop-filter: blur(1em);
+    backdrop-filter: blur(1em);
+    text-decoration: none;
+    padding: 1rem;
+    position: relative;
+    color: #fff;
+}
+
+.citylist a {
+    color: #fff;
+    text-decoration: none;
+    width: 100%;
+}
+
+.citylist:hover {
+    background: RGBA(49, 51, 51, 0.85);
+}
+
+.citylist ul {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.citylist li.temp {
+    -webkit-box-ordinal-group: 2;
+    -webkit-order: 1;
+    -ms-flex-order: 1;
+    order: 1;
+    font-size: 2em;
+    /*   border: red solid*/
+}
+
+.content {
+    display: inline-block;
+}
+
+.citylist button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    width: 0;
+    display: inline-block;
+    overflow: hidden;
+    border: none;
+    color: #fff;
+    font-size: 1.1em;
+    background: red;
+    height: 100%;
+}
+
+.delete small {
+    margin: auto;
+}
+
+.city li {
+    display: block;
+}
+
+.city {
+    padding: 1em;
 }
 
 fieldset.search {
