@@ -1,6 +1,6 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
-var concat = require('gulp-concat');
+const concat = require('gulp-concat');
 
 gulp.task('default', ['combineJS', 'worker', 'combineCSS']);
 
