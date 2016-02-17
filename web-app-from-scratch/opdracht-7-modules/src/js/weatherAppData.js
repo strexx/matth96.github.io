@@ -85,7 +85,7 @@ weatherApp.localStorage = (function () {
 weatherApp.webWorker = (function () { //define web worker
     function init() {
         //create web worker.
-        var templateWorker = new Worker('./dist/templateWorker.js');
+        var templateWorker = new Worker('./dist/js/templateWorker.js');
 
         //lissen to the responses of the webworker.
         templateWorker.addEventListener('message', function (e) {
