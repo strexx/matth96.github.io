@@ -27,12 +27,6 @@
     padding: 1em;
 }
 
-article [role=button] {
-    padding: 0.4em 1em;
-    background: #5c73ef;
-    color: #fff;
-}
-
 .effect-01 > img {
     -webkit-filter: brightness(1.5);
     filter: brightness(1.5);

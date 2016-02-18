@@ -1,7 +1,10 @@
+/*friends section*/
+
 .friends {
     -webkit-flex-flow: row wrap;
     -ms-flex-flow: row wrap;
     flex-flow: row wrap;
+    max-width: 30em;
 }
 
 .friends header {
@@ -9,8 +12,15 @@
 }
 
 .friends figure {
-    width: 5em;
-    margin: 1em;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    -webkit-flex-basis: 10px;
+    -ms-flex-preferred-size: 10px;
+    flex-basis: 20%;
+    flex-grow: 1;
+    margin: 0.5em;
+    padding: 1em;
 }
 
 .friends footer {
@@ -26,8 +36,12 @@
     transition: all 0.7s ease;
 }
 
+.friends figure:nth-child(2n+3) {
+    box-shadow: 0.125rem 0.25rem 0.625rem RGBA(160, 160, 160, 0.54);
+}
 
-/*loading*/
+
+/*loading spinner*/
 
 .loader {
     -webkit-transform: scale(0.5);

@@ -1,0 +1,45 @@
+[role=form] button {
+    width: 100%;
+    height: 3em;
+    margin: 1em 0;
+    font-size: 0.8em;
+}
+
+input[type="checkbox"] {
+    display: inline-block;
+    position: absolute;
+    width: 10px;
+    margin: 0;
+    padding: 0;
+    clip: rect(0, 0, 0, 0);
+    cursor: pointer;
+}
+
+input[type="checkbox"] + label::before {
+    display: inline-block;
+    width: .8em;
+    height: .8em;
+    margin-right: .2em;
+    background: silver;
+    line-height: .65;
+    text-indent: .15em;
+    content: '\a0';
+    cursor: pointer;
+    vertical-align: .2em;
+}
+
+input[type="checkbox"]:checked + label::before {
+    background: #62ef5c;
+    content: '\2713';
+}
+
+input[type="checkbox"]:focus + label::before {
+    box-shadow: 0 0 .1em .1em #58a;
+}
+
+input[type="checkbox"]:disabled + label::before {
+    background: gray;
+    color: #555;
+    box-shadow: none;
+    cursor: not-allowed;
+}
