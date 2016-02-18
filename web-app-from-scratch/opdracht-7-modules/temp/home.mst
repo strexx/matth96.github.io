@@ -1,13 +1,15 @@
 <section role="article" class="home fade-in">
     <h1>Welkom,</h1>
     <article>
-        You are in {{data.cityName}}. It's {{data.description}}. The min temperature from today is: {{data.minTemp}}. And in this tabel you can see the other information.
+        You are in {{data.cityName}}. There are {{data.description}}. The temperature is: {{data.temp}} °C. In this tabel you can see the other information.
 
-        <li class="temp">temp now: {{data.temp}} °C</li>
-        <li class="temp">min temp: {{data.minTemp}} °C</li>
-        <li class="temp">max temp: {{data.maxTemp}} °C</li>
-        <li>Wind: {{data.wind}}</li>
-        <li>Clouds: {{data.clouds}} %</li>
+        <ul>
+            <li class="temp">min temp: {{data.minTemp}} °C</li>
+            <li class="temp">max temp: {{data.maxTemp}} °C</li>
+            <li>Wind: {{data.wind}}</li>
+            <li>Clouds: {{data.clouds}} %</li>
+        </ul>
+
 
         <small>This data is from the openweather API.</small>
     </article>

@@ -2,7 +2,7 @@ weatherApp.data = (function () {
     var _apiKey = '7aa0e92a8b7be8ed7e420e33de310e0e',
         _brokenWeatherUrl = ['http://api.openweathermap.org/data/2.5/weather?q=', '&units=metric&appid='],
         _brokenSearchUrl = ['http://api.openweathermap.org/data/2.5/find?q=', '&type=like&mode=json&appid=', '&units=metric&appid='],
-        _brokenGeolocationUrl = ['http://api.openweathermap.org/data/2.5/weather?lat=', '&lon=', '&appid='];
+        _brokenGeolocationUrl = ['http://api.openweathermap.org/data/2.5/weather?lat=', '&lon=', '&units=metric&appid='];
 
     function WeatherUrl(city) {
         var fullUrl = _brokenWeatherUrl[0] + city + _brokenWeatherUrl[1] + _apiKey;
