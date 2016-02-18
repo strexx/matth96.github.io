@@ -25,10 +25,6 @@ main > section {
     padding: 0;
 }
 
-.home {
-    padding: 1em;
-}
-
 .disabled {
     display: none;
 }
@@ -58,4 +54,48 @@ main > section {
         -webkit-transform: scale(1);
         transform: scale(1);
     }
+}
+
+
+/*home page */
+
+.home header {
+    text-align: center;
+}
+
+.home header h1 {
+    font-size: 3em;
+    margin: 0.3em 0 0 0;
+    font-weight: 500;
+}
+
+.home header p {
+    font-size: 1em;
+     font-weight: 100;
+}
+
+.home header span {
+    font-size: 4em;
+
+    margin: 0.2em;
+}
+
+.home-info ul {
+    padding-left: 0;
+    margin-bottom: 10px;
+}
+
+.home-info ul li {
+    width: 100%;
+}
+
+.home-info ul li span {
+    width: 48%;
+    display: block;
+    float: left;
+    margin: 0 1%;
+}
+
+.home-info ul .label {
+    text-align: right;
 }

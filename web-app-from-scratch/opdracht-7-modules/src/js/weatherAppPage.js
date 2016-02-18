@@ -18,7 +18,6 @@ weatherApp.page = (function () {
         }
 
         function displayPosition(position) {
-
             var url = weatherApp.data.geolocationURL(position.coords.latitude, position.coords.longitude)
 
             weatherApp.get.data(url)
@@ -32,6 +31,8 @@ weatherApp.page = (function () {
                         description: response.weather[0].description,
                         minTemp: response.main.temp_min,
                         maxTemp: response.main.temp_max,
+                        humidity: response.main.humidity,
+                        pressure: response.main.pressure,
                         temp: response.main.temp,
                         clouds: response.clouds.all,
                         wind: response.wind.speed
@@ -44,15 +45,6 @@ weatherApp.page = (function () {
                     console.error(e);
                     weatherApp.ux.showErr('There was a error :(');
                 });
-
-
-
-
-
-
-
-
-
         }
 
         function displayError() {

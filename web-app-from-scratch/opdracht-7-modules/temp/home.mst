@@ -1,16 +1,41 @@
 <section role="article" class="home fade-in">
-    <h1>Welkom,</h1>
     <article>
-        You are in {{data.cityName}}. There are {{data.description}}. The temperature is: {{data.temp}} °C. In this tabel you can see the other information.
+        <header>
+            <h1>{{data.cityName}}</h1>
+            <p>{{data.description}}</p>
+            <span> {{data.temp}} C°</span>
+        </header>
 
-        <ul>
-            <li class="temp">min temp: {{data.minTemp}} °C</li>
-            <li class="temp">max temp: {{data.maxTemp}} °C</li>
-            <li>Wind: {{data.wind}}</li>
-            <li>Clouds: {{data.clouds}} %</li>
-        </ul>
+        <section class="home-info">
+            <ul>
+                <li>
+                    <span class="label">humidity:</span>
+                    <span class="data">{{data.humidity}}</span>
+                </li>
+                <li>
+                    <span class="label">pressure:</span>
+                    <span class="data">{{data.pressure}}</span>
+                </li>
+                <li>
+                    <span class="label">Min temp:</span>
+                    <span class="data">{{data.minTemp}} °C</span>
+                </li>
+                <li>
+                    <span class="label">Max temp:</span>
+                    <span class="data">{{data.maxTemp}} °C</span>
+                </li>
+                <li>
+                    <span class="label">Wind:</span>
+                    <span class="data">{{data.wind}} m/s</span>
+                </li>
 
+                <li>
+                    <span class="label">Clouds:</span>
+                    <span class="data">{{data.clouds}} %</span>
+                </li>
+            </ul>
 
+        </section>
         <small>This data is from the openweather API.</small>
     </article>
 </section>
