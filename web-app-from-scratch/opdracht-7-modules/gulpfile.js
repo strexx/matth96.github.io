@@ -40,19 +40,17 @@ gulp.task('worker', () =>
     .pipe(gulp.dest('dist/js/'))
 );
 
-
-
 // Default task
 gulp.task('default', function () {
-    gulp.start('styles', 'scripts', 'worker', 'watch');
+    gulp.start('styles', 'scripts', 'worker');
 });
 
 // Watch
 gulp.task('watch', function () {
     // Watch .scss files
-    gulp.watch('src/css/*.css', ['styles']);
+    gulp.watch('./src/css/*.css', ['styles']);
     // Watch .js files
-    gulp.watch('src/js/*.js', ['scripts']);
+    gulp.watch('./src/js/*.js', ['scripts']);
     // Create LiveReload server
     livereload.listen();
     // Watch any files in dist/, reload on change

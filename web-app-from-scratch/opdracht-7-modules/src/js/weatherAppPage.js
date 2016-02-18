@@ -7,7 +7,58 @@ weatherApp.page = (function () {
         _cityTemplate = weatherApp.localStorage.get('city');
 
     function home() { //render the home template
-        weatherApp.render.template('#target', _homeTemplate);
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                displayPosition,
+                displayError, {
+                    enableHighAccuracy: true,
+                    maximumAge: 0
+                }
+            );
+        }
+
+        function displayPosition(position) {
+
+            var url = weatherApp.data.geolocationURL(position.coords.latitude, position.coords.longitude)
+
+            weatherApp.get.data(url)
+                .then(response => {
+                    var data = JSON.parse(response);
+
+                    return data
+                }).then(response => {
+                    var cityData = {
+                        cityName: response.name,
+                        description: response.weather[0].description,
+                        minTemp: response.main.temp_min,
+                        maxTemp: response.main.temp_max,
+                        temp: response.main.temp,
+                        clouds: response.clouds.all,
+                        wind: response.wind.speed
+                    };
+
+                    return cityData;
+                }).then(response => {
+                    weatherApp.render.template('#target', _homeTemplate, response);
+                }).catch(e => {
+                    console.error(e);
+                    weatherApp.ux.showErr('There was a error :(');
+                });
+
+
+
+
+
+
+
+
+
+        }
+
+        function displayError() {
+            weatherApp.ux.showErr('There is something wrong, try it later')
+            alert("Geolocation is not supported by this browser");
+        }
     };
 
     function search() {
@@ -70,12 +121,13 @@ weatherApp.page = (function () {
         } else {
             savedCitys.forEach(function (element) {
                 var url = weatherApp.data.WeatherUrl(element),
-                    deleteCity = function () {
+                    deleteCity = function (savedCitysData) {
                         var citys = weatherApp.get.one('.citys');
                         citys.addEventListener('click', function (e) {
-                            var delCity = e.target.id.toLowerCase();
-
-                            weatherApp.localStorage.remove(delCity, _citysTemplate)
+                            if (e.target && e.target.nodeName == 'BUTTON' || e.target && e.target.nodeName == 'SMALL') {
+                                var delCity = e.target.id.toLowerCase();
+                                weatherApp.localStorage.remove(savedCitysData, delCity)
+                            }
                         });
                     };
                 weatherApp.get.data(url)
@@ -93,7 +145,7 @@ weatherApp.page = (function () {
                         if (savedCitysData.length === savedCitys.length) {
                             weatherApp.render.template('#target', _citysTemplate, savedCitysData);
                             weatherApp.ux.init();
-                            deleteCity();
+                            deleteCity(savedCitysData);
                         }
                     }).catch(e => {
                         console.error(e);

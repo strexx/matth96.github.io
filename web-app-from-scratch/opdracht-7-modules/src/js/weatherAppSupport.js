@@ -3,6 +3,7 @@ weatherApp.support = (function () {
     function init() {
         _onhashchange();
         _online();
+        _location();
     };
 
     function _onhashchange() {
@@ -13,6 +14,7 @@ weatherApp.support = (function () {
             weatherApp.ux.showErr('The browser isn\'t supporting this app :(');
         }
     };
+
     function _online() {
         //check if the app is online
         if (navigator.onLine) {
@@ -22,6 +24,15 @@ weatherApp.support = (function () {
             return false;
         }
     };
+
+    function _location() {
+        if (navigator.geolocation) {
+            console.log('Geolocation is supported')
+        } else {
+            weatherApp.ux.showErr('GEO location is not supported');
+        }
+    }
+
     return {
         init: init
     };

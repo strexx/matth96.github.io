@@ -1,7 +1,8 @@
 weatherApp.data = (function () {
     var _apiKey = '7aa0e92a8b7be8ed7e420e33de310e0e',
         _brokenWeatherUrl = ['http://api.openweathermap.org/data/2.5/weather?q=', '&units=metric&appid='],
-        _brokenSearchUrl = ['http://api.openweathermap.org/data/2.5/find?q=', '&type=like&mode=json&appid=', '&units=metric&appid='];
+        _brokenSearchUrl = ['http://api.openweathermap.org/data/2.5/find?q=', '&type=like&mode=json&appid=', '&units=metric&appid='],
+        _brokenGeolocationUrl = ['http://api.openweathermap.org/data/2.5/weather?lat=', '&lon=', '&appid='];
 
     function WeatherUrl(city) {
         var fullUrl = _brokenWeatherUrl[0] + city + _brokenWeatherUrl[1] + _apiKey;
@@ -15,16 +16,23 @@ weatherApp.data = (function () {
         return fullUrl;
     };
 
+    function geolocationURL(lat, lon) { //create a api url for the search.
+        var fullUrl = _brokenGeolocationUrl[0] + lat + _brokenGeolocationUrl[1] + lon + _brokenGeolocationUrl[2] +  _apiKey;
+
+        return fullUrl;
+    };
+
     return {
         WeatherUrl: WeatherUrl,
-        SearchUrl: SearchUrl
+        SearchUrl: SearchUrl,
+        geolocationURL: geolocationURL
     };
 
 })();
 
 weatherApp.localStorage = (function () {
-    var templates = ['home', 'citys', 'city', 'search', 'searchresults'],
-        _getSavedCitys = get('savedCitys');
+    var templates = ['home', 'citys', 'city', 'search', 'searchresults'];
+    var _getSavedCitys = get('savedCitys');
 
     function init() {
         //check if savedCitys exists if not create a [];
@@ -59,18 +67,42 @@ weatherApp.localStorage = (function () {
         }
     };
 
-    function remove(delCity, citysTemplate) {
-        var index = _getSavedCitys.indexOf(delCity);
+    var _citysTemplate = get('citys');
 
-        if (index !== -1) {
-            _getSavedCitys.splice(index, 1);
-            var newCityArray = JSON.stringify(_getSavedCitys);
+    function _setSavedCitys(newData, savedCitysData, delCity) {
+        localStorage.setItem('savedCitys', newData);
 
-            localStorage.setItem('savedCitys', newCityArray);
+        var rawData = _.filter(savedCitysData, function (newdata) {
+            return newdata.cityNameUrl.toLowerCase() != delCity;
+        });
+        if (rawData.length === 0) {
             document.location.reload(true);
         } else {
-            weatherApp.ux.showErr('Sorry, your city isn\'t deleted.Try again.');
+            weatherApp.render.template('#target', _citysTemplate, rawData);
         }
+
+
+    }
+
+    function remove(savedCitysData, delCity) {
+
+        var getSavedCitys = get('savedCitys'),
+            index = getSavedCitys.indexOf(delCity);
+
+        if (getSavedCitys.length === 1) {
+            _setSavedCitys('[]', savedCitysData, delCity)
+        } else {
+            if (index !== -1) {
+                getSavedCitys.splice(index, 1);
+                var newCityArray = JSON.stringify(getSavedCitys);
+
+                _setSavedCitys(newCityArray, savedCitysData, delCity);
+
+            } else {
+                weatherApp.ux.showErr('Sorry, your city isn\'t deleted. Try again.');
+            }
+        }
+
     };
 
     return {
