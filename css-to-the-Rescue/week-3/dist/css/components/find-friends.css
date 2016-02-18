@@ -37,7 +37,7 @@
     margin: auto;
     overflow: hidden;
     transform: scale(0.5);
-    background: url(../../images/loader.png) 0 0;
+    background: url(../../../images/loader.png) 0 0;
     text-indent: 999px;
     animation: loader 1s infinite steps(8);
 }

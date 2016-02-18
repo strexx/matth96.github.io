@@ -1,8 +1,8 @@
 body {
     max-width: 100%;
     background: #efefef;
-    background-image: -webkit-linear-gradient(left, #B4BEF2 11px, transparent 0), -webkit-linear-gradient(left, #efefef 13px, transparent 0), -webkit-linear-gradient(left, #BABABA 23px, transparent 0);
-    background-image: linear-gradient(90deg, #B4BEF2 11px, transparent 0), linear-gradient(90deg, #efefef 13px, transparent 0), linear-gradient(90deg, #BABABA 23px, transparent 0);
+    background-image: -webkit-linear-gradient(left, #B4BEF2 11px, transparent 0), -webkit-linear-gradient(left, #efefef 13px, transparent 0), -webkit-linear-gradient(left, #BABABA 37px, transparent 0);
+    background-image: linear-gradient(90deg, #B4BEF2 11px, transparent 0), linear-gradient(90deg, #efefef 13px, transparent 0), linear-gradient(90deg, #BABABA 37px, transparent 0);
     background-size: 40px 100%, 30px 100%, 35px 100%;
 }
 
@@ -79,7 +79,7 @@ main article:first-child:nth-last-child(n+4) ~ article {
     max-width: 25em;
 }
 
-:target {
+article:target {
     -webkit-animation: highlight 1.3s ease;
     animation: highlight 1.3s ease;
 }
@@ -145,9 +145,9 @@ article figcaption {
 #bigimage:target {
     position: fixed;
     top: 0;
-    margin-top: 5vh;
+    left: 0;
+    margin: 5vw;
     padding: 1em;
-    overflow: hidden;
     border-top: #5c73ef solid 0.2em;
     background: #fff;
     box-shadow: 0 0 0 60vmax rgba(0, 0, 0, .8);
@@ -159,24 +159,11 @@ article figcaption {
 }
 
 #bigimage:target figure {
-    max-width: 300px;
     max-width: -webkit-min-content;
     max-width: -moz-min-content;
     max-width: min-content;
-    margin: auto;
-}
-
-#bigimage:target img {
-    width: 40vw;
     max-width: inherit;
-}
-
-
-/* Basic styling */
-
-#bigimage:targe figure {
-    padding: 10px;
-    border: 1px solid silver;
+    margin: auto;
 }
 
 #photo-albums svg {
@@ -189,9 +176,6 @@ article figcaption {
 figure > svg:hover {
     background: RGBA(45, 46, 46, 0.90);
 }
-
-
-/*form*/
 
 article form input {
     width: 100%;
@@ -207,29 +191,29 @@ article form span {
 article form input:focus {
     -webkit-transform: scale(1);
     -webkit-animation: grow 0.2s cubic-bezier(.25, .1, .3, 1.5) forwards;
-            transform: scale(1);
-            animation: grow 0.2s cubic-bezier(.25, .1, .3, 1.5) forwards;
+    transform: scale(1);
+    animation: grow 0.2s cubic-bezier(.25, .1, .3, 1.5) forwards;
 }
 
 @-webkit-keyframes grow {
     from {
         -webkit-transform: scale(1.2);
-                transform: scale(1.2);
+        transform: scale(1.2);
     }
     to {
         -webkit-transform: scale(1);
-                transform: scale(1);
+        transform: scale(1);
     }
 }
 
 @keyframes grow {
     from {
         -webkit-transform: scale(1.2);
-                transform: scale(1.2);
+        transform: scale(1.2);
     }
     to {
         -webkit-transform: scale(1);
-                transform: scale(1);
+        transform: scale(1);
     }
 }
 
@@ -310,6 +294,24 @@ input[type="checkbox"]:disabled + label::before {
 @media screen and (min-width:30em) {
     main > article {
         margin: 1em;
+    }
+}
+
+@media screen and (min-width:38em) {
+    #bigimage:target {
+        margin: 10vw;
+    }
+}
+
+@media screen and (min-width:54em) {
+    #bigimage:target {
+        margin: 10vw 20vw;
+    }
+}
+
+@media screen and (min-width:64em) {
+    #bigimage:target {
+        margin: 10vw 30vw;
     }
 }
 

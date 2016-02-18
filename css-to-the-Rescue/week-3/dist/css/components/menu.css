@@ -5,6 +5,7 @@
     width: 100%;
     background: #5C73EF;
     color: #fff;
+    z-index: 300;
 }
 
 [role=heading] {
@@ -130,6 +131,7 @@
     width: 2em;
     height: 1em;
 }
+
 
 /*source http://codepen.io/tonkec/pen/BjKjpV*/
 
