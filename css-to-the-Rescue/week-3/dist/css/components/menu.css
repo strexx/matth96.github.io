@@ -249,7 +249,7 @@
     [role=navigation] {
         width: 0;
     }
-    [role=button] {
+    [role=navigation] [role=button] {
         display: none;
     }
 }

@@ -259,7 +259,11 @@ article form input:focus {
 }
 
 input[type="checkbox"] {
+    display: inline-block;
     position: absolute;
+    width: 10px;
+    margin: 0;
+    padding: 0;
     clip: rect(0, 0, 0, 0);
 }
 
