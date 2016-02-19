@@ -9,7 +9,7 @@ var gulp = require('gulp'),
 
 // Styles
 gulp.task('styles', function (cb) {
-    gulp.src(['./src/css/reset.css', './src/css/loading.css', './src/css/main.css', './src/css/nav.css', './src/css/citys.css', './src/css/search.css'])
+    gulp.src(['./src/css/reset.css', './src/css/font.css', './src/css/loading.css', './src/css/main.css', './src/css/nav.css', './src/css/citys.css', './src/css/search.css'])
         .pipe(concat('main.css'))
         .pipe(minifyCss({
             compatibility: 'ie8'
@@ -20,7 +20,7 @@ gulp.task('styles', function (cb) {
 // Scripts
 gulp.task('scripts', function (cb) {
     gulp.src(['./src/js/weatherAppStart.js', './src/js/weatherAppLauncher.js', './src/js/weatherAppData.js', './src/js/weatherAppPage.js', './src/js/weatherAppTemplate.js', './src/js/weatherAppUx.js', './src/js/weatherAppRoutes.js', './src/js/weatherAppSupport.js', './src/js/weatherAppEnd.js'])
-        .pipe(concat('all.js'))
+        .pipe(concat('weatherApp.js'))
         .pipe(babel({
             presets: ['es2015']
         }))

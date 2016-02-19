@@ -1,19 +1,19 @@
 <article role="article" class="fade-in citys">
     {{#data}}
     <section class="citylist" id="{{cityNameUrl}}">
-        <a href="#/city/{{cityNameUrl}}" class="content" >
-            <h2 id="{{cityNameUrl}}">{{cityName}}</h2>
-            <ul id="{{cityNameUrl}}">
-                <li id="{{cityNameUrl}}">{{description}}</li>
-                <li id="{{cityNameUrl}}" class="temp">{{temp}} °C</li>
-            </ul>
+        <a href="#/city/{{cityNameUrl}}" class="content">
+            <small class="icon-{{icon}}"></small>
+            <section>
+                <h2 id="{{cityNameUrl}}">{{cityName}}</h2>
+                <p id="{{cityNameUrl}}">{{description}}</p>
+            </section>
+            <p id="{{cityNameUrl}}" class="temp">{{temp}} °C</p>
         </a>
         <button class="delete {{cityNameUrl}}" id=" {{cityNameUrl}}">
             <small id="{{cityNameUrl}}">delete</small>
         </button>
 
     </section>
-
 
     {{/data}}
 </article>

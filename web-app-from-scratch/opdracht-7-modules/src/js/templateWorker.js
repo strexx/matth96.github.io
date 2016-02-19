@@ -25,7 +25,7 @@ self.addEventListener('message', function (e) {
     var data = e.data;
     if (data.cmd === 'start') {
         data.templates.forEach(function (current, index) {
-            dataFunction.get('http://matth96.github.io/web-app-from-scratch/opdracht-7-modules/temp/' + current + '.mst').then(response => {
+            dataFunction.get('../../temp/' + current + '.mst').then(response => {
                 var dataRespose = JSON.stringify(response);
 
                 return dataRespose;

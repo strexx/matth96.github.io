@@ -43,13 +43,12 @@ weatherApp.page = (function () {
                     weatherApp.render.template('#target', _homeTemplate, response);
                 }).catch(e => {
                     console.error(e);
-                    weatherApp.ux.showErr('There was a error :(');
+                    weatherApp.ux.showErr('The data is gone... ');
                 });
         }
 
         function displayError() {
-            weatherApp.ux.showErr('There is something wrong, try it later')
-            alert("Geolocation is not supported by this browser");
+            weatherApp.ux.showErr('Geolocation is not supported by this browser');
         }
     };
 
@@ -131,6 +130,7 @@ weatherApp.page = (function () {
                         savedCitysData.push({
                             cityName: response.name,
                             cityNameUrl: response.name,
+                            icon: response.weather[0].icon,
                             description: response.weather[0].description,
                             temp: response.main.temp,
                         });
