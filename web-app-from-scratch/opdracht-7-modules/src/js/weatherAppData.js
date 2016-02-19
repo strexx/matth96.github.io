@@ -38,7 +38,7 @@ weatherApp.localStorage = (function () {
         //check if savedCitys exists if not create a [];
         templates.forEach(function (currentValue, index) {
             var getCurrent = localStorage.getItem(currentValue);
-
+            // if the value is Undefined  set a [] in the local storage
             if (getCurrent === null || getCurrent === undefined) {
                 localStorage.setItem(currentValue, '[]');
             }
@@ -70,39 +70,42 @@ weatherApp.localStorage = (function () {
     var _citysTemplate = get('citys');
 
     function _setSavedCitys(newData, savedCitysData, delCity) {
+            //set the saved city array
         localStorage.setItem('savedCitys', newData);
 
+        //delete the deleteded array
         var rawData = _.filter(savedCitysData, function (newdata) {
             return newdata.cityNameUrl.toLowerCase() != delCity;
         });
         if (rawData.length === 0) {
+            //refresh the page
             document.location.reload(true);
         } else {
             weatherApp.render.template('#target', _citysTemplate, rawData);
         }
-
-
     }
 
     function remove(savedCitysData, delCity) {
-
         var getSavedCitys = get('savedCitys'),
             index = getSavedCitys.indexOf(delCity);
 
+        //if the array is 1 run _setSavedCitys
         if (getSavedCitys.length === 1) {
             _setSavedCitys('[]', savedCitysData, delCity)
         } else {
+            //if more than 1 check if the index is not -1
             if (index !== -1) {
+                //splice the data on the index
                 getSavedCitys.splice(index, 1);
                 var newCityArray = JSON.stringify(getSavedCitys);
-
+                //run _setSavedCitys with the data
                 _setSavedCitys(newCityArray, savedCitysData, delCity);
 
             } else {
+                //show a err
                 weatherApp.ux.showErr('Sorry, your city isn\'t deleted. Try again.');
             }
         }
-
     };
 
     return {
@@ -125,10 +128,11 @@ weatherApp.webWorker = (function () { //define web worker
             if (e.data.name === 'savedCitys' || e.data.name === undefined) {
                 console.log('Not in savedCitys');
             } else {
+                //set the template in the local storatge
                 localStorage.setItem(e.data.name, e.data.template);
             }
         }, false);
-
+        //start the webworker
         _start(templateWorker);
     };
 
@@ -200,7 +204,7 @@ weatherApp.get = (function () {
         });
     };
 
-    return {
+    return { //return only the funtions that are nesseeriy
         one: one,
         all: all,
         data: data

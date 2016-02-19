@@ -1,7 +1,7 @@
 'use strict';
 
-var dataFunction = {
-    get: function (url) {
+var dataFunction = (function () {
+    function get(url) {
         // return a  object
         return new Promise(function (resolve, reject) {
             var request = new XMLHttpRequest();
@@ -18,14 +18,20 @@ var dataFunction = {
             request.send();
         });
     }
-};
+
+    return {
+        get: get
+    };
+})();
 
 //webworker code form http://www.html5rocks.com/en/tutorials/workers/basics/
 self.addEventListener('message', function (e) {
     var data = e.data;
     if (data.cmd === 'start') {
         data.templates.forEach(function (current, index) {
-            dataFunction.get('http://matth96.github.io/web-app-from-scratch/opdracht-7-modules/temp/' + current + '.mst').then(response => {
+            //Get template form pages
+            dataFunction.get('http://matth96.github.io/web-app-from-scratch/opdracht-7-modules/temp/' + current + '.mst')
+                .then(response => {
                 var dataRespose = JSON.stringify(response);
 
                 return dataRespose;
@@ -37,6 +43,7 @@ self.addEventListener('message', function (e) {
 
                 return object;
             }).then(response => {
+                //Send the templates to te weatherapp script
                 self.postMessage(
                     response
                 );

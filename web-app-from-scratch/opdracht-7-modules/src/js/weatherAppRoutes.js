@@ -1,5 +1,6 @@
 //difine all routers in app
 weatherApp.routes = (function () {
+    //define routes from the app
     var _routes = {
         '/home': weatherApp.page.home,
         '/search': weatherApp.page.search,
@@ -18,7 +19,7 @@ weatherApp.routes = (function () {
             window.location = '#/home';
         }
     };
-
+    //run functions
     function init() {
         _createRoutes();
         _ceckRoute();

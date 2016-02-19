@@ -1,5 +1,6 @@
 //define all pages in the weatherApp.
 weatherApp.page = (function () {
+    //ony private vars
     var _homeTemplate = weatherApp.localStorage.get('home'),
         _searchresultsTemplate = weatherApp.localStorage.get('searchresults'),
         _searchTemplate = weatherApp.localStorage.get('search'),
@@ -65,7 +66,7 @@ weatherApp.page = (function () {
                     .then(response => {
                         var data = JSON.parse(response).list,
                             newdata = _.map(data, function (data) {
-                                data.attachedName = data.name.replace(/ /g, '-').toLowerCase();
+                                data.attachedName = data.name.replace(/ /g, '-').toLowerCase() + '-' + data.sys.country.toLowerCase();
                                 return data
                             });
 
@@ -110,9 +111,11 @@ weatherApp.page = (function () {
             window.location = '#/search';
             weatherApp.ux.showErr('Sorry, there\' nothing here, please add a city.');
         } else {
+            //loop threu the saved city's
             savedCitys.forEach(function (element) {
                 var url = weatherApp.data.WeatherUrl(element),
                     deleteCity = function (savedCitysData) {
+                        //divine a event lisner on the showed list
                         var citys = weatherApp.get.one('.citys');
                         citys.addEventListener('click', function (e) {
                             if (e.target && e.target.nodeName == 'BUTTON' || e.target && e.target.nodeName == 'SMALL') {

@@ -4,24 +4,40 @@ weatherApp.ux = (function () {
     function init() {
         var citys = weatherApp.get.one('.citys'),
             hammer = new Hammer(citys);
-        console.log(citys);
+
         _swipeLeft(hammer);
         _swipeRight(hammer);
     };
-
+    //define swipes
     function _swipeLeft(hammer) {
         hammer.on('swipeleft', function (ev) {
             var deleteButton = weatherApp.get.one('.' + ev.target.id);
+            var int = 0;
 
-            deleteButton.style.width = '100px'
+            setInterval(function () {
+                int++;
+
+                if (int < 100) {
+                    deleteButton.style.width = int + "px";
+                }
+            }, 2)
+
         });
     };
-
+    //define swpipe right
     function _swipeRight(hammer) {
         hammer.on('swiperight', function (ev) {
-            var deleteButton = weatherApp.get.one('.' + ev.target.id);
 
-            deleteButton.style.width = '0px'
+            var deleteButton = weatherApp.get.one('.' + ev.target.id);
+            var int = 100;
+            setInterval(function () {
+                int--;
+
+                if (int > -1) {
+                    deleteButton.style.width = int + "px";
+                }
+            }, 2)
+
         });
     };
 

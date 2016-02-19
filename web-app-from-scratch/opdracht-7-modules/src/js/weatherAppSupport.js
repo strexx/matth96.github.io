@@ -26,6 +26,7 @@ weatherApp.support = (function () {
     };
 
     function _location() {
+        //check if location is supported
         if (navigator.geolocation) {
             console.log('Geolocation is supported')
         } else {
