@@ -4,7 +4,7 @@ weatherApp.ux = (function () {
     function init() {
         var citys = weatherApp.get.one('.citys'),
             hammer = new Hammer(citys);
-
+        console.log(citys);
         _swipeLeft(hammer);
         _swipeRight(hammer);
     };
